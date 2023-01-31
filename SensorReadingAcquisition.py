@@ -1,6 +1,5 @@
 
-import time, os
-import threading
+import time, os, threading, csv
 import urllib.request as request
 from bs4 import BeautifulSoup as BS
 from datetime import datetime as dt
@@ -36,6 +35,12 @@ def add_to_dict(lst, dct, datapoint):
 	timestamp = str(dt.now().strftime("%Y-%m-%d %H:%M:%S")) + '.' + str(datapoint)
 	dct[timestamp] = lst
 
+def save_to_csv(dct, file_name):
+	with open(file_name, 'w', newline='') as file:
+		writer = csv.writer(file)
+		writer.writerow(dct.keys())
+		writer.writerows(zip(*dct.values()))
+
 def read_sensors():
 	global stop_flag
 	datapoint = 0
@@ -56,7 +61,8 @@ def read_sensors():
 
 		time.sleep(0.007)
 
-	print(full_run)
+	if debug:
+		print(full_run)
 
 def killswitch():
 	global stop_flag
@@ -69,22 +75,22 @@ def check_or_create_folder(folder):
 	if not os.path.isdir(folder):
 		os.mkdir(folder)
 
-def create_participant_folders(debug=False):
+def create_participant_folders(debug, p, s):
 
 	# create required folders for complete experimental run for single participant
 	resultsFolder = os.path.join(os.getcwd(), "results")
-	participantFolder = os.path.join(resultsFolder, str(participantID))
-	trainFolders = [ os.path.join(participantFolder, "trial_0%i" % trial) for trial in range(4)]
-	reqFolders = [resultsFolder] + [participantFolder] + trainFolders
+	participantFolder = os.path.join(resultsFolder, str(p))
+	reqFolders = [resultsFolder] + [participantFolder]
 
 	if debug:
 		print(resultsFolder)
 		print(participantFolder)
-		print(trainFolders)
 
 	_ = [check_or_create_folder(folder) for folder in reqFolders]
 
-	return reqFolders
+	session_file_name = os.path.join(participantFolder, str(s))
+
+	return session_file_name
 
 
 if __name__ == '__main__':
@@ -94,8 +100,7 @@ if __name__ == '__main__':
 	s = input("Enter the number of the surrent session (1-8): ")
 
 	# Create necessary folders
-	
-
+	session_file_name = create_participant_folders(debug, p, s)
 
 	reading_thread = threading.Thread(target=read_sensors)
 	killswitch_thread = threading.Thread(target=killswitch)
@@ -103,6 +108,8 @@ if __name__ == '__main__':
 	killswitch_thread.start()
 
 	# Store readings into .csv and save to correct folder
+	save_to_csv(full_run, session_file_name)
+	print('Data saved to .csv file. Run complete.')
 
 		
 
