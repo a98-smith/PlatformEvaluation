@@ -1,4 +1,4 @@
-import os, csv, datetime
+import os, csv, datetime, random
 
 
 def check_or_create_folder(folder):
@@ -28,5 +28,12 @@ def save_to_csv(dct, file_name):
 		writer.writerows(zip(*dct.values()))
 
 def add_to_dict(lst, dct, datapoint):
-	timestamp = str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")) + '.' + str(datapoint)
+	timestamp = str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")) + '.' + str(datapoint)
 	dct[timestamp] = lst
+
+def create_random_list(length, options):
+	random_list = []
+	for i in range(length):
+		random_list.append(random.choice(options))
+	
+	return random_list

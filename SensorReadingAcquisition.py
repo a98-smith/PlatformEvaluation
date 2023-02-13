@@ -1,5 +1,5 @@
 
-import time, threading, utils
+import time, utils
 import urllib.request as request
 
 
@@ -8,7 +8,6 @@ import urllib.request as request
 debug = False
 url = 'http://192.168.4.1/grip'
 stop_flag = False
-empty_run = {}
 full_run = {}
 
 ### Functions
@@ -30,6 +29,7 @@ def extract_values(html_string):
 
 def read_sensors():
 	global stop_flag
+	stop_flag = False
 	datapoint = 0
 	while not stop_flag:
 		req = request.Request(url)
@@ -53,9 +53,10 @@ def read_sensors():
 
 def killswitch():
 	global stop_flag
-	user_input = input("Data collection completed?")
+	user_input = input("Press enter when collection is complete... \n")
 	if user_input or not user_input:
-		print("Stopping data collection...")
+		if debug:
+			print("Stopping data collection...")
 		stop_flag = True 
 
 		
