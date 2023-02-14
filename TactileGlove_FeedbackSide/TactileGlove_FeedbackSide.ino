@@ -64,10 +64,7 @@ void setup() {
 
   // Begin Serial connection for debugging
   Serial.begin(115200) ;
-  Serial.setDebugOutput(true);
-
-  connectWiFi() ;
-
+  connectWiFi() ; // Connect to WiFi
   delay(1000);
 
 }
@@ -215,7 +212,7 @@ void handle_input(int* pressureValues) {
     averagePressure += pressureValues[finger] ;
   }
   averagePressure = averagePressure / ( len ) ;
-  // Serial.println("Average pressure: " + String(averagePressure)) ;
+
   // Checks against thresholds and flags to determine what signal to produce on the rising side
   if (( averagePressure > maxThreshold ) && !maxFlag && highFlag ) { // High to Max
     maxFlag = true ;
@@ -260,7 +257,7 @@ void handle_input(int* pressureValues) {
   else if (( averagePressure < lowThreshold ) && lowFlag && contactFlag ) { // Low to Contact
     lowFlag = false ;
     Serial.println("Low to Contact") ;
-//    play_chirp( "open" ) ;
+   play_chirp( "close" ) ;
   }
   else if ((averagePressure < contactThreshold ) && contactFlag ) { // Release
     contactFlag = false ;

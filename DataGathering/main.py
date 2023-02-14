@@ -22,7 +22,7 @@ if __name__ == '__main__':
  
 	print("Proceed with Noise Floor evaluation.\n\n")	# Perform noise floor evaluation through Arduino Serial interface
 	
-	trialConditions = utils.create_random_list(datapoints, conditionOptions)
+	trialConditions = utils.create_random_list(datapoints, conditionOptions) # Creates a randomised list of conditions from the list of conditions
 
 	# Repeats data collection and stores each trial seperately to simplify analysis
 	for trial in range(1, datapoints+1):
