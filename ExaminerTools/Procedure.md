@@ -7,7 +7,7 @@
 - IIT SoftHand wrist mount
 - Sensorised glove (Finger-mounted FSRs)
 - Sensor-side microcontroller PCB
-- Vibrotactile feedback array (Alex Band:tm:)
+- Vibrotactile feedback array (Alex Band^TM^)
 - Feedback-side microcontroller PCB
 - Power supply
 - Power pack
