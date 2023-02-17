@@ -16,7 +16,10 @@
 - [ ] Virtual Eggs x2 (Low-K and High-K)
 - [ ] Weight Caddies x4 (Light, Medium, Heavy, Dense)
 - [x] Wall obstacle
-- [ ] ***ADD ADL HARDWARE REQUIREMENTS HERE***
+- [ ] ADL tools
+  - [ ] Pen and Paper
+  - [ ] Pegboard and Pegs
+  - [ ] Plastic cups & water / sugar
 
 #### Data collection
 - [x] WiFi enabled computer
