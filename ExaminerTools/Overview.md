@@ -44,9 +44,9 @@ The experiment aims to investiagte the long-term training and preference effects
 #### Participant Introduction 
 Participant is given an overview of the research, i.e. why it is being conducted and what we are hoping to learn. 
 Provided with all necessary documentation:
-- [ ] Participant Information Sheet
-- [ ] Informed Consent Form
-- [ ] Demographics Questionnaire
+- [x] Participant Information Sheet [[here]](Docs%20and%20Forms/AlexSmith%20Training%20ParticipantInfoSheet%20V1.1.docx)
+- [x] Informed Consent Form [[here]](Docs%20and%20Forms/AlexSmith%20Training%20ConsentForm%20V1.1.docx)
+- [x] Demographics Questionnaire [[here]](Docs%20and%20Forms/AlexSmith%20Training%20DemographicsQuestionnaire%20V1.0.docx)
 
 #### Informed Consent Forms
 Establish whether the participant understands the data that you are collecting, how it is going to be used, and their rights with respect to withdrawal.
@@ -60,4 +60,5 @@ A selection of Activities of Daily Living (ADLs) timed by the experimenter (duri
 Used as a comparative measure of user-skill between the first and last sessions.
 
 #### Box and Blocks Battery
-Description
+The main task for the experiment, used as training between ADL sessions.
+Participants will be asked to grasp, lift, carry and replace a randomised series of boxes with different weights over an obstacle using the platform (repeated 15 times per session). <br /> Participants will then fill in the Questionnaires provided [here](Docs%20and%20Forms/AlexSmith%20Training%20QuestionnairesTLX%20V1.0.docx) after every session.
