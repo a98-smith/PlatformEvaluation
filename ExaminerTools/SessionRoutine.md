@@ -37,3 +37,5 @@
 7. Participant to complete ADLs and return [questionnaires](Docs%20and%20Forms/AlexSmith%20Training%20QuestionnairesTLX%20V1.0.docx).
 8. Participant to complete Box and Blocks battery and return [questionnaires](Docs%20and%20Forms/AlexSmith%20Training%20QuestionnairesTLX%20V1.0.docx).
 9. Note any anecdotal data from participants.
+
+**--Complete--**
