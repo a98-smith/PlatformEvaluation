@@ -24,6 +24,7 @@ int attempts = 0 ;
 // Storage variables
 String pressure ;
 int* pressureValues ;
+String string ;
 
 // Global Threshold pressure values
 int contactThreshold = 20 ;
@@ -38,6 +39,8 @@ bool lowFlag = false ;
 bool medFlag = false ;
 bool highFlag = false ;
 bool maxFlag = false ;
+
+bool debug = false ;
 
 // Frequencies for each threshold
 int contactFreq ;
@@ -216,54 +219,57 @@ void handle_input(int* pressureValues) {
   // Checks against thresholds and flags to determine what signal to produce on the rising side
   if (( averagePressure > maxThreshold ) && !maxFlag && highFlag ) { // High to Max
     maxFlag = true ;
-    Serial.println("High to Max") ;
+    string = "High to Max" ;
     play_sine( maxFreq ) ;
   }
   else if (( averagePressure > highThreshold ) && !highFlag && medFlag ) { // Med to High
     highFlag = true ;
-    Serial.println("Med to High") ;
+    string = "Med to High" ;
     play_sine( highFreq ) ;
   }
   else if (( averagePressure > medThreshold ) && !medFlag && lowFlag ) { // Low to Med
     medFlag = true ;
-    Serial.println("Low to Med") ;
+    string = "Low to Med" ;
     play_sine( medFreq ) ;
   }
   else if (( averagePressure > lowThreshold ) && !lowFlag && contactFlag ) { // Contact to Low
     lowFlag = true ;
-    Serial.println("Contact to Low") ;
+    string = "Contact to Low" ;
     play_sine( lowFreq ) ;
   }
   else if ((averagePressure > contactThreshold ) && !contactFlag ) { // Contact
     contactFlag = true ;
-    Serial.println("Contact made") ;
+    string = "Contact made" ;
     play_chirp( "close" ) ;
   }
   else if (( averagePressure < maxThreshold ) && maxFlag && highFlag ) { // Max to High
     maxFlag = false ;
-    Serial.println("Max to High") ;
+    string = "Max to High" ;
     play_sine( highFreq ) ;
   }
   else if (( averagePressure < highThreshold ) && highFlag && medFlag ) { // High to Med
     highFlag = false ;
-    Serial.println("High to Med") ;
+    string = "High to Med" ;
     play_sine( medFreq ) ;
   }
   else if (( averagePressure < medThreshold ) && medFlag && lowFlag ) { // Med to Low
     medFlag = false ;
-    Serial.println("Med to Low") ;
+    string = "Med to Low" ;
     play_sine( lowFreq ) ;
   }
   else if (( averagePressure < lowThreshold ) && lowFlag && contactFlag ) { // Low to Contact
     lowFlag = false ;
-    Serial.println("Low to Contact") ;
+    string = "Low to Contact" ;
    play_chirp( "close" ) ;
   }
   else if ((averagePressure < contactThreshold ) && contactFlag ) { // Release
     contactFlag = false ;
-    Serial.println("Release") ;
+    string = "Release" ;
     play_chirp( "open" ) ;
   }
 
+  if (debug) {
+    Serial.println(string) ;
+  }
 
 }

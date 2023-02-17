@@ -30,7 +30,7 @@ if __name__ == '__main__':
 			_adls = True 
 			print("ADL test commencing.")
 
-	if _adls:
+	if _adls: # Creates and 
      
 		input("Press enter to begin data collection for ADL battery. \t")
 		
