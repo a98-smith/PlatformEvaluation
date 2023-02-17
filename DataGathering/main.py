@@ -28,7 +28,7 @@ if __name__ == '__main__':
 		ADLs = input("Is the participant completing the ADL battery? Y/N")
 		if ADLs.lower() == 'y':
 			_adls = True 
-			print("ADL battery selected.")
+			print("ADL test commencing.")
 
 	if _adls:
      
