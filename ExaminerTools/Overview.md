@@ -1,4 +1,4 @@
-# Experimental Procedure - Vibrotactile feedback platform evaluation
+# Experimental Overview - Vibrotactile feedback platform evaluation
 
 ## Experimental hardware checklist
 #### Platform
