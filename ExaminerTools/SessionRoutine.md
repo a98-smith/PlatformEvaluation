@@ -10,7 +10,7 @@
 6. Demonstrate ADL battery to participant and explain the goal.
 7. Begin [data collection system](/DataGathering/main.py) and camera recording.
 8. Participant to complete ADLs and return [questionnaires](Docs%20and%20Forms/AlexSmith%20Training%20QuestionnairesTLX%20V1.0.docx).
-9. Participant to complete Box and Blocks battery and return [questionnaires](Docs%20and%20Forms/AlexSmith%20Training%20QuestionnairesTLX%20V1.0.docx).
+9. Participant to complete Box and Blocks battery and return [questionnaires](https://forms.gle/gCK4aoEEUXrnGaoX6).
 10. Note any anecdotal data from participants.
 
 **--Complete--**
@@ -22,7 +22,7 @@
 3. Participant to don platform.
 4. Noise-Floor evaluation for EMGs. <br />    -- Plug Brunel Hand into PC, interface with Arduino Serial Monitor.
 5. Begin [data collection system](/DataGathering/main.py) and camera recording.
-6. Participant to complete Box and Blocks battery and return [questionnaires](Docs%20and%20Forms/AlexSmith%20Training%20QuestionnairesTLX%20V1.0.docx).
+6. Participant to complete Box and Blocks battery and return [questionnaires](https://forms.gle/gCK4aoEEUXrnGaoX6).
 7. Note any anecdotal data from participants.
 
 **--Complete--**
@@ -36,7 +36,7 @@
 5. Demonstrate ADL battery to participant and explain the goal.
 6. Begin [data collection system](/DataGathering/main.py) and camera recording.
 7. Participant to complete ADLs and return [questionnaires](Docs%20and%20Forms/AlexSmith%20Training%20QuestionnairesTLX%20V1.0.docx).
-8. Participant to complete Box and Blocks battery and return [questionnaires](Docs%20and%20Forms/AlexSmith%20Training%20QuestionnairesTLX%20V1.0.docx).
+8. Participant to complete Box and Blocks battery and return [questionnaires](https://forms.gle/gCK4aoEEUXrnGaoX6).
 9. Note any anecdotal data from participants.
 
 **--Complete--**
