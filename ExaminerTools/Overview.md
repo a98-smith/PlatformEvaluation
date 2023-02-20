@@ -64,4 +64,4 @@ Used as a comparative measure of user-skill between the first and last sessions.
 
 #### Box and Blocks Battery
 The main task for the experiment, used as training between ADL sessions.
-Participants will be asked to grasp, lift, carry and replace a randomised series of boxes with different weights over an obstacle using the platform (repeated 10 times per session). <br /> Participants will then fill in the Questionnaires provided [here](Docs%20and%20Forms/AlexSmith%20Training%20QuestionnairesTLX%20V1.0.docx). <br /> This will then be repeated under a cognative load (counting backwards in 7s)
+Participants will be asked to grasp, lift, carry and replace a randomised series of boxes with different weights over an obstacle using the platform (repeated 10 times per session). <br /> Participants will then fill in the Questionnaires provided [here](https://forms.gle/gCK4aoEEUXrnGaoX6). <br /> This will then be repeated under a cognative load (counting backwards in 7s)
