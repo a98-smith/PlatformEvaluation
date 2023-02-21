@@ -7,8 +7,9 @@ import utils
 
 ## Global Variables
 debug = False
-datapoints = 15
+datapoints = 10
 conditionOptions = ["L","M","H"]
+loadingOptions = ["","CL"]
 
 if __name__ == '__main__':
 	
@@ -30,7 +31,7 @@ if __name__ == '__main__':
 			_adls = True 
 			print("ADL test commencing.")
 
-	if _adls: # Creates and 
+	if _adls: # Runs data-gathering for whole ADL session, then saves it to a .csv 
      
 		input("Press enter to begin data collection for ADL battery. \t")
 		
@@ -50,26 +51,32 @@ if __name__ == '__main__':
 
 		print("ADL data collection complete.")
   
-	# Repeats data collection and stores each trial seperately to simplify analysis
-	for trial in range(1, datapoints+1):
-		input(f"Press enter to begin data collection for Trial {trial} of {datapoints}. {trialConditions[trial-1]} \t")
- 
-		acquisitionThread = threading.Thread(target=SRA.read_sensors) # Strips Sensor readings from server and adds to dictionary
-		killswitchThread = threading.Thread(target=SRA.killswitch)  # Listens for serial input to stop data collection
-		acquisitionThread.start()
-		killswitchThread.start()
-  
-  		# Wait for threads to terminate before starting again
-		acquisitionThread.join()
-		killswitchThread.join()
-    
-		# Saves dictionary of collected data to .csv file in the defined directory
-		trial_data_path = os.path.join(sessionFolder, str(trial) + "-" + trialConditions[trial-1])
-		utils.save_to_csv(SRA.full_run, trial_data_path)
-		SRA.full_run.clear()  # Clear the dictionary variable of the previous trial's data
+	loadingConditions = utils.create_random_list(len(loadingOptions), loadingOptions)
 	
-
+	for loading in range(len(loadingConditions)):
+     
+		if loadingConditions(loading) == "CL":
+			print("**** COGNITIVE LOADING TASK ****")
+		else :
+			print("**** NO LOADING ****")
+		
+		# Repeats data collection and stores each trial seperately to simplify analysis
+		for trial in range(1, datapoints+1):
+			input(f"Press enter to begin data collection for Trial {trial} of {datapoints}. {trialConditions[trial-1]} \t")
 	
+			acquisitionThread = threading.Thread(target=SRA.read_sensors) # Strips Sensor readings from server and adds to dictionary
+			killswitchThread = threading.Thread(target=SRA.killswitch)  # Listens for serial input to stop data collection
+			acquisitionThread.start()
+			killswitchThread.start()
+	
+			# Wait for threads to terminate before starting again
+			acquisitionThread.join()
+			killswitchThread.join()
+		
+			# Saves dictionary of collected data to .csv file in the defined directory
+			trial_data_path = os.path.join(sessionFolder, str(trial) + "-" + loadingConditions(loading) + trialConditions[trial-1])
+			utils.save_to_csv(SRA.full_run, trial_data_path)
+			SRA.full_run.clear()  # Clear the dictionary variable of the previous trial's data
 	
 	print("Box and Blocks Session {} complete.".format(session))
 
