@@ -11,7 +11,9 @@ def create_participant_folders(debug, p, s):
 	resultsFolder = os.path.join(os.getcwd(), "results")
 	participantFolder = os.path.join(resultsFolder, str(p))
 	sessionFolder = os.path.join(participantFolder, str(s))
-	reqFolders = [resultsFolder] + [participantFolder] + [sessionFolder]
+	CLFolder = os.path.join(sessionFolder, "CL")
+	NLFolder = os.path.join(sessionFolder, "NL")
+	reqFolders = [resultsFolder] + [participantFolder] + [sessionFolder] + [CLFolder] + [NLFolder]
 
 	if debug:
 		print(resultsFolder)
@@ -37,3 +39,7 @@ def create_random_list(length, options):
 		random_list.append(random.choice(options))
 	
 	return random_list
+
+def shuffle_list(lst):
+	# return random.shuffle(lst)
+	return random.sample(lst, len(lst))

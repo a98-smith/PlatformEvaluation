@@ -7,7 +7,8 @@ import utils
 
 ## Global Variables
 debug = False
-datapoints = 10
+_adls = False
+datapoints = 1
 conditionOptions = ["L","M","H"]
 loadingOptions = ["","CL"]
 
@@ -25,8 +26,8 @@ if __name__ == '__main__':
 	
 	trialConditions = utils.create_random_list(datapoints, conditionOptions) # Creates a randomised list of conditions from the list of conditions
 
-	if session == 1 or 8: # Determine whether the participant is conducting the ADL battery
-		ADLs = input("Is the participant completing the ADL battery? Y/N")
+	if session == "1" or session == "8": # Determine whether the participant is conducting the ADL battery
+		ADLs = input("Is the participant completing the ADL battery? Y/N \t")
 		if ADLs.lower() == 'y':
 			_adls = True 
 			print("ADL test commencing.")
@@ -51,14 +52,16 @@ if __name__ == '__main__':
 
 		print("ADL data collection complete.")
   
-	loadingConditions = utils.create_random_list(len(loadingOptions), loadingOptions)
-	
+	loadingConditions = utils.shuffle_list(loadingOptions)
+	print(loadingConditions)
 	for loading in range(len(loadingConditions)):
-     
-		if loadingConditions(loading) == "CL":
+		
+		if loadingConditions[loading] == "CL":
 			print("**** COGNITIVE LOADING TASK ****")
+			saveFolder = os.path.join(sessionFolder, "CL")
 		else :
 			print("**** NO LOADING ****")
+			saveFolder = os.path.join(sessionFolder, "NL")
 		
 		# Repeats data collection and stores each trial seperately to simplify analysis
 		for trial in range(1, datapoints+1):
@@ -74,7 +77,7 @@ if __name__ == '__main__':
 			killswitchThread.join()
 		
 			# Saves dictionary of collected data to .csv file in the defined directory
-			trial_data_path = os.path.join(sessionFolder, str(trial) + "-" + loadingConditions(loading) + trialConditions[trial-1])
+			trial_data_path = os.path.join(saveFolder, str(trial) + "-" + loadingConditions[loading] + trialConditions[trial-1])
 			utils.save_to_csv(SRA.full_run, trial_data_path)
 			SRA.full_run.clear()  # Clear the dictionary variable of the previous trial's data
 	
