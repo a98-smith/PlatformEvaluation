@@ -1,4 +1,4 @@
-import os, csv, datetime, random
+import os, csv, datetime, random, shutil
 
 
 def check_or_create_folder(folder):
@@ -41,5 +41,25 @@ def create_random_list(length, options):
 	return random_list
 
 def shuffle_list(lst):
-	# return random.shuffle(lst)
+	"""
+	Shuffle the elements in a list and returns as a new variable
+
+	Args:
+		lst (list): List to be shuffled
+
+	Output:
+		Shuffled list
+	"""
 	return random.sample(lst, len(lst))
+
+def clone_file(src_repo, filename, dest_dir):
+	"""
+	Copy a file from a source repository to a target directory.
+
+	Args:
+		src_repo (str): Path to the source repository.
+		filename (str): Name of the file to copy.
+		dest_dir (str): Path to the target directory.
+	"""
+	src_file = os.path.join(src_repo, filename)
+	shutil.copy(src_file, dest_dir)
