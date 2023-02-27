@@ -79,7 +79,7 @@ if __name__ == '__main__':
 			killswitchThread.join()
 		
 			# Saves dictionary of collected data to .csv file in the defined directory
-			trial_data_path = os.path.join(saveFolder, str(trial) + "-" + loadingConditions[loading] + "-" + trialConditions[trial-1])
+			trial_data_path = os.path.join(saveFolder, str(trial) + "-" + trialConditions[trial-1])
 			utils.save_to_csv(SRA.full_run, trial_data_path)
 			SRA.full_run.clear()  # Clear the dictionary variable of the previous trial's data
 	
