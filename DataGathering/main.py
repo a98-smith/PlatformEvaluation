@@ -8,9 +8,10 @@ import utils
 ## Global Variables
 debug = False
 _adls = False
-datapoints = 1
+datapoints = 10
 conditionOptions = ["L","M","H"]
 loadingOptions = ["","CL"]
+scoreCardRepo = os.path.join( os.path.join( os.getcwd() , "ExaminerTools" ), "Docs and Forms")
 
 if __name__ == '__main__':
 	
@@ -20,6 +21,7 @@ if __name__ == '__main__':
 	
 	# Checks for required folders, and creates any missing directories
 	sessionFolder = utils.create_participant_folders(debug, participantID, session)
+	utils.clone_file(scoreCardRepo, "GraspFailureScorecard.csv", sessionFolder) # Copies scorecard into session folder
 	print("Folders created for P%s, Session %s \n\n" % (participantID, session))
 	
 	print("Proceed with Noise Floor evaluation.\n\n")	# Perform noise floor evaluation through Arduino Serial interface
@@ -52,8 +54,8 @@ if __name__ == '__main__':
 
 		print("ADL data collection complete.")
   
-	loadingConditions = utils.shuffle_list(loadingOptions)
-	print(loadingConditions)
+	loadingConditions = utils.shuffle_list(loadingOptions) # Randomises the order of the cognitive loading conditions 
+
 	for loading in range(len(loadingConditions)):
 		
 		if loadingConditions[loading] == "CL":
