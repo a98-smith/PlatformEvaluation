@@ -63,3 +63,26 @@ def clone_file(src_repo, filename, dest_dir):
 	"""
 	src_file = os.path.join(src_repo, filename)
 	shutil.copy(src_file, dest_dir)
+ 
+ 
+def copy_rename_file(src_dir_path, src_file_name, dest_dir_path, new_file_name):
+	"""
+	Copy a file from a source directory to a destination directory and rename the file.
+
+	Args:
+		src_dir_path (str): Path of the source directory.
+		src_file_name (str): Name of the file to be copied from the source directory.
+		dest_dir_path (str): Path of the destination directory.
+		new_file_name (str): Name of the copied file in the destination directory.
+	"""
+	# Create destination directory if it does not exist
+	if not os.path.exists(dest_dir_path):
+		os.makedirs(dest_dir_path)
+  
+	src_file_path = os.path.join(src_dir_path, src_file_name)
+ 
+	# Construct the path for the new file in the destination directory
+	dest_file_path = os.path.join(dest_dir_path, new_file_name)
+
+	# Copy the file to the destination directory with the new name
+	shutil.copy2(src_file_path, dest_file_path)

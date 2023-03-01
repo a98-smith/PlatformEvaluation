@@ -11,6 +11,7 @@ _adls = False
 datapoints = 10
 conditionOptions = ["L","H"]
 loadingOptions = ["","CL"]
+ADLOptions = ["Cups" , "Pegs" , "Pens"]
 scoreCardRepo = os.path.join( os.path.join( os.getcwd() , "ExaminerTools" ), "Docs and Forms")
 
 if __name__ == '__main__':
@@ -35,24 +36,29 @@ if __name__ == '__main__':
 			print("ADL test commencing.")
 
 	if _adls: # Runs data-gathering for whole ADL session, then saves it to a .csv 
-     
+		
+		utils.clone_file(scoreCardRepo, "ADLScorecard.csv", sessionFolder)
 		input("Press enter to begin data collection for ADL battery. \t")
 		
-		acquisitionThread = threading.Thread(target=SRA.read_sensors) # Strips Sensor readings from server and adds to dictionary
-		killswitchThread = threading.Thread(target=SRA.killswitch)  # Listens for serial input to stop data collection
-		acquisitionThread.start()
-		killswitchThread.start()
+		for adl in ADLOptions:
+			
+			input(f"Press enter to begin data collection for {adl} test. \t")
+      
+			acquisitionThread = threading.Thread(target=SRA.read_sensors) # Strips Sensor readings from server and adds to dictionary
+			killswitchThread = threading.Thread(target=SRA.killswitch)  # Listens for serial input to stop data collection
+			acquisitionThread.start()
+			killswitchThread.start()
     
-		# Saves dictionary of collected data to .csv file in the defined directory
-		ADL_data_path = os.path.join(sessionFolder, "ADL" + str(session))
-		utils.save_to_csv(SRA.full_run, ADL_data_path)
-		SRA.full_run.clear()  # Clear the dictionary variable of the previous trial's data
+			# Saves dictionary of collected data to .csv file in the defined directory
+			ADL_data_path = os.path.join(sessionFolder, "ADL" + str(session) + " - " + adl)
+			utils.save_to_csv(SRA.full_run, ADL_data_path)
+			SRA.full_run.clear()  # Clear the dictionary variable of the previous trial's data
 	
-		# Wait for threads to terminate before starting again
-		acquisitionThread.join()
-		killswitchThread.join()
+			# Wait for threads to terminate before starting again
+			acquisitionThread.join()
+			killswitchThread.join()
 
-		print("ADL data collection complete.")
+			print(f"{adl} ADL data collection complete.")
   
 	loadingConditions = utils.shuffle_list(loadingOptions) # Randomises the order of the cognitive loading conditions 
 
