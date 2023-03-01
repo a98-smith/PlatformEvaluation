@@ -9,7 +9,7 @@ import utils
 debug = False
 _adls = False
 datapoints = 10
-conditionOptions = ["L","M","H"]
+conditionOptions = ["L","H"]
 loadingOptions = ["","CL"]
 scoreCardRepo = os.path.join( os.path.join( os.getcwd() , "ExaminerTools" ), "Docs and Forms")
 
