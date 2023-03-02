@@ -24,6 +24,8 @@ def create_participant_folders(debug, p, s):
 	return sessionFolder
 
 def save_to_csv(dct, file_name):
+	
+	file_name = file_name + ".csv"
 	with open(file_name, 'w', newline='') as file:
 		writer = csv.writer(file)
 		writer.writerow(dct.keys())
