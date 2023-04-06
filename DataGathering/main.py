@@ -27,7 +27,7 @@ if __name__ == '__main__':
 	
 	print("Proceed with Noise Floor evaluation.\n\n")	# Perform noise floor evaluation through Arduino Serial interface
 	
-	trialConditions = utils.create_random_list(datapoints, conditionOptions) # Creates a randomised list of conditions from the list of conditions
+	
 
 	if session == "1" or session == "8": # Determine whether the participant is conducting the ADL battery
 		ADLs = input("Is the participant completing the ADL battery? Y/N \t")
@@ -65,6 +65,8 @@ if __name__ == '__main__':
 	loadingConditions = utils.shuffle_list(loadingOptions) # Randomises the order of the cognitive loading conditions 
 
 	for loading in range(len(loadingConditions)):
+     
+		trialConditions = utils.create_random_list(datapoints, conditionOptions) # Creates a randomised list of conditions from the list of conditions
 		
 		if loadingConditions[loading] == "CL":
 			print("**** COGNITIVE LOADING TASK ****")

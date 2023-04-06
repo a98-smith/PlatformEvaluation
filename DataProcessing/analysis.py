@@ -9,8 +9,6 @@ class Participant:
 	Grasp_dct = {} 
 	NL_Grasp_metrics = {}
 	CL_Grasp_metrics = {}
- 
-	debug = False
 
 	# Public methods and functions
 	def __init__(self, results_dir , participant_ID):
@@ -20,18 +18,29 @@ class Participant:
 			results_dir (str): Filepath-like object to results folder
 			participant_ID (str): Participant identifier
 		"""
-		self.Grasp_dct = {}
+		self._empty_storage_variables()
 		self.participant_ID = participant_ID
 		self.questionnaire_dir = os.path.join(results_dir, "PEQRs.csv")
 		self.resultsFolder = os.path.join(results_dir, self.participant_ID)
-		if self.debug: print(self.participant_ID + "\n----------------------------- \t")
+		if self._debug: print("----------------------------- \n\t P" + self.participant_ID + "\n----------------------------- \t")
 		self._load_results()
 		self._process_ADLs()
 		self._process_grasps()
   
   	# Private attributes and variables
+	_debug = True
+ 
  
 	# Private methods and functions
+	def _empty_storage_variables(self):
+		# Empty all storage functions
+		self.Grasp_dct.clear()
+		self.NL_Grasp_metrics.clear()
+		self.CL_Grasp_metrics.clear()
+		self.ADL_dct.clear()
+		self.ADL1_metrics.clear()
+		self.ADL8_metrics.clear()
+ 
 	def _load_results(self):
 		
 		# Extracts all questionnaire results relevant to the current participant
@@ -41,7 +50,6 @@ class Participant:
 
 		# Isolates the directory names of each session folder that exists
 		session_results_folders = next(os.walk(self.resultsFolder))[1]
-  
 		for session in session_results_folders:
 			sessionFolder = os.path.join( self.resultsFolder, session )
 			for loading in os.listdir(sessionFolder):
@@ -97,22 +105,33 @@ class Participant:
 
 		for session in self.Grasp_dct.keys():
 			self.CL_Grasp_metrics[session] = {
-				"Misgrasp" : self.Grasp_dct[session]["CL-Misgrasp"].sum(axis=0),
+				"Misgrasps" : self.Grasp_dct[session]["CL-Misgrasp"].sum(axis=0),
 				"Drops" : self.Grasp_dct[session]["CL-Drop"].sum(axis=0) ,
-				"Crush" : self.Grasp_dct[session]["CL-Crush"].sum(axis=0) ,
+				"Crushes" : self.Grasp_dct[session]["CL-Crush"].sum(axis=0) ,
 				"SessionTotal" : self.Grasp_dct[session]["CL-Misgrasp"].sum(axis=0) + self.Grasp_dct[session]["CL-Drop"].sum(axis=0) + self.Grasp_dct[session]["CL-Crush"].sum(axis=0),
 				}
 			self.NL_Grasp_metrics[session] = {
-				"Misgrasp" : self.Grasp_dct[session]["NL-Misgrasp"].sum(axis=0),
+				"Misgrasps" : self.Grasp_dct[session]["NL-Misgrasp"].sum(axis=0),
 				"Drops" : self.Grasp_dct[session]["NL-Drop"].sum(axis=0) ,
-				"Crush" : self.Grasp_dct[session]["NL-Crush"].sum(axis=0) ,
+				"Crushes" : self.Grasp_dct[session]["NL-Crush"].sum(axis=0) ,
 				"SessionTotal" : self.Grasp_dct[session]["NL-Misgrasp"].sum(axis=0) + self.Grasp_dct[session]["NL-Drop"].sum(axis=0) + self.Grasp_dct[session]["NL-Crush"].sum(axis=0),
 				}
-		if self.debug:
+		if self._debug:
+			print("Loaded metrics:")
 			print(self.CL_Grasp_metrics)
+			print("Unoaded metrics:")
 			print(self.NL_Grasp_metrics)
 			print("----------------------------- \t\n\n")
- 
+
+FB_mask = { "001" : False,
+            "002" : True , 
+            "003" : True ,
+            "004" : False,
+            "006" : False,
+            "009" : True ,
+            "010" : True }
+
+
 if __name__ == "__main__":
 
 	
@@ -122,7 +141,7 @@ if __name__ == "__main__":
 
 	for participant in range(len(participant_folders)): # Creates a Participant object for each results folder and stores them in a list
 
-		if os.path.isdir(os.path.join(results_dir,participant_folders[participant])): # Checks all paths to make sure they are a directory
+		if os.path.isdir(os.path.join( results_dir, participant_folders[participant] )): # Checks all paths to make sure they are a directory
 
 			Participants[participant] = Participant(results_dir, participant_folders[participant])
 
