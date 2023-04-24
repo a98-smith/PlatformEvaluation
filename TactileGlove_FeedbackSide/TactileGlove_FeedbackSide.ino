@@ -24,14 +24,13 @@ int attempts = 0 ;
 // Storage variables
 String pressure ;
 int* pressureValues ;
-String string ;
 
 // Global Threshold pressure values
 int contactThreshold = 20 ;
-int lowThreshold = 200 ;
-int medThreshold = 500 ;
-int highThreshold = 1000 ;
-int maxThreshold = 2000 ;
+int lowThreshold = 500 ;
+int medThreshold = 1000 ;
+int highThreshold = 1750 ;
+int maxThreshold = 2500 ;
 
 // Flags for use
 bool contactFlag = false ;
@@ -39,8 +38,6 @@ bool lowFlag = false ;
 bool medFlag = false ;
 bool highFlag = false ;
 bool maxFlag = false ;
-
-bool debug = false ;
 
 // Frequencies for each threshold
 int contactFreq ;
@@ -56,6 +53,12 @@ int maxFreq = 8 ;
 #define Digit3 21
 #define Digit4 19
 
+//Motor Thumb( Digit0 , 50 ) ;
+//Motor Index( Digit1 , 60 ) ;
+//Motor Middle( Digit2 , 40 ) ;
+//Motor Ring( Digit3 , 40 ) ;
+//Motor Pinky( Digit4 , 40 ) ;
+
 Motor Thumb( Digit0 , 10 , 1 ) ;
 Motor Index( Digit1 , 1 , 1 ) ;
 Motor Middle( Digit2 , 10 , 1 ) ;
@@ -63,11 +66,21 @@ Motor Ring( Digit3 , 10 , 1 ) ;
 Motor Pinky( Digit4 , 10 , 1 ) ;
 
 
+// DEBUG STUFF
+// #include "soc/soc.h"   // Drownout Detector stuff
+// #include "soc/rtc_cntl_reg.h"
+int i = 0 ;
+int j = 0 ;
+
 void setup() {
 
+  //  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); // Disable brownout detection
   // Begin Serial connection for debugging
   Serial.begin(115200) ;
-  connectWiFi() ; // Connect to WiFi
+  Serial.setDebugOutput(true);
+
+  connectWiFi() ;
+
   delay(1000);
 
 }
@@ -144,10 +157,10 @@ int* extractFrom(String str) {
 
 void driveMotors( double SensorReading) {
 
-  Thumb.drive( SensorReading ) ;
+//  Thumb.drive( SensorReading ) ;
   Index.drive( SensorReading ) ;
   Middle.drive( SensorReading ) ;
-//  Ring.drive( SensorReading ) ;
+  Ring.drive( SensorReading ) ;
 //  Pinky.drive( SensorReading ) ;
 
 }
@@ -207,69 +220,67 @@ void play_chirp( String dir ) {
 
 void handle_input(int* pressureValues) {
 
-  int len = (sizeof(pressureValues));// / sizeof(pressureValues[0])) ; // THIS SHOULDN'T WORK LOOK HERE IF STUFF GETS FUCKY.
+  int len = (sizeof(pressureValues)) - 1;// / sizeof(pressureValues[0])) ; // THIS SHOULDN'T WORK LOOK HERE IF STUFF GETS FUCKY.
   int averagePressure = 0 ;
 
-  for ( int finger = 1 ; finger < len ; finger++ ) {
-    // Average values of all fingers together (CHANGE INPUT TO BE JUST THE FINGERS WE GIVE A SHIT ABOUT)
+  for ( int finger = 0 ; finger < len ; finger++ ) { // LIKEWISE THIS IS WORKAROUNDS
+    Serial.println(String(finger) + " - " + String(pressureValues[finger])) ;
+    // Average values of all fingers together 
     averagePressure += pressureValues[finger] ;
   }
   averagePressure = averagePressure / ( len ) ;
-
+  // Serial.println("Average pressure: " + String(averagePressure)) ;
   // Checks against thresholds and flags to determine what signal to produce on the rising side
   if (( averagePressure > maxThreshold ) && !maxFlag && highFlag ) { // High to Max
     maxFlag = true ;
-    string = "High to Max" ;
+    Serial.println("High to Max") ;
     play_sine( maxFreq ) ;
   }
   else if (( averagePressure > highThreshold ) && !highFlag && medFlag ) { // Med to High
     highFlag = true ;
-    string = "Med to High" ;
+    Serial.println("Med to High") ;
     play_sine( highFreq ) ;
   }
   else if (( averagePressure > medThreshold ) && !medFlag && lowFlag ) { // Low to Med
     medFlag = true ;
-    string = "Low to Med" ;
+    Serial.println("Low to Med") ;
     play_sine( medFreq ) ;
   }
   else if (( averagePressure > lowThreshold ) && !lowFlag && contactFlag ) { // Contact to Low
     lowFlag = true ;
-    string = "Contact to Low" ;
+    Serial.println("Contact to Low") ;
     play_sine( lowFreq ) ;
   }
   else if ((averagePressure > contactThreshold ) && !contactFlag ) { // Contact
     contactFlag = true ;
-    string = "Contact made" ;
+    Serial.println("Contact made") ;
     play_chirp( "close" ) ;
   }
   else if (( averagePressure < maxThreshold ) && maxFlag && highFlag ) { // Max to High
     maxFlag = false ;
-    string = "Max to High" ;
+    Serial.println("Max to High") ;
     play_sine( highFreq ) ;
   }
   else if (( averagePressure < highThreshold ) && highFlag && medFlag ) { // High to Med
     highFlag = false ;
-    string = "High to Med" ;
+    Serial.println("High to Med") ;
     play_sine( medFreq ) ;
   }
   else if (( averagePressure < medThreshold ) && medFlag && lowFlag ) { // Med to Low
     medFlag = false ;
-    string = "Med to Low" ;
+    Serial.println("Med to Low") ;
     play_sine( lowFreq ) ;
   }
   else if (( averagePressure < lowThreshold ) && lowFlag && contactFlag ) { // Low to Contact
     lowFlag = false ;
-    string = "Low to Contact" ;
-   play_chirp( "close" ) ;
+    Serial.println("Low to Contact") ;
+    play_chirp( "close" ) ;
   }
   else if ((averagePressure < contactThreshold ) && contactFlag ) { // Release
     contactFlag = false ;
-    string = "Release" ;
+    Serial.println("Release") ;
     play_chirp( "open" ) ;
   }
 
-  if (debug) {
-    Serial.println(string) ;
-  }
 
 }
