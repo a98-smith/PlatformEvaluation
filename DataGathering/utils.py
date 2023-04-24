@@ -8,7 +8,7 @@ def check_or_create_folder(folder):
 def create_participant_folders(debug, p, s):
 
 	# create required folders for complete experimental run for single participant
-	resultsFolder = os.path.join(os.getcwd(), "results")
+	resultsFolder = os.path.join(os.getcwd(), "results_rnd2")
 	participantFolder = os.path.join(resultsFolder, str(p))
 	sessionFolder = os.path.join(participantFolder, str(s))
 	CLFolder = os.path.join(sessionFolder, "CL")
