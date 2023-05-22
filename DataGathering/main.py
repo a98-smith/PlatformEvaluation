@@ -49,7 +49,7 @@ if __name__ == '__main__':
 			acquisitionThread.start()
 			killswitchThread.start()
 
-			# Wait for threads to terminate before starting again
+			# Wait for threads to terminate before continuing
 			acquisitionThread.join()
 			killswitchThread.join()
     
@@ -84,7 +84,7 @@ if __name__ == '__main__':
 			acquisitionThread.start()
 			killswitchThread.start()
 	
-			# Wait for threads to terminate before starting again
+			# Wait for threads to terminate before continuing
 			acquisitionThread.join()
 			killswitchThread.join()
 		
