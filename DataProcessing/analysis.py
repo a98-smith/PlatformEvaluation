@@ -146,6 +146,3 @@ if __name__ == "__main__":
 			Participants[participant] = Participant(results_dir, participant_folders[participant])
 
    
-		
-
-
