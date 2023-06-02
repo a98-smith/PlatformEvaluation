@@ -46,25 +46,27 @@ class Participant:
 		self.Grasp_dct = {}
   
 		self.CL_Light_Egg_dct = {}
-		self.CL_Light_Egg_metrics = {}
+		self.CL_Light_Egg_totals = {}
 		self.CL_Heavy_Egg_dct = {}
-		self.CL_Heavy_Egg_metrics = {}
+		self.CL_Heavy_Egg_totals = {}
 		self.CL_Grasp_dct = {}
-		self.CL_Grasp_metrics = {}
+		self.CL_Grasp_totals = {}
+		self.CL_Performance_Light_Egg = {}
+		self.CL_LE_Performance_averages = {}
     
 		self.NL_Light_Egg_dct = {}
-		self.NL_Light_Egg_metrics = {}
+		self.NL_Light_Egg_totals = {}
 		self.NL_Heavy_Egg_dct = {}
-		self.NL_Heavy_Egg_metrics = {}
+		self.NL_Heavy_Egg_totals = {}
 		self.NL_Grasp_dct = {}
-		self.NL_Grasp_metrics = {}
+		self.NL_Grasp_totals = {}
 
   
 	def _empty_storage_variables(self):
 		# Empty all storage functions
 		self.Grasp_dct.clear()
-		self.NL_Grasp_metrics.clear()
-		self.CL_Grasp_metrics.clear()
+		self.NL_Grasp_totals.clear()
+		self.CL_Grasp_totals.clear()
 		self.ADL_dct.clear()
 		self.ADL1_metrics.clear()
 		self.ADL4_metrics.clear()
@@ -140,70 +142,75 @@ class Participant:
 			self.CL_Grasp_dct[session] = self.Grasp_dct[session].loc[:, self.Grasp_dct[session].columns.str.startswith('CL')].rename(columns={"CL-Egg":"Egg", "CL-Misgrasp":"Misgrasp", "CL-Drop":"Drop", "CL-Crush":"Crush"})
 			self.NL_Grasp_dct[session] = self.Grasp_dct[session].loc[:, self.Grasp_dct[session].columns.str.startswith('NL')].rename(columns={"NL-Egg":"Egg", "NL-Misgrasp":"Misgrasp", "NL-Drop":"Drop", "NL-Crush":"Crush"})
 			
-			self.CL_Light_Egg_dct[session] = self.CL_Grasp_dct[session][self.CL_Grasp_dct[session]["Egg"]=="L"]
-			self.CL_Heavy_Egg_dct[session] = self.CL_Grasp_dct[session][self.CL_Grasp_dct[session]["Egg"]=="H"]
+			self.CL_Light_Egg_dct[session] = self.CL_Grasp_dct[session][self.CL_Grasp_dct[session]["Egg"]=="L"].drop("Egg", axis=1)
+			self.CL_Heavy_Egg_dct[session] = self.CL_Grasp_dct[session][self.CL_Grasp_dct[session]["Egg"]=="H"].drop("Egg", axis=1)
 
-			self.NL_Light_Egg_dct[session] = self.NL_Grasp_dct[session][self.NL_Grasp_dct[session]["Egg"]=="L"]
-			self.NL_Heavy_Egg_dct[session] = self.NL_Grasp_dct[session][self.NL_Grasp_dct[session]["Egg"]=="H"]
+			self.NL_Light_Egg_dct[session] = self.NL_Grasp_dct[session][self.NL_Grasp_dct[session]["Egg"]=="L"].drop("Egg", axis=1)
+			self.NL_Heavy_Egg_dct[session] = self.NL_Grasp_dct[session][self.NL_Grasp_dct[session]["Egg"]=="H"].drop("Egg", axis=1)
 
-			self.CL_Grasp_metrics[session] = {
+			self.CL_Grasp_totals[session] = {
 				"Misgrasps" : self.CL_Grasp_dct[session]["Misgrasp"].sum(axis=0),
 				"Drops" : self.CL_Grasp_dct[session]["Drop"].sum(axis=0) ,
 				"Crushes" : self.CL_Grasp_dct[session]["Crush"].sum(axis=0) ,
 				"SessionTotal" : self.CL_Grasp_dct[session]["Misgrasp"].sum(axis=0) + self.CL_Grasp_dct[session]["Drop"].sum(axis=0) + self.CL_Grasp_dct[session]["Crush"].sum(axis=0),
 				}
 
-			self.NL_Grasp_metrics[session] = {
+			self.NL_Grasp_totals[session] = {
 				"Misgrasps" : self.NL_Grasp_dct[session]["Misgrasp"].sum(axis=0),
 				"Drops" : self.NL_Grasp_dct[session]["Drop"].sum(axis=0) ,
 				"Crushes" : self.NL_Grasp_dct[session]["Crush"].sum(axis=0) ,
 				"SessionTotal" : self.NL_Grasp_dct[session]["Misgrasp"].sum(axis=0) + self.NL_Grasp_dct[session]["Drop"].sum(axis=0) + self.NL_Grasp_dct[session]["Crush"].sum(axis=0),
 				}
 
-			self.CL_Light_Egg_metrics[session] = {
+			self.CL_Light_Egg_totals[session] = {
 				"Misgrasps" : self.CL_Light_Egg_dct[session]["Misgrasp"].sum(axis=0),
 				"Drops" : self.CL_Light_Egg_dct[session]["Drop"].sum(axis=0) ,
 				"Crushes" : self.CL_Light_Egg_dct[session]["Crush"].sum(axis=0) ,
 				"SessionTotal" : self.CL_Light_Egg_dct[session]["Misgrasp"].sum(axis=0) + self.CL_Grasp_dct[session]["Drop"].sum(axis=0) + self.CL_Grasp_dct[session]["Crush"].sum(axis=0),
 				}
 
-			self.CL_Heavy_Egg_metrics[session] = {
+			self.CL_Heavy_Egg_totals[session] = {
 				"Misgrasps" : self.CL_Heavy_Egg_dct[session]["Misgrasp"].sum(axis=0),
 				"Drops" : self.CL_Heavy_Egg_dct[session]["Drop"].sum(axis=0) ,
 				"Crushes" : self.CL_Heavy_Egg_dct[session]["Crush"].sum(axis=0) ,
 				"SessionTotal" : self.CL_Heavy_Egg_dct[session]["Misgrasp"].sum(axis=0) + self.CL_Heavy_Egg_dct[session]["Drop"].sum(axis=0) + self.CL_Heavy_Egg_dct[session]["Crush"].sum(axis=0),
 				}
    
-			self.NL_Light_Egg_metrics[session] = {
+			self.NL_Light_Egg_totals[session] = {
 				"Misgrasps" : self.NL_Light_Egg_dct[session]["Misgrasp"].sum(axis=0),
 				"Drops" : self.NL_Light_Egg_dct[session]["Drop"].sum(axis=0) ,
 				"Crushes" : self.NL_Light_Egg_dct[session]["Crush"].sum(axis=0) ,
 				"SessionTotal" : self.NL_Light_Egg_dct[session]["Misgrasp"].sum(axis=0) + self.NL_Light_Egg_dct[session]["Drop"].sum(axis=0) + self.NL_Light_Egg_dct[session]["Crush"].sum(axis=0),
 				}
 
-			self.NL_Heavy_Egg_metrics[session] = {
+			self.NL_Heavy_Egg_totals[session] = {
 				"Misgrasps" : self.NL_Heavy_Egg_dct[session]["Misgrasp"].sum(axis=0),
 				"Drops" : self.NL_Heavy_Egg_dct[session]["Drop"].sum(axis=0) ,
 				"Crushes" : self.NL_Heavy_Egg_dct[session]["Crush"].sum(axis=0) ,
 				"SessionTotal" : self.NL_Heavy_Egg_dct[session]["Misgrasp"].sum(axis=0) + self.NL_Heavy_Egg_dct[session]["Drop"].sum(axis=0) + self.NL_Heavy_Egg_dct[session]["Crush"].sum(axis=0),
 				}
+
+			
+			CL_LE_trial_performance = [1 - (( self.CL_Light_Egg_dct[session].loc[trial].drop(columns=['Egg','Misgrasp']).sum(axis=0) / 10 ) + ( self.CL_Light_Egg_dct[session].loc[trial]['Misgrasp'] / 40 )) for trial in self.CL_Light_Egg_dct[session].index.array]
+			CL_LE_trial_performance = [ 0 if result < 0 else result for result in CL_LE_trial_performance] # Sets any negative values to 0 to indicate minimum scoring
+     
+			self.CL_Performance_Light_Egg[session] = CL_LE_trial_performance
+			try:
+				self.CL_LE_Performance_averages[session] = sum(CL_LE_trial_performance) / len(CL_LE_trial_performance)
+			except:
+				print("No data")
+			
+		# print(self.CL_Performance_Light_Egg)
+		print(self.CL_LE_Performance_averages)
+
    
 		if self._debug:
-			print("Loaded metrics:")
-			print(self.CL_Grasp_metrics)
-			print("Unoaded metrics:")
-			print(self.NL_Grasp_metrics)
+			print("Loaded totals:")
+			print(self.CL_Grasp_totals)
+			print("Unoaded totals:")
+			print(self.NL_Grasp_totals)
 			print("----------------------------- \t\n\n")
 
-
-
-FB_mask = { "001" : False,
-            "002" : True , 
-            "003" : True ,
-            "004" : False,
-            "006" : False,
-            "009" : True ,
-            "010" : True }
 
 
 if __name__ == "__main__":
@@ -219,13 +226,17 @@ if __name__ == "__main__":
 
 			Participants[participant] = Participant(results_dir, participant_folders[participant])
 
-	for p in range(len(Participants)):
-		for key in Participants[p].ADL1_metrics.keys():	
-			try:
-				print(key)
-				print(Participants[p].participant_ID, Participants[p].ADL1_metrics[key] - Participants[p].ADL4_metrics[key]) 
-				print(Participants[p].participant_ID, Participants[p].ADL4_metrics[key] - Participants[p].ADL8_metrics[key]) 
-			except:
-				print("Error")
+	for participant in Participants:
+		print(participant)
+
+	# for p in range(len(Participants)):
+	# 	for key in Participants[p].ADL1_metrics.keys():	
+	# 		try:
+	# 			print( Participants[p].participant_ID, key+":" )
+	# 			print( Participants[p].ADL1_metrics[key] - Participants[p].ADL4_metrics[key] ) 
+	# 			print( Participants[p].ADL4_metrics[key] - Participants[p].ADL8_metrics[key] ) 
+	# 		except:
+	# 			print("Error")
+ 
 	
    
