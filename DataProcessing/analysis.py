@@ -197,12 +197,15 @@ class Participant:
      
 			self.CL_Performance_Light_Egg[session] = CL_LE_trial_performance
 			try:
-				self.CL_LE_Performance_averages[session] = sum(CL_LE_trial_performance) / len(CL_LE_trial_performance)
+				self.CL_LE_Performance_averages[session] = round(sum(CL_LE_trial_performance) / len(CL_LE_trial_performance), 3)
 			except:
 				""""""""
 			
 		# print(self.CL_Performance_Light_Egg)
-		print(self.participant_ID, self.CL_LE_Performance_averages)
+		if len(self.participant_ID) < 5:
+			print(self.participant_ID + ":\t\t", self.CL_LE_Performance_averages)
+		else:
+			print(self.participant_ID + ":\t", self.CL_LE_Performance_averages)
 
    
 		if self._debug:
@@ -227,6 +230,9 @@ if __name__ == "__main__":
 
 			Participants[participant] = Participant(results_dir, participant_folders[participant])
 
+
+	some_variable = [ participant.CL_LE_Performance_averages for participant in Participants]
+	print(some_variable)
 	# for p in range(len(Participants)):
 	# 	for key in Participants[p].ADL1_metrics.keys():	
 	# 		try:
