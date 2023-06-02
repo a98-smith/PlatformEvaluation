@@ -191,17 +191,18 @@ class Participant:
 				}
 
 			
-			CL_LE_trial_performance = [1 - (( self.CL_Light_Egg_dct[session].loc[trial].drop(columns=['Egg','Misgrasp']).sum(axis=0) / 10 ) + ( self.CL_Light_Egg_dct[session].loc[trial]['Misgrasp'] / 40 )) for trial in self.CL_Light_Egg_dct[session].index.array]
+			CL_LE_trial_performance = [1 - (( self.CL_Light_Egg_dct[session].loc[trial].drop(columns=['Egg','Misgrasp']).sum(axis=0) / 10 ) + 
+				( self.CL_Light_Egg_dct[session].loc[trial]['Misgrasp'] / 40 )) for trial in self.CL_Light_Egg_dct[session].index.array]
 			CL_LE_trial_performance = [ 0 if result < 0 else result for result in CL_LE_trial_performance] # Sets any negative values to 0 to indicate minimum scoring
      
 			self.CL_Performance_Light_Egg[session] = CL_LE_trial_performance
 			try:
 				self.CL_LE_Performance_averages[session] = sum(CL_LE_trial_performance) / len(CL_LE_trial_performance)
 			except:
-				print("No data")
+				""""""""
 			
 		# print(self.CL_Performance_Light_Egg)
-		print(self.CL_LE_Performance_averages)
+		print(self.participant_ID, self.CL_LE_Performance_averages)
 
    
 		if self._debug:
@@ -225,9 +226,6 @@ if __name__ == "__main__":
 		if os.path.isdir(os.path.join( results_dir, participant_folders[participant] )): # Checks all paths to make sure they are a directory
 
 			Participants[participant] = Participant(results_dir, participant_folders[participant])
-
-	for participant in Participants:
-		print(participant)
 
 	# for p in range(len(Participants)):
 	# 	for key in Participants[p].ADL1_metrics.keys():	
