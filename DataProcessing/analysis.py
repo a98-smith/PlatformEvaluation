@@ -132,7 +132,6 @@ class Participant:
 				if ADL_set == "4":
 					self.ADL4_metrics[_adl] = self.ADL_dct[ADL_set].at[_adl,"Platform"] / self.ADL_dct[ADL_set].at[_adl,"Manual"]
 
-
 				if ADL_set == "8":
 					self.ADL8_metrics[_adl] = self.ADL_dct[ADL_set].at[_adl,"Platform"] / self.ADL_dct[ADL_set].at[_adl,"Manual"]
 
@@ -191,8 +190,8 @@ class Participant:
 				}
 
 			
-			CL_LE_trial_performance = [1 - (( self.CL_Light_Egg_dct[session].loc[trial].drop(columns=['Egg','Misgrasp']).sum(axis=0) / 10 ) + 
-				( self.CL_Light_Egg_dct[session].loc[trial]['Misgrasp'] / 40 )) for trial in self.CL_Light_Egg_dct[session].index.array]
+			CL_LE_trial_performance = [1 - (( self.CL_Light_Egg_dct[session].loc[trial].drop(columns=['Egg','Misgrasp']).sum(axis=0) / 5 ) + 
+				( self.CL_Light_Egg_dct[session].loc[trial]['Misgrasp'] / 10 )) for trial in self.CL_Light_Egg_dct[session].index.array]
 			CL_LE_trial_performance = [ 0 if result < 0 else result for result in CL_LE_trial_performance] # Sets any negative values to 0 to indicate minimum scoring
      
 			self.CL_Performance_Light_Egg[session] = CL_LE_trial_performance
