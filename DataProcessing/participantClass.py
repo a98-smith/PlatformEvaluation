@@ -14,6 +14,7 @@ class Participant:
 	_debug = True
 	_misgrasp_adj = 0.125
 	_fail_adj = 0.5
+	_timeout = 6000
 
 	### Methods and functions
 	
@@ -120,8 +121,8 @@ class Participant:
 		self.NL_Grasp_results = self.Grasp_results.loc[ :, self.Grasp_results.columns.str.startswith( 'NL' ) ]
 		self.NL_Grasp_results.columns = self.NL_Grasp_results.columns.str[3:]
   
-		self.COMB_Grasp_results = self.NL_Grasp_results[self.NL_Grasp_results.columns.drop(list(self.NL_Grasp_results.filter(regex='Egg')))] + self.CL_Grasp_results[self.CL_Grasp_results.columns.drop(list(self.CL_Grasp_results.filter(regex='Egg')))] / 2
-		
+		self.COMB_Grasp_results = pd.concat( [ self.NL_Grasp_results[self.NL_Grasp_results.columns.drop(list(self.NL_Grasp_results.filter(regex='Egg')))], self.CL_Grasp_results[self.CL_Grasp_results.columns.drop(list(self.CL_Grasp_results.filter(regex='Egg')))] ] )
+
 		for session in range( int( len( self.COMB_Grasp_results.columns ) / 3 ) ): # Combined performance averages across trial numbers and sessions (averaged between CL and NL cases, irrespective of eggs)
 			_mis_col = session*3
 			_tmp_df =  1 - ( self.COMB_Grasp_results.iloc[ :, _mis_col ] * self._misgrasp_adj + ( ( self.COMB_Grasp_results.iloc[ :, _mis_col + 1 ] + self.COMB_Grasp_results.iloc[:, _mis_col + 2 ] ) * self._fail_adj ) ) 
@@ -133,6 +134,7 @@ class Participant:
 			total_mean_calc = pd.DataFrame( _tmp_df[_col_title].mean(axis=0, skipna=True, numeric_only=True), index=["Mean"], columns=[_col_title] )
 			_tmp_df = pd.concat( [ _tmp_df, total_mean_calc ], axis=0 )
 			self.COMB_grasp_metrics = pd.concat( [ self.COMB_grasp_metrics, _tmp_df ], axis=1 )
+	
   
 		for session in range( int( len( self.CL_Grasp_results.columns ) / 4 ) ): # Extracts and processes grasp results for Cognitive loading condition
 			
@@ -147,6 +149,8 @@ class Participant:
 			total_mean_calc = pd.DataFrame( _tmp_df[_col_title].mean(axis=0, skipna=True, numeric_only=True), index=["Mean"], columns=[_col_title] )
 			light_mean_calc = pd.DataFrame( _tmp_df[_tmp_df.iloc[:,0]=="L"][_col_title].mean(), index=["Mean_L"], columns=[_col_title] )
 			heavy_mean_calc = pd.DataFrame( _tmp_df[_tmp_df.iloc[:,0]=="H"][_col_title].mean(), index=["Mean_H"], columns=[_col_title] )
+			# total_num_crush = pd.DataFrame( )
+			# light_num_crush = 
 			_tmp_df = pd.concat( [ _tmp_df, total_mean_calc, light_mean_calc, heavy_mean_calc ], axis=0 )
 			self.CL_grasp_metrics = pd.concat( [ self.CL_grasp_metrics, _tmp_df ], axis=1 )
 
@@ -169,25 +173,69 @@ class Participant:
 		if self._debug: print( "\tGrasp metrics analysed successfully" )
   
 	def load_trial_times( self ):
+		
+		cols = ['S1','S2','S3','S4','S5','S6','S7','S8']
+		self.CL_contact_forces = pd.DataFrame(index=[1,2,3,4,5,6,7,8,9,10], columns=['S1E','S1','S2E','S2','S3E','S3','S4E','S4','S5E','S5','S6E','S6','S7E','S7','S8E','S8'])
+		self.NL_contact_forces = pd.DataFrame(index=[1,2,3,4,5,6,7,8,9,10], columns=['S1E','S1','S2E','S2','S3E','S3','S4E','S4','S5E','S5','S6E','S6','S7E','S7','S8E','S8'])
+		self.CL_contact_times = pd.DataFrame(index=[1,2,3,4,5,6,7,8,9,10], columns=['S1E','S1','S2E','S2','S3E','S3','S4E','S4','S5E','S5','S6E','S6','S7E','S7','S8E','S8'])
+		self.NL_contact_times = pd.DataFrame(index=[1,2,3,4,5,6,7,8,9,10], columns=['S1E','S1','S2E','S2','S3E','S3','S4E','S4','S5E','S5','S6E','S6','S7E','S7','S8E','S8'])
+		self.CL_times_avg= pd.DataFrame( index=['L','H','COMB'], columns=cols)
+		self.NL_times_avg= pd.DataFrame( index=['L','H','COMB'], columns=cols)
+		
 
 		for session in self.session_result_dirs:
-			session_dir = os.path.join( self.resultsFolder, session )
-
+			session_dir = os.path.join( self.resultsFolder, session )  # Directory path for session (1-8)
+			self.CL_contact_forces.loc['avg', 'S'+str(session)] = 0
+			self.NL_contact_forces.loc['avg', 'S'+str(session)] = 0
 			for condition in os.listdir(session_dir):
+
 				if os.path.isdir( os.path.join( session_dir, condition ) ):
-					session_loading_dir = os.path.join( session_dir, condition )
+        
+					session_loading_dir = os.path.join( session_dir, condition ) # Directory path for session (1-8) condition (CL/NL)
+
 					for trial in os.listdir( session_loading_dir ):
-						if not trial == 'Missed':
-							trial_file = os.path.join( session_loading_dir, trial )
+							
+						if not trial.startswith('Miss'):
+							
+							i = int( trial.split( '-', 1 )[0] ) # Indexing value to make sure trial results end up in the correct location in the DataFrame
+							egg = trial.split( '-', 1 )[1][:1] # Trial Egg value
+							trial_file = os.path.join( session_loading_dir, trial ) # Filepath for session (1-8) condition (CL/NL) trial (1-10) pressure information
+       
 							try:
 								_tmp_df = pd.read_csv( trial_file )
-								print(_tmp_df)
-								_tmp_df = _tmp_df.loc[:,_tmp_df.any()]
-								print(_tmp_df.mean())
+								if condition == 'CL':
+
+									self.CL_contact_forces.loc[i, 'S'+str(session)] = _tmp_df.loc[:,_tmp_df.any()].mean().values
+									self.CL_contact_forces.loc[i, 'S'+str(session)+'E'] = egg
+
+									self.CL_contact_times.loc[i, 'S'+str(session)] = len(self.CL_contact_forces.loc[i, 'S'+str(session)])
+									self.CL_contact_times.loc[i, 'S'+str(session)+'E'] = egg
+          
+								elif condition == 'NL':
+            
+									self.NL_contact_forces.loc[i, 'S'+str(session)] = _tmp_df.loc[:,_tmp_df.any()].mean().values
+									self.NL_contact_forces.loc[i, 'S'+str(session)+'E'] = egg
+
+									self.NL_contact_times.loc[i, 'S'+str(session)] = len(self.NL_contact_forces.loc[i, 'S'+str(session)])
+									self.NL_contact_times.loc[i, 'S'+str(session)+'E'] = egg
+							
 							except:
-								print('Empty grasp file: {}{}{}'.format(self.ID, condition, trial))
+								print('\t\tException raised: Empty grasp file preloop - P{}-S{}-{}-{}'.format(self.ID, session, condition, trial))
+		
+		self.CL_contact_times = self.CL_contact_times.apply( lambda x: [np.NaN if str(y).isnumeric() and y > self._timeout else y for y in x ] ).replace( 0, np.NaN )
+		self.NL_contact_times = self.NL_contact_times.apply( lambda x: [np.NaN if str(y).isnumeric() and y > self._timeout else y for y in x ] ).replace( 0, np.NaN )
 
 
+  
+		for col in cols:
+			egg_iloc = self.CL_contact_times.columns.get_loc(col) - 1
+			self.CL_times_avg.loc['COMB', col] = self.CL_contact_times[col].mean( axis=0)#, numeric_only=True )
+			self.CL_times_avg.loc['L', col] = self.CL_contact_times[self.CL_contact_times.iloc[:,egg_iloc]=='L'][col].mean( axis=0)#, numeric_only=True )
+			self.CL_times_avg.loc['H', col] = self.CL_contact_times[self.CL_contact_times.iloc[:,egg_iloc]=='H'][col].mean( axis=0)#, numeric_only=True )
+
+			self.NL_times_avg.loc['COMB', col] = self.NL_contact_times[col].mean( axis=0)#, numeric_only=True )
+			self.NL_times_avg.loc['L', col] = self.NL_contact_times[self.NL_contact_times.iloc[:,egg_iloc]=='L'][col].mean( axis=0)#, numeric_only=True )
+			self.NL_times_avg.loc['H', col] = self.NL_contact_times[self.NL_contact_times.iloc[:,egg_iloc]=='H'][col].mean( axis=0)#, numeric_only=True )
 
 	def plot_performance( self ):
 		""""""
@@ -198,7 +246,27 @@ class Participant:
 			ax.set(xlim=(1, 8), xticks=np.arange(1, 8), ylim=(0, 1))
 			plt.show()
 
+	def combine_performance_and_time( self ):
+		
+		if not self.ID.endswith('OPP'):
+			col_rename = {"Performance1":"S1",  "Performance2":"S2",   "Performance3":"S3",   "Performance4":"S4",   "Performance5":"S5",   "Performance6":"S6",   "Performance7":"S7",   "Performance8":"S8"}
 
+			self.CL_timing_metrics = self.CL_contact_times[self.CL_contact_times.columns.drop(list(self.CL_contact_times.filter(regex='E')))]
+			self.CL_timing_metrics = 1 - self.CL_timing_metrics.apply( lambda x: [(y-1)/(1500-100)  for y in x ] )
+			self.CL_timing_metrics = self.CL_timing_metrics.apply( lambda x: [0 if y < 0 else y for y in x])
+
+	
+			self.NL_timing_metrics = 1 - self.NL_contact_times[self.NL_contact_times.columns.drop(list(self.NL_contact_times.filter(regex='E')))].div(1000)
+			self.NL_timing_metrics = self.NL_timing_metrics.apply( lambda x: [(y-1)/(1500-100) for y in x ] )
+			self.NL_timing_metrics = self.NL_timing_metrics.apply( lambda x: [0 if y < 0 else y for y in x] )
+
+			self.CL_combined_performance = self.CL_timing_metrics * self.CL_grasp_metrics[self.CL_grasp_metrics.columns.drop(list(self.CL_grasp_metrics.filter(regex='Egg')))].rename(columns=col_rename)
+				
+			self.CL_combined_performance.drop([ 'Mean_H', 'Mean_L' ], inplace=True )
+			self.CL_combined_performance.loc['Mean'] = self.CL_combined_performance.mean()
+			self.CL_combined_performance.loc['STD'] = self.CL_combined_performance.iloc[0:9,:].std()
+			print(self.CL_combined_performance.iloc[0:10,:])
+			print(self.CL_combined_performance)
 
 
 
@@ -349,11 +417,11 @@ def calculate_all_qualitative_means( participant_list ):
 	return 	Qresults_CL_FB,	Qresults_CL_FB_avg, Qresults_NL_FB, Qresults_NL_FB_avg,	Qresults_CL_NFB, Qresults_CL_NFB_avg, Qresults_NL_NFB, Qresults_NL_NFB_avg
 
 def plot_overall_performance_means( show = False, save = False ):
-	plt.errorbar( range( len( FB_NL_means.index ) ), ( FB_NL_means["Mean"] + FB_CL_means["Mean"] )/2, yerr= FB_NL_means.std( axis=1 ).values, fmt='slateblue', label='FB performance averages', ecolor='midnightblue', elinewidth=.5, capsize=3 )
+	plt.errorbar( range( len( FB_COMB_means.index ) ), FB_COMB_means["Mean"], yerr= FB_COMB_means.std( axis=1 ).values, fmt='slateblue', label='FB performance averages', ecolor='midnightblue', elinewidth=.5, capsize=3 )
 	# plt.errorbar( range( len( FB_NL_means.index ) ), FB_NL_means["Mean"], yerr= FB_NL_means.std( axis=1 ).values, fmt='slateblue', label='FB No loading performance averages', ecolor='midnightblue', elinewidth=.5, capsize=3 )
 	# plt.errorbar( range( len( FB_CL_means.index ) ), FB_CL_means["Mean"], yerr= FB_CL_means.std( axis=1 ).values, fmt='violet', linestyle='--', linewidth=.5, label='FB No loading performance averages', ecolor='purple', elinewidth=.25, capsize=1 )
 	# plt.errorbar( range( len( FB_COMB_means.index ) ), ( FB_COMB_means["Mean"] ), yerr= FB_COMB_means.std( axis=1 ).values, fmt='green', label='FB COMB performance averages', ecolor='midnightblue', elinewidth=.5, capsize=3 )
-	plt.errorbar( range( len( NFB_NL_means.index ) ), ( NFB_NL_means["Mean"] + NFB_CL_means["Mean"] )/2, yerr= NFB_NL_means.std( axis=1 ).values, fmt='orange', label='NFB performance averages',  ecolor='darkorange', elinewidth=.5, capsize=3 )
+	plt.errorbar( range( len( NFB_COMB_means.index ) ), NFB_COMB_means["Mean"], yerr= NFB_COMB_means.std( axis=1 ).values, fmt='orange', label='NFB performance averages',  ecolor='darkorange', elinewidth=.5, capsize=3 )
 	# plt.errorbar( range( len( NFB_NL_means.index ) ), NFB_NL_means["Mean"], yerr= NFB_NL_means.std( axis=1 ).values, fmt='orange', label='NFB No loading performance averages',  ecolor='darkorange', elinewidth=.5, capsize=3 )
 	# plt.errorbar( range( len( NFB_CL_means.index ) ), NFB_CL_means["Mean"], yerr= NFB_CL_means.std( axis=1 ).values, fmt='orangered', linestyle='--', linewidth=.5, label='NFB No loading performance averages',  ecolor='darkred', elinewidth=.25, capsize=1 )
 	# plt.errorbar( range( len( NFB_COMB_means.index ) ), ( NFB_COMB_means["Mean"] ), yerr= NFB_COMB_means.std( axis=1 ).values, fmt='pink', label='NFB COMB performance averages',  ecolor='darkorange', elinewidth=.5, capsize=3 )
@@ -363,6 +431,10 @@ def plot_overall_performance_means( show = False, save = False ):
 	plt.title('Performance averages across sessions')
 	if save: plt.savefig( os.path.join( os.getcwd(), os.path.join("Output_figs", "Performance" ) ) )
 	if show: plt.show()
+ 
+
+	plt.clf()
+	plt.close()
 
 def plot_TLX_scores( condition, show = False, save = False ):
 	fig, ( ( ax1, ax2, ax3 ), ( ax4, ax5, ax6 ) ) = plt.subplots( 2, 3 )
@@ -415,21 +487,24 @@ def plot_TLX_scores( condition, show = False, save = False ):
 	plt.legend( loc='upper right' )
 	if save: plt.savefig( os.path.join( os.getcwd(), os.path.join("Output_figs", "Combined {} TLX".format(condition) ) ) )
 	if show: plt.show()
+ 
+	plt.clf()
+	plt.close()
 
 def plot_qual_scores( condition, show = False, save = False ):
 	fig, ( ( ax1, ax2, ax3 ), ( ax4, ax5, ax6 ), ( ax7, ax8, ax9 ) ) = plt.subplots( 3, 3 )
  
 	if condition == 'CL':
-		fig.suptitle('Comparison of Likert scores under cognitive load')
+		fig.suptitle('Comparison of Likert scores under high cognitive load')
 		qual_results_FB = Qresults_CL_FB_avg
 		qual_results_NFB = Qresults_CL_NFB_avg
-		app = 'under cognitive loading'
+		app = 'under high cognitive load'
   
 	elif condition == 'NL':
-		fig.suptitle('Comparison of Likert scores without cognitive load')
+		fig.suptitle('Comparison of Likert scores under low cognitive load')
 		qual_results_FB = Qresults_NL_FB_avg
 		qual_results_NFB = Qresults_NL_NFB_avg
-		app = 'without cognitive loading'
+		app = 'under low cognitive load'
   
 	else:
 		print('No valid condition set, defaulting to without loading.')
@@ -460,16 +535,123 @@ def plot_qual_scores( condition, show = False, save = False ):
 	fig.set_size_inches(20,12)
 	if save: plt.savefig( os.path.join( os.getcwd(), os.path.join("Output_figs", "{} Qualitative".format(condition) ) ) )
 	if show: plt.show()
+   
+def plot_ADL_scores( participant_list, show = False, save = False ):
 	
-	# fig, ax = plt.subplots()
-	# ax.plot( qual_results_FB.index.values, _qual_FB['Totals'].values , label='FB' )
-	# ax.plot( qual_results_NFB.index.values, _qual_NFB['Totals'].values, label='NFB' )
-	# ax.set_title('Combined Likert scores {}'.format(app))
-	# plt.legend( loc='upper right' )
-	# if save: plt.savefig( os.path.join( os.getcwd(), "Combined {} Qualitative".format(condition) ) )
-	# if show: plt.show()
+	FB_ADL = pd.DataFrame()
+	NFB_ADL = pd.DataFrame()
+	ADL_FB_averages = pd.DataFrame( index=['Cups','Pegs','Pens'], columns=[ 'S1', 'S4', 'S8' ])
+	ADL_NFB_averages = pd.DataFrame( index=['Cups','Pegs','Pens'], columns=[ 'S1', 'S4', 'S8' ])
+	
+	for participant in participant_list:
+		if participant is not None and participant.ID in condition_mask:
+			FB_ADL = FB_ADL.join( participant.ADL_ratios, how='outer', rsuffix=( "-" + str(participant.ID) ) )
+		elif participant is not None and participant.ID not in condition_mask:
+			NFB_ADL = NFB_ADL.join( participant.ADL_ratios, how='outer', rsuffix=( '-' + str(participant.ID ) ) )
    
+	for session in ADL_NFB_averages.columns:
+		ADL_FB_averages[session] = FB_ADL.loc[:,FB_ADL.columns.str.startswith(session)].mean(axis=1)
+		ADL_NFB_averages[session] = NFB_ADL.loc[:,NFB_ADL.columns.str.startswith(session)].mean(axis=1)
+
+	fig, (( ax1, ax4), (ax2, ax5), (ax3,ax6) ) = plt.subplots(3,2,sharex=True, sharey=True)
+
+	axes = [ ax1, ax2, ax3, ax4, ax5, ax6]	
+	
+	for axis in axes:
+	# for test in ADL_NFB_averages.index:
+		NFB_flag = False
+		test_loc = axes.index(axis)
+		if test_loc > 2:
+			NFB_flag = True
+			test_loc -=3
+		test = ADL_FB_averages.index[test_loc]
+		
+		if NFB_flag: 
+			axis.boxplot( [ FB_ADL.loc[test, FB_ADL.columns.str.startswith('S1')].dropna(), FB_ADL.loc[test, FB_ADL.columns.str.startswith('S4')].dropna(), FB_ADL.loc[test, FB_ADL.columns.str.startswith('S8')].dropna() ], widths=.6 )
+			axis.set_title(str(test) + ' FB')
+			FB_fit = np.polyfit([1,2,3],[FB_ADL.loc[test, FB_ADL.columns.str.startswith('S1')].dropna().mean(), FB_ADL.loc[test, FB_ADL.columns.str.startswith('S4')].dropna().mean(), FB_ADL.loc[test, FB_ADL.columns.str.startswith('S8')].dropna().mean()], 2)
+			FB_fit_func = np.poly1d(FB_fit)
+			axis.plot(np.arange(1,3,0.1),FB_fit_func(np.arange(1,3,0.1)))
+		else: 
+			axis.boxplot( [ NFB_ADL.loc[test, NFB_ADL.columns.str.startswith('S1')].dropna(), NFB_ADL.loc[test, NFB_ADL.columns.str.startswith('S4')].dropna(), NFB_ADL.loc[test, NFB_ADL.columns.str.startswith('S8')].dropna() ], widths=.6 )#, FB_ADL.loc[test,FB_ADL.columns.str.startswith('S4')].values, FB_ADL.loc[test,FB_ADL.columns.str.startswith('S8')].values ]   )
+			axis.set_title(str(test) + ' NFB')
+			NFB_fit = np.polyfit([1,2,3],[NFB_ADL.loc[test, NFB_ADL.columns.str.startswith('S1')].dropna().mean(), NFB_ADL.loc[test, NFB_ADL.columns.str.startswith('S4')].dropna().mean(), NFB_ADL.loc[test, NFB_ADL.columns.str.startswith('S8')].dropna().mean()], 2)
+			NFB_fit_func = np.poly1d(NFB_fit)
+			axis.plot(np.arange(1,3,0.1),NFB_fit_func(np.arange(1,3,0.1)))
    
+		axis.set_yticks( np.arange(0,12,1), minor=True )
+		axis.grid()
+   
+
+	
+	# fig.legend()
+	fig.set_size_inches(10,8)
+	fig.suptitle('Comparison of ADL metrics between conditions')
+	if save: plt.savefig( os.path.join( os.getcwd(), os.path.join("Output_figs", "ADL metric scores" ) ) )
+	if show: plt.show()
+ 
+	plt.clf()
+	plt.close()
+		
+def plot_times( participant_list, save=False, show = False ):
+	
+	i = 0
+	j = 0
+	
+	FB_CL_collated_times = pd.DataFrame(index=['L','H','COMB'], columns=['S1','S2','S3','S4','S5','S6','S7','S8']).fillna(0)
+	FB_NL_collated_times = pd.DataFrame(index=['L','H','COMB'], columns=['S1','S2','S3','S4','S5','S6','S7','S8']).fillna(0)
+	NFB_CL_collated_times = pd.DataFrame(index=['L','H','COMB'], columns=['S1','S2','S3','S4','S5','S6','S7','S8']).fillna(0)
+	NFB_NL_collated_times = pd.DataFrame(index=['L','H','COMB'], columns=['S1','S2','S3','S4','S5','S6','S7','S8']).fillna(0)
+
+	for participant in participant_list:
+		if participant is not None and not participant.ID.endswith('OPP'):
+			if participant.ID in condition_mask:
+				i += 1
+				FB_CL_collated_times += participant.CL_times_avg.fillna(0)
+				FB_NL_collated_times += participant.NL_times_avg.fillna(0)
+
+			else:
+				j += 1
+				NFB_CL_collated_times += participant.CL_times_avg.fillna(0)
+				NFB_NL_collated_times += participant.NL_times_avg.fillna(0)
+     
+	FB_CL_collated_times = FB_CL_collated_times.div(i*100)
+	FB_NL_collated_times = FB_NL_collated_times.div(i*100)
+	NFB_CL_collated_times = NFB_CL_collated_times.div(j*100)
+	NFB_NL_collated_times = NFB_NL_collated_times.div(j*100)
+ 
+	fig, ( ( ax1, ax2, ax3) , ( ax4, ax5, ax6 ) ) = plt.subplots(2,3)
+	axes = [ax1, ax2, ax3, ax4, ax5, ax6 ]
+	cond = ['L','H','COMB']	
+ 
+	for axis in axes:
+		loc = axes.index(axis)
+		axis.set_ylim([0,20])
+		axis.grid()
+		if loc > 2:
+			loc = loc-3
+			axis.plot( FB_CL_collated_times.columns.values, FB_CL_collated_times.iloc[loc,:].values , label='FB' )
+			axis.plot( NFB_CL_collated_times.columns.values, NFB_CL_collated_times.iloc[loc,:].values , label='NFB' )
+			axis.set_title('CL '+ str(FB_CL_collated_times.index[loc]))
+
+		else:
+			axis.plot( FB_NL_collated_times.columns.values, FB_NL_collated_times.iloc[loc,:].values , label='FB' )
+			axis.plot( NFB_NL_collated_times.columns.values, NFB_NL_collated_times.iloc[loc,:].values , label='NFB' )
+			axis.set_title('NL '+ str(FB_NL_collated_times.index[loc]))
+
+		axis.legend(loc='upper right')
+
+	fig.suptitle('Average time in contact with egg')
+	fig.set_size_inches(10,6)
+	if save: plt.savefig( os.path.join( os.getcwd(), os.path.join("Output_figs", "Grasp time" ) ) )
+	if show: plt.show()
+
+	plt.clf()
+	plt.close()
+ 
+	return FB_CL_collated_times, FB_NL_collated_times, NFB_CL_collated_times, NFB_NL_collated_times
+
+
 if __name__ == "__main__":
 
 	results_dir = os.path.join(os.getcwd(), "results_rnd2") # Define path to results folder
@@ -477,7 +659,7 @@ if __name__ == "__main__":
 	Participants = [None]*len(participant_folders) # Initialise an empty list of length x, where x is the number of participant directories
 
  
-	for participant in range(len(participant_folders)): # Creates a Participant object for each results folder and stores them in a list
+	for participant in range(len(participant_folders) ): # Creates a Participant object for each results folder and stores them in a list
 
 		if os.path.isdir(os.path.join( results_dir, participant_folders[participant] )): # Checks all paths to make sure they are a directory
 
@@ -489,20 +671,27 @@ if __name__ == "__main__":
 			_self.load_trial_times()
 			_self.process_ADL_results()
 			_self.process_grasp_results()
+			_self.combine_performance_and_time()
+   
 			# _self.plot_performance()
 			
 	print("\n\nDone loading\n\n")
 	
 	NL_means, NL_means_L, NL_means_H, CL_means, CL_means_L, CL_means_H, FB_NL_means, FB_NL_means_L, FB_NL_means_H, FB_CL_means, FB_CL_means_L, FB_CL_means_H, NFB_NL_means, NFB_NL_means_L, NFB_NL_means_H, NFB_CL_means, NFB_CL_means_L, NFB_CL_means_H, FB_COMB_means, NFB_COMB_means = calculate_all_performance_means( Participants )
 	
-	Qresults_CL_FB,	Qresults_CL_FB_avg, Qresults_NL_FB, Qresults_NL_FB_avg,	Qresults_CL_NFB, Qresults_CL_NFB_avg, Qresults_NL_NFB, Qresults_NL_NFB_avg = calculate_all_qualitative_means( Participants )
+	Qresults_CL_FB, Qresults_CL_FB_avg, Qresults_NL_FB, Qresults_NL_FB_avg,	Qresults_CL_NFB, Qresults_CL_NFB_avg, Qresults_NL_NFB, Qresults_NL_NFB_avg = calculate_all_qualitative_means( Participants )
 
-	# plt.rcParams.update({'font.size':7})
-
+	FB_CL_collated_times, FB_NL_collated_times, NFB_CL_collated_times, NFB_NL_collated_times = plot_times( Participants, save = True )
+ 
+	plt.rcParams.update({'font.size':7})
 	# plot_overall_performance_means( save = True )
 	# plot_TLX_scores( 'CL', save = True )
 	# plot_TLX_scores( 'NL', save = True )
 	# plot_qual_scores( 'CL', save = True )
 	# plot_qual_scores( 'NL', save = True )
+	# plot_ADL_scores( Participants, save = True )
+	
+ 
+	
 	
 
