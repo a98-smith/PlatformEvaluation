@@ -1,5 +1,5 @@
 
-import time, utils
+import time, utils, numpy as np
 import urllib.request as request
 
 
@@ -32,18 +32,18 @@ def read_sensors():
 	stop_flag = False
 	datapoint = 0
 	while not stop_flag:
-		req = request.Request(url)
-		client = request.urlopen(req)
-		htmldata = client.read()
+		# req = request.Request(url)
+		# client = request.urlopen(req)
+		# htmldata = client.read()
 
-		pressures = extract_values(htmldata)
+		pressures = [0,1,2]#extract_values(htmldata)
 
 		# Store to array with timestamps attached, probably a dictionary
 		utils.add_to_dict(pressures, full_run, datapoint)
 		datapoint += 1
 
 		if debug:
-			print("Raw HTML data: " + str(htmldata))
+			# print("Raw HTML data: " + str(htmldata))
 			print("Processed data: " + str(pressures))
 
 		time.sleep(0.007)
