@@ -1,13 +1,17 @@
 import os
 import pandas as pd, numpy as np
-from statsmodels.stats.anova import AnovaRM
+import analysis_utils as utils
+import pingouin as pg
+# from statsmodels.stats.anova import AnovaRM
+
+import warnings
 
 class Participant:
 
-    _misgrasp_adj = 0.1
+    _misgrasp_adj = 0.125
     _fail_adj = 0.5
 
-    def __init__( self, results_dir, participant_number, questionnaire_filename='PEQRs.csv', debug=False, timeout=60 ):
+    def __init__( self, results_dir, participant_number, questionnaire_filename='PEQRs.csv', debug=False, timeout=30 ):
         
         self.ID = participant_number    # Stores participant ID
         self._debug = debug             # Sets debug status for the participant
@@ -15,6 +19,7 @@ class Participant:
         self.questionnaire_filepath = os.path.join( results_dir, questionnaire_filename )   # Generates filepath for questionnaire results
         self.results_dir = os.path.join( results_dir, self.ID )         # Creates filepath for the participant's results folder
         self.session_dirs = next( os.walk( self.results_dir ) )[1]      # Creates a list of the sessions in the results folder
+        if self._debug: print('Participant {} initialising...'.format(self.ID))
 
 
     def create_storage_variables( self ):
@@ -26,6 +31,20 @@ class Participant:
         fp_cols = ['S1E','S1','S2E','S2','S3E','S3','S4E','S4','S5E','S5','S6E','S6','S7E','S7','S8E','S8']
         self.raw_force_profiles_cl = pd.DataFrame( index=fp_idxs, columns=fp_cols ) # DataFrane to store force profiles for each trial when loading from results dir
         self.raw_force_profiles_nl = pd.DataFrame( index=fp_idxs, columns=fp_cols ) # DataFrane to store force profiles for each trial when loading from results dir
+    
+    def load_questionnaire_results( self ):
+        """Function that extracts all participant relevant data from the qualitative questionnaire results
+        and stores them in publicly available varibales for further analysis.
+        """
+
+        self.questionnaire_results      = utils.extract_questionnaire_rows( pd.read_csv( self.questionnaire_filepath ), "Participant ID", self.ID )
+        self.questionnaire_results_cl   = utils.extract_questionnaire_rows( self.questionnaire_results, "Participant ID", "CL" )
+        self.questionnaire_results_nl   = utils.extract_questionnaire_rows( self.questionnaire_results, "Participant ID", "NL" )
+        self.questionnaire_results.reset_index 
+        self.questionnaire_results_cl.reset_index 
+        self.questionnaire_results_nl.reset_index 
+
+        if self._debug: print( "\tSuccessfully loaded questionnaire results" )
     
     def load_all_scorecards( self ):
         
@@ -87,17 +106,28 @@ class Participant:
         self.contact_times_cl = self.raw_force_profiles_cl.apply( lambda x: [ len( y ) / 100 if isinstance( y, ( list, tuple, np.ndarray ) ) else y for y in x ] ).replace( 0, np.NaN ) # Calculates the time in seconds that the platform was in contact with an object, and replaces all 0s with NaN to not mess with averaging later
         self.contact_times_nl = self.raw_force_profiles_nl.apply( lambda x: [ len( y ) / 100 if isinstance( y, ( list, tuple, np.ndarray ) ) else y for y in x ] ).replace( 0, np.NaN ) # Calculates the time in seconds that the platform was in contact with an object, and replaces all 0s with NaN to not mess with averaging later
 
-        self.peak_forces_cl = self.raw_force_profiles_cl.apply( lambda x: [ max( y ) if isinstance( y, ( list, tuple, np.ndarray ) ) else y for y in x ] ).replace( 0, np.NaN )
-        self.peak_forces_nl = self.raw_force_profiles_nl.apply( lambda x: [ max( y ) if isinstance( y, ( list, tuple, np.ndarray ) ) else y for y in x ] ).replace( 0, np.NaN )
+        self.peak_forces_cl = self.raw_force_profiles_cl.apply( lambda x: [ max( y, default=np.NaN ) if isinstance( y, ( list, tuple, np.ndarray ) ) else y for y in x ] ).replace( 0, np.NaN )
+        self.peak_forces_nl = self.raw_force_profiles_nl.apply( lambda x: [ max( y, default=np.NaN  ) if isinstance( y, ( list, tuple, np.ndarray ) ) else y for y in x ] ).replace( 0, np.NaN )
 
         if remove_timeouts:
-            self.contact_times_cl.apply( lambda x: [np.NaN if str(y).isnumeric() and y > self._timeout else y for y in x ] ) # Replaces values larger than the timeout value with NaN
-            self.contact_times_nl.apply( lambda x: [np.NaN if str(y).isnumeric() and y > self._timeout else y for y in x ] ) # Replaces values larger than the timeout value with NaN
+            self.contact_times_cl = self.contact_times_cl.apply( lambda x: [np.NaN if isinstance( y, ( float, int )) and y > self._timeout else y for y in x ] ) # Replaces values larger than the timeout value with NaN
+            self.contact_times_nl = self.contact_times_nl.apply( lambda x: [np.NaN if isinstance( y, ( float, int )) and y > self._timeout else y for y in x ] ) # Replaces values larger than the timeout value with NaN
+             
+                ## Generate timing metrics
+
+        self.speed_metrics_cl = self.contact_times_cl.apply( lambda x: [ 1 - ( ( y - 1 ) / ( 14 ) ) if isinstance(y,(float, int)) else y for y in x ] )
+        self.speed_metrics_nl = self.contact_times_nl.apply( lambda x: [ 1 - ( ( y - 1 ) / ( 14 ) ) if isinstance(y,(float, int)) else y for y in x ] )
+        self.speed_metrics_cl = self.speed_metrics_cl.apply( lambda x: [ 0 if isinstance(y,(float, int)) and y < 0 else y for y in x ] )        # Constrain metrics to between 1 and 0 based on timing (1s and 15s respectively)
+        self.speed_metrics_nl = self.speed_metrics_nl.apply( lambda x: [ 0 if isinstance(y,(float, int)) and y < 0 else y for y in x ] )
+        self.speed_metrics_cl = self.speed_metrics_cl.apply( lambda x: [ 1 if isinstance(y,(float, int)) and y > 1 else y for y in x ] )
+        self.speed_metrics_nl = self.speed_metrics_nl.apply( lambda x: [ 1 if isinstance(y,(float, int)) and y > 1 else y for y in x ] )
         
         self.contact_times_nl.loc['mean'] = self.contact_times_nl[:10].mean(axis=0, skipna=True,numeric_only=True) # Calculates the overall mean time in contact
         self.contact_times_cl.loc['mean'] = self.contact_times_cl[:10].mean(axis=0, skipna=True,numeric_only=True)
         self.peak_forces_nl.loc['mean'] = self.peak_forces_nl[:10].mean(axis=0, skipna=True,numeric_only=True) # Calculates the overall mean peak force
         self.peak_forces_cl.loc['mean'] = self.peak_forces_cl[:10].mean(axis=0, skipna=True,numeric_only=True)
+        self.speed_metrics_nl.loc['mean'] = self.speed_metrics_nl[:10].mean(axis=0, skipna=True,numeric_only=True) # Calculates the overall mean speed metric
+        self.speed_metrics_cl.loc['mean'] = self.speed_metrics_cl[:10].mean(axis=0, skipna=True,numeric_only=True)
 
         for sesh in range( int( len( self.contact_times_cl.columns ) / 2 ) ):       # Calculates the mean for each session for light and heavy eggs individually
             sesh = sesh*2
@@ -109,12 +139,11 @@ class Participant:
             self.peak_forces_cl.iloc[12,sesh+1] = self.peak_forces_cl[self.peak_forces_cl.iloc[:,sesh]=='H'][self.peak_forces_cl.columns[sesh+1]].mean(axis=0, skipna=True,numeric_only=True)
             self.peak_forces_nl.iloc[11,sesh+1] = self.peak_forces_nl[self.peak_forces_nl.iloc[:,sesh]=='L'][self.peak_forces_nl.columns[sesh+1]].mean(axis=0, skipna=True,numeric_only=True)
             self.peak_forces_nl.iloc[12,sesh+1] = self.peak_forces_nl[self.peak_forces_nl.iloc[:,sesh]=='H'][self.peak_forces_nl.columns[sesh+1]].mean(axis=0, skipna=True,numeric_only=True)
-
+            self.speed_metrics_cl.iloc[11,sesh+1] = self.speed_metrics_cl[self.speed_metrics_cl.iloc[:,sesh]=='L'][self.speed_metrics_cl.columns[sesh+1]].mean(axis=0, skipna=True,numeric_only=True)
+            self.speed_metrics_cl.iloc[12,sesh+1] = self.speed_metrics_cl[self.speed_metrics_cl.iloc[:,sesh]=='H'][self.speed_metrics_cl.columns[sesh+1]].mean(axis=0, skipna=True,numeric_only=True)
+            self.speed_metrics_nl.iloc[11,sesh+1] = self.speed_metrics_nl[self.speed_metrics_nl.iloc[:,sesh]=='L'][self.speed_metrics_nl.columns[sesh+1]].mean(axis=0, skipna=True,numeric_only=True)
+            self.speed_metrics_nl.iloc[12,sesh+1] = self.speed_metrics_nl[self.speed_metrics_nl.iloc[:,sesh]=='H'][self.speed_metrics_nl.columns[sesh+1]].mean(axis=0, skipna=True,numeric_only=True)
             ### Process grasping data
-        
-        ## Generate timing metrics
-        self.speed_metrics_cl = self.contact_times_cl.apply( lambda x: [ 1 - ( ( y - 1 ) / ( 14 ) ) if isinstance(y,(float, int)) else y for y in x ] )
-        self.speed_metrics_nl = self.contact_times_nl.apply( lambda x: [ 1 - ( ( y - 1 ) / ( 14 ) ) if isinstance(y,(float, int)) else y for y in x ] )
         
         ## Extracts and splits grasping data from scorecards
         self.grasp_results_cl = self.raw_grasp_results.loc[ :, self.raw_grasp_results.columns.str.startswith( 'CL' ) ] # Extracts all columns relating to the high cognative load
@@ -179,7 +208,6 @@ class Participant:
 
         if self._debug: print( "Processing grasp metrics complete" )
 
-
     def process_adl_results( self ):
 
         manual = self.raw_adl_results[ [ x for x in self.raw_adl_results.columns if 'Manual' in x ] ]           # Extracts datapoints from huamn hand function
@@ -192,17 +220,19 @@ class Participant:
         if self._debug: print( 'Processing ADLs complete.' )
 
     def create_analysis_dataframe( self ):
+        
+        self.analysis_df = pd.DataFrame()
 
         for session in range( len( self.session_dirs ) ):
             col = 'S' + str( session + 1 )
             for loading in [ 'CL', 'NL' ]:
                 if loading == 'CL':
-                    _tmp_dct = { 'ID' : self.ID,
-                                'Session' : session + 1,
-                                'Loading' : loading,
-                                'P' : self.performance_metrics_cl.loc['mean', col] ,
-                                'P_l' : self.performance_metrics_cl.loc['mean_l', col] ,
-                                'P_h' : self.performance_metrics_cl.loc['mean_h', col] ,
+                    _tmp_df_quant = { 'ID' : self.ID,                                               # Participant ID
+                                'Session' : session + 1,                                            # Session Number
+                                'Loading' : loading,                                                # Cognitive Load
+                                'P' : self.performance_metrics_cl.loc['mean', col] ,                # Mean performance metric (inc. time)
+                                'P_l' : self.performance_metrics_cl.loc['mean_l', col] ,            # ^^ for light eggs only
+                                'P_h' : self.performance_metrics_cl.loc['mean_h', col] ,            # ^^ for heavy eggs only
                                 'G' : self.grasp_metrics_cl.loc['mean', col] ,
                                 'G_l' : self.grasp_metrics_cl.loc['mean_l', col] ,
                                 'G_h' : self.grasp_metrics_cl.loc['mean_h', col] ,
@@ -212,32 +242,138 @@ class Participant:
                                 'F' : self.peak_forces_cl.loc['mean', col] ,
                                 'F_l' : self.peak_forces_cl.loc['mean_l', col] ,
                                 'F_h' : self.peak_forces_cl.loc['mean_h', col] } 
+                    
+                    _tmp_dct_qual = utils.extract_questionnaire_rows(self.questionnaire_results_cl, 'Session Number', str( session + 1 ) ).iloc[ :, 4: ]
+                    
+                if loading == 'NL':
+                    _tmp_df_quant = { 'ID' : self.ID,
+                                'Session' : session + 1,
+                                'Loading' : loading,
+                                'P' : self.performance_metrics_nl.loc['mean', col] ,
+                                'P_l' : self.performance_metrics_nl.loc['mean_l', col] ,
+                                'P_h' : self.performance_metrics_nl.loc['mean_h', col] ,
+                                'G' : self.grasp_metrics_nl.loc['mean', col] ,
+                                'G_l' : self.grasp_metrics_nl.loc['mean_l', col] ,
+                                'G_h' : self.grasp_metrics_nl.loc['mean_h', col] ,
+                                'T' : self.speed_metrics_nl.loc['mean', col] ,
+                                'T_l' : self.speed_metrics_nl.loc['mean_l', col] ,
+                                'T_h' : self.speed_metrics_nl.loc['mean_h', col] ,
+                                'F' : self.peak_forces_nl.loc['mean', col] ,
+                                'F_l' : self.peak_forces_nl.loc['mean_l', col] ,
+                                'F_h' : self.peak_forces_nl.loc['mean_h', col] } 
+                    
+                    _tmp_dct_qual = utils.extract_questionnaire_rows(self.questionnaire_results_nl, 'Session Number', str( session + 1 ) ).iloc[ :, 4: ]                                     
+                    
+                _tmp_dct_qual.reset_index(inplace=True)
+                _tmp_df = pd.DataFrame( _tmp_df_quant, index=[0] ).join( _tmp_dct_qual, how='left' )
+                
+                self.analysis_df = pd.concat( [ self.analysis_df, _tmp_df ] )
+                
+        self.analysis_df.reset_index(inplace=True, drop=True)
 
-        ### Then Stick questionnaire results to the end
-        # Then stack them on top of eachother  
+        if self._debug: print('Analysis DataFrame generated')
 
-                    print(_tmp_dct)
+    def print_all_metric_dfs( self ):
+        print( '###### PERFORMANCE METRICS ######' )
+        print( 'CL', self.performance_metrics_cl, '\n-------------------------------------------' )
+        print( 'NL', self.performance_metrics_nl, '\n-------------------------------------------' )
+        
+        print( '###### GRASP METRICS ######' )
+        print( 'CL', self.grasp_metrics_cl, '\n-------------------------------------------' )
+        print( 'NL', self.grasp_metrics_nl, '\n-------------------------------------------' )
 
-
-
-
-
+        print( '###### SPEED METRICS ######' )
+        print( 'CL', self.speed_metrics_cl, '\n-------------------------------------------' )
+        print( 'NL', self.speed_metrics_nl, '\-------------------------------------------' )
 
 if __name__ == "__main__":
 
     results_dir = os.path.join(os.getcwd(), "results_rnd2") # Define path to results folder
     participant_folders = next(os.walk(results_dir))[1] # Obtain a list of directories in the results folder
     Participants = [None]*len(participant_folders) # Initialise an empty list of length x, where x is the number of participant directories
+    
+    feedback_mask = [ '021', '023', '026', '030', '031', '032' ]
 
+    combined_analysis_dataframe = pd.DataFrame()
  
     for participant in range(len(participant_folders) ): # Creates a Participant object for each results folder and stores them in a list
 
         if os.path.isdir(os.path.join( results_dir, participant_folders[participant] )): # Checks all paths to make sure they are a directory
 
-            Participants[participant] = Participant(results_dir, participant_folders[participant], debug=True)
+            Participants[participant] = Participant(results_dir, participant_folders[participant], debug=False)
             _self = Participants[participant]
-            _self.create_storage_variables()
-            _self.load_all_scorecards()
-            _self.load_force_profiles()
-            _self.process_grasp_data()
-            _self.create_analysis_dataframe()
+            if not _self.ID.endswith('OPP'):
+                _self.create_storage_variables()
+                _self.load_questionnaire_results()
+                _self.load_all_scorecards()
+                _self.load_force_profiles()
+                _self.process_grasp_data()
+                _self.process_adl_results()
+                _self.create_analysis_dataframe()
+                # _self.print_all_metric_dfs()
+                
+                combined_analysis_dataframe = pd.concat( [combined_analysis_dataframe, _self.analysis_df]).drop('index', axis=1)
+    
+    combined_analysis_dataframe.reset_index( inplace=True, drop=True )        
+    combined_analysis_dataframe = combined_analysis_dataframe.join( combined_analysis_dataframe['ID'].isin( feedback_mask ).rename('Feedback') ) # Adds in column containing boolean map of participants in the feedback condition
+    combined_analysis_dataframe['Feedback'] = combined_analysis_dataframe['Feedback'].replace( { True:1, False:0 } )
+    cl_analysis_dataframe = combined_analysis_dataframe[combined_analysis_dataframe['Loading']=='CL']
+    cl_analysis_dataframe.reset_index( inplace=True, drop=True )
+    nl_analysis_dataframe = combined_analysis_dataframe[combined_analysis_dataframe['Loading']=='NL']
+    nl_analysis_dataframe.reset_index( inplace=True, drop=True )
+    
+    utils.check_or_create_folder('Output logs')
+    
+    combined_analysis_dataframe.to_csv( os.path.join( os.getcwd(), os.path.join('Output logs', 'combined_df.csv')))
+    cl_analysis_dataframe.to_csv( os.path.join( os.getcwd(), os.path.join('Output logs', 'cl_df.csv')))
+    nl_analysis_dataframe.to_csv( os.path.join( os.getcwd(), os.path.join('Output logs', 'nl_df.csv')))
+    
+    warnings.filterwarnings('ignore')
+    print( 'Beginning statistical analysis...')
+
+    for var in combined_analysis_dataframe.columns[3:29]:
+
+        aov = pg.mixed_anova( data=combined_analysis_dataframe, dv=var, within='Session', subject='ID', between='Feedback') # Runs mixed_measures anova over entire dataframe
+        aov_cl = pg.mixed_anova( data=cl_analysis_dataframe, dv=var, within='Session', subject='ID', between='Feedback') # Runs mixed_measures anova over high cognitive load condition
+        aov_nl = pg.mixed_anova( data=nl_analysis_dataframe, dv=var, within='Session', subject='ID', between='Feedback') # Runs mixed_measures anova over low cognitive load condition
+    
+    
+        if (aov['p-unc'] <= 0.05).any() : 
+        
+            high_significance = aov[(aov['p-unc'] <= 0.05)]
+            
+            for case in high_significance['Source'].values:
+                if not case == 'Session':
+                    print( 'High Significance achieved for dependant variable {} across {}.'.format( var, case ) )
+                    print(aov.round(3))
+                    
+        elif (aov['p-unc'] <= 0.1).any() :
+            
+            low_significance = aov[(aov['p-unc'] <= 0.1)]
+            
+            for case in low_significance['Source'].values:
+                if not case == 'Session':
+                    print( 'Low Significance achieved for dependant variable {} across {}.'.format( var, case ) )
+                    print(aov.round(3))
+                    
+        # if (aov_cl['p-unc'] < 0.1).any() : 
+        
+        #     significance = aov_cl[(aov_cl['p-unc'] < 0.05)]
+            
+        #     for case in significance['Source'].values:
+        #         if not case == 'Session':
+        #             print( 'Significance achieved for dependant variable {} across {} IN HIGH COGNITIVE LOADING.'.format( var, case ) )
+            
+        #     # print('Dependant variable: ', var)
+        #             print(aov_cl.round(3))
+                    
+        # if (aov_nl['p-unc'] < 0.1).any() : 
+        
+        #     significance = aov_nl[(aov_nl['p-unc'] < 0.05)]
+            
+        #     for case in significance['Source'].values:
+        #         if not case == 'Session':
+        #             print( 'Significance achieved for dependant variable {} across {} IN LOW COGNITIVE LOADING.'.format( var, case ) )
+        #             print(aov_nl.round(3))
+                    
+        # aov.round(5).to_csv('boobs.csv', sep=',')

@@ -8,21 +8,7 @@ class Participant:
  
 	### Attributes and variables
 	# Public attributes and variables
-	
-	# [ID, FB?, Session, Loading, Pcomb, Pl, Ph, Tcomb, Tl, Th, PTcomb, PTl, PTh, Fcomb, Fl, Fh Questionnaire answers & totals ]
-
-	#[ trial,  s1, s2, ..., s8, s9		] X 2 (CL)
-	#	1		, ...					]
-	#	2		, ...					]
-	#	3		, ...					]
-	#	...		, ...					]
-	#	10		, ...					]
-	#	mean	, ...					]
-	#	mean_l	, ...					]
-	#	mean_h	, ...					]
-	#					
-	#
-
+ 
 	# Private attributes and variables
 	_questionnaire_name = "PEQRs.csv"
 	_debug = True
@@ -60,7 +46,6 @@ class Participant:
 		self.CL_grasp_metrics = pd.DataFrame()
 		self.NL_grasp_metrics = pd.DataFrame()
 		self.COMB_grasp_metrics = pd.DataFrame()
-		self.analysis_df = pd.DataFrame()
   
 
   # Public methods and functions
@@ -252,6 +237,14 @@ class Participant:
 			self.NL_times_avg.loc['L', col] = self.NL_contact_times[self.NL_contact_times.iloc[:,egg_iloc]=='L'][col].mean( axis=0)#, numeric_only=True )
 			self.NL_times_avg.loc['H', col] = self.NL_contact_times[self.NL_contact_times.iloc[:,egg_iloc]=='H'][col].mean( axis=0)#, numeric_only=True )
 
+	def plot_performance( self ):
+		""""""
+		if not self.ID.endswith('OPP'):
+			fig, ax = plt.subplots()
+			ax.plot( ( range(1,len(self.NL_grasp_metrics.loc["Mean", self.NL_grasp_metrics.columns.str.contains("Performance")].values)+1) ), self.NL_grasp_metrics.loc["Mean", self.NL_grasp_metrics.columns.str.contains("Performance")].values)
+			ax.plot( ( range(1,len(self.CL_grasp_metrics.loc["Mean", self.CL_grasp_metrics.columns.str.contains("Performance")].values)+1) ), self.CL_grasp_metrics.loc["Mean", self.CL_grasp_metrics.columns.str.contains("Performance")].values )
+			ax.set(xlim=(1, 8), xticks=np.arange(1, 8), ylim=(0, 1))
+			plt.show()
 
 	def combine_performance_and_time( self ):
 		
@@ -271,15 +264,9 @@ class Participant:
 				
 			self.CL_combined_performance.drop([ 'Mean_H', 'Mean_L' ], inplace=True )
 			self.CL_combined_performance.loc['Mean'] = self.CL_combined_performance.mean()
-			self.CL_combined_performance.loc['STD'] = self.CL_combined_performance.iloc[0:9,:].std()
+			self.CL_combined_performance.loc['STD'] = self.CL_combined_performance.iloc[0:10,:].std()
 			print(self.CL_combined_performance.iloc[0:10,:])
 			print(self.CL_combined_performance)
-
-	def costruct_analysis_df( self ):
-
-			for session in self.session_result_dirs:
-				print(session)
-
 
 
 
@@ -667,7 +654,7 @@ def plot_times( participant_list, save=False, show = False ):
 
 if __name__ == "__main__":
 
-	results_dir = os.path.join(os.getcwd(), "results") # Define path to results folder
+	results_dir = os.path.join(os.getcwd(), "results_rnd2") # Define path to results folder
 	participant_folders = next(os.walk(results_dir))[1] # Obtain a list of directories in the results folder
 	Participants = [None]*len(participant_folders) # Initialise an empty list of length x, where x is the number of participant directories
 
@@ -678,7 +665,7 @@ if __name__ == "__main__":
 
 			Participants[participant] = Participant(results_dir, participant_folders[participant])
 			_self = Participants[participant]
-			# _self.load_questionnaire_results()
+			_self.load_questionnaire_results()
 			_self.load_ADL_scorecards()
 			_self.load_Grasp_scorecards()
 			_self.load_trial_times()
@@ -692,7 +679,7 @@ if __name__ == "__main__":
 	
 	NL_means, NL_means_L, NL_means_H, CL_means, CL_means_L, CL_means_H, FB_NL_means, FB_NL_means_L, FB_NL_means_H, FB_CL_means, FB_CL_means_L, FB_CL_means_H, NFB_NL_means, NFB_NL_means_L, NFB_NL_means_H, NFB_CL_means, NFB_CL_means_L, NFB_CL_means_H, FB_COMB_means, NFB_COMB_means = calculate_all_performance_means( Participants )
 	
-	# Qresults_CL_FB, Qresults_CL_FB_avg, Qresults_NL_FB, Qresults_NL_FB_avg,	Qresults_CL_NFB, Qresults_CL_NFB_avg, Qresults_NL_NFB, Qresults_NL_NFB_avg = calculate_all_qualitative_means( Participants )
+	Qresults_CL_FB, Qresults_CL_FB_avg, Qresults_NL_FB, Qresults_NL_FB_avg,	Qresults_CL_NFB, Qresults_CL_NFB_avg, Qresults_NL_NFB, Qresults_NL_NFB_avg = calculate_all_qualitative_means( Participants )
 
 	FB_CL_collated_times, FB_NL_collated_times, NFB_CL_collated_times, NFB_NL_collated_times = plot_times( Participants, save = True )
  
