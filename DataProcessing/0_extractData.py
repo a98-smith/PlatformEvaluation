@@ -108,8 +108,8 @@ class Participant:
 		self.contact_times_nl = self.raw_force_profiles_nl.apply( lambda x: [ len( y ) / 100 if isinstance( y, ( list, tuple, np.ndarray ) ) else y for y in x ] ).replace( 0, np.NaN ) # Calculates the time in seconds that the platform was in contact with an object, and replaces all 0s with NaN to not mess with averaging later
 
 
-		self.peak_forces_cl = self.raw_force_profiles_cl.apply( lambda x: [ max( y[-200:], default=np.NaN ) if isinstance( y, ( list, tuple, np.ndarray ) ) else y for y in x ] ).replace( 0, np.NaN )
-		self.peak_forces_nl = self.raw_force_profiles_nl.apply( lambda x: [ max( y[-200:], default=np.NaN  ) if isinstance( y, ( list, tuple, np.ndarray ) ) else y for y in x ] ).replace( 0, np.NaN )
+		self.peak_forces_cl = self.raw_force_profiles_cl.apply( lambda x: [ max( y[-50:], default=np.NaN ) if isinstance( y, ( list, tuple, np.ndarray ) ) else y for y in x ] ).replace( 0, np.NaN )
+		self.peak_forces_nl = self.raw_force_profiles_nl.apply( lambda x: [ max( y[-50:], default=np.NaN  ) if isinstance( y, ( list, tuple, np.ndarray ) ) else y for y in x ] ).replace( 0, np.NaN )
 
 		if remove_timeouts:
 			self.contact_times_cl = self.contact_times_cl.apply( lambda x: [np.NaN if isinstance( y, ( float, int )) and y > self._timeout else y for y in x ] ) # Replaces values larger than the timeout value with NaN

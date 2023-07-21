@@ -41,7 +41,7 @@ s8_9 = False
 def plot_performance( perf_df, load=None, show=False, save=False, plot_as_one=False, plot_many=False):
 	
 	_data = perf_df
-	measures = ['P', 'G', 'T']
+	measures = ['P', 'G', 'T', 'F']
 
 
 	if plot_as_one == True:
@@ -229,7 +229,7 @@ if __name__ == '__main__':
 
 		if file != 'adl_df.csv':
 			performance_results = data[[
-								'P', 'P_l', 'P_h', 'G', 'G_l', 'G_h', 'T', 'T_l', 'T_h', 'Session', 'Feedback', ]]
+								'P', 'P_l', 'P_h', 'G', 'G_l', 'G_h', 'T', 'T_l', 'T_h', 'F', 'F_l', 'F_h', 'Session', 'Feedback' ]]
 			TLX_results = data[['Mental Demand', 'Physical Demand', 'Temporal Demand',
 								'Performance', 'Effort', 'Frustration Level', 'TLX totals', 'Session', 'Feedback']]
 			Q_results = data[['It is easy to understand.', 'It is distracting.', 'It is user-friendly.', 'Using it is effortless.',
@@ -237,7 +237,7 @@ if __name__ == '__main__':
 
 			grasp_breakdown_results = data[['grasps', 'drops', 'crushes', 'Session', 'Feedback']]
 
-			plot_performance( performance_results, load=load, show=False, save=True, plot_as_one=True, plot_many=True )
+			plot_performance( performance_results, load=load, show=False, save=True, plot_as_one=False, plot_many=True )
 			plot_tlx( TLX_results, load=load, show=False, save=True )
 			plot_qual( Q_results, load=load, show=False, save=True )
 			plot_grasp_metric_breakdown( grasp_breakdown_results, load=load, show=False, save=True )
