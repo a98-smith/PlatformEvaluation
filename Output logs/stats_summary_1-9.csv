@@ -1,0 +1,98 @@
+,load,var,sig_high,sig_high_p,sig_low,sig_low_p,spher,spher_p,norm_res
+0,,,,,,,,,
+1,COMB,P,Session,0.0,None,None,PASS,1.0,Highly normal
+2,COMB,P_l,"Session, Interaction","0.0, 0.027",None,None,PASS,1.0,Highly normal
+3,COMB,P_h,Session,0.006,None,None,PASS,1.0,Highly normal
+4,COMB,G,Session,0.0,None,None,PASS,1.0,Normal
+5,COMB,G_l,Session,0.003,None,None,PASS,1.0,Highly normal
+6,COMB,G_h,None,None,Session,0.093,PASS,1.0,Normal
+7,COMB,T,Session,0.0,None,None,PASS,1.0,Highly normal
+8,COMB,T_l,"Session, Interaction","0.0, 0.038",None,None,PASS,1.0,Normal
+9,COMB,T_h,Session,0.003,None,None,PASS,1.0,Highly normal
+10,COMB,F,Session,0.028,None,None,FAIL,0.00013440434261302296,Highly normal
+11,COMB,F_l,None,None,None,None,FAIL,0.00017230486956160406,Highly normal
+12,COMB,F_h,Session,0.02,None,None,FAIL,0.010046796365527496,Perfectly normal
+13,COMB,grasps,Session,0.001,None,None,PASS,0.9744437992417283,Highly normal
+14,COMB,crushes,None,None,Session,0.067,PASS,0.612867510549377,False
+15,COMB,drops,None,None,None,None,PASS,0.902856115400205,False
+16,COMB,Mental Demand,"Session, Interaction","0.0, 0.016",None,None,PASS,0.9240490595171491,Highly normal
+17,COMB,Physical Demand,Session,0.0,None,None,PASS,1.0162935851428836,Highly normal
+18,COMB,Temporal Demand,Session,0.0,None,None,PASS,1.0074914183043036,Highly normal
+19,COMB,Performance,Session,0.0,None,None,PASS,0.9621568124172153,Highly normal
+20,COMB,Effort,Session,0.0,None,None,PASS,0.9461523739198981,Highly normal
+21,COMB,Frustration Level,Session,0.006,None,None,PASS,1.019939746999304,Normal
+22,COMB,It is easy to understand.,None,None,None,None,PASS,1.0,False
+23,COMB,It is distracting.,Session,0.0,None,None,PASS,1.000400236037333,Normal
+24,COMB,It is user-friendly.,Session,0.004,None,None,PASS,1.0019321981476892,False
+25,COMB,Using it is effortless.,Session,0.0,None,None,PASS,1.004482079095125,Normal
+26,COMB,Both occasional and Regular users would like it.,Session,0.0,None,None,PASS,1.0000000114682306,False
+27,COMB,It is difficult to learn how to use.,Session,0.0,None,None,PASS,0.8685874069158426,Normal
+28,COMB,It works the way I want it to work.,Session,0.006,None,None,PASS,1.009527483052383,False
+29,COMB,It is pleasant to use.,Session,0.0,None,None,PASS,1.0000000397872832,False
+30,COMB,TLX totals,Session,0.0,None,None,PASS,0.6511224007114251,Highly normal
+31,COMB,Q totals,Session,0.0,None,None,PASS,0.6735437816573613,Highly normal
+32,CL,P,Session,0.0,None,None,PASS,1.0,Highly normal
+33,CL,P_l,Session,0.003,Interaction,0.064,PASS,1.0,Highly normal
+34,CL,P_h,Session,0.032,None,None,PASS,1.0,Highly normal
+35,CL,G,Session,0.003,None,None,PASS,1.0,Normal
+36,CL,G_l,Session,0.022,None,None,PASS,1.0,Highly normal
+37,CL,G_h,None,None,None,None,PASS,1.0,Normal
+38,CL,T,Session,0.002,None,None,PASS,1.0,Highly normal
+39,CL,T_l,Session,0.005,None,None,PASS,1.0,Highly normal
+40,CL,T_h,None,None,Session,0.051,PASS,1.0,Highly normal
+41,CL,F,None,None,None,None,FAIL,0.01484559143438359,Highly normal
+42,CL,F_l,None,None,None,None,FAIL,0.0011172356860749966,Highly normal
+43,CL,F_h,None,None,Session,0.066,FAIL,0.00016032248678687173,Highly normal
+44,CL,grasps,Session,0.041,None,None,PASS,0.999754784656502,Highly normal
+45,CL,crushes,None,None,None,None,FAIL,0.02510780557014512,Normal
+46,CL,drops,None,None,None,None,PASS,0.09348379478253697,False
+47,CL,Mental Demand,"Session, Interaction","0.0, 0.011",None,None,PASS,0.9175476892666456,Highly normal
+48,CL,Physical Demand,Session,0.0,None,None,PASS,0.357983518612709,Highly normal
+49,CL,Temporal Demand,Session,0.001,None,None,PASS,0.8815830661717458,Highly normal
+50,CL,Performance,Session,0.0,None,None,PASS,0.4258475636464697,Highly normal
+51,CL,Effort,Session,0.0,None,None,PASS,0.8541748156920321,Highly normal
+52,CL,Frustration Level,Session,0.01,None,None,PASS,0.7806602365320058,Highly normal
+53,CL,It is easy to understand.,None,None,None,None,PASS,1.0,Normal
+54,CL,It is distracting.,Session,0.005,None,None,PASS,1.0038861974621556,Highly normal
+55,CL,It is user-friendly.,Session,0.018,None,None,PASS,1.0069928532597743,False
+56,CL,Using it is effortless.,Session,0.0,None,None,PASS,1.0176624891490047,Normal
+57,CL,Both occasional and Regular users would like it.,Session,0.002,None,None,PASS,1.0000516312008811,Normal
+58,CL,It is difficult to learn how to use.,Session,0.003,None,None,PASS,1.0127860892475289,Highly normal
+59,CL,It works the way I want it to work.,Session,0.007,None,None,PASS,1.000604590792016,Normal
+60,CL,It is pleasant to use.,Session,0.005,None,None,PASS,1.00014433862421,Normal
+61,CL,TLX totals,Session,0.0,None,None,PASS,0.6516866319380845,Highly normal
+62,CL,Q totals,Session,0.0,None,None,PASS,0.4328234839067938,Highly normal
+63,NL,P,Session,0.0,None,None,PASS,1.0,Highly normal
+64,NL,P_l,"Session, Interaction","0.0, 0.039",None,None,PASS,1.0,Highly normal
+65,NL,P_h,None,None,None,None,PASS,1.0,Normal
+66,NL,G,Session,0.0,None,None,PASS,1.0,Highly normal
+67,NL,G_l,Session,0.003,None,None,PASS,1.0,Highly normal
+68,NL,G_h,None,None,None,None,PASS,1.0,Normal
+69,NL,T,"Session, Interaction","0.0, 0.043",None,None,PASS,1.0,Highly normal
+70,NL,T_l,"Session, Interaction","0.001, 0.011",None,None,PASS,1.0,Normal
+71,NL,T_h,Session,0.008,None,None,PASS,1.0,Highly normal
+72,NL,F,Session,0.034,None,None,FAIL,0.04300955327925135,Highly normal
+73,NL,F_l,None,None,None,None,FAIL,0.02073815378538122,Highly normal
+74,NL,F_h,None,None,Session,0.072,FAIL,0.0003818380857261024,Highly normal
+75,NL,grasps,Session,0.0,None,None,PASS,0.3801865480304274,Highly normal
+76,NL,crushes,None,None,None,None,FAIL,0.005299263294660407,False
+77,NL,drops,None,None,Session,0.096,PASS,1.0146981706849827,False
+78,NL,Mental Demand,Session,0.003,None,None,PASS,0.847637515201324,Normal
+79,NL,Physical Demand,Session,0.0,None,None,PASS,1.0151110601686724,Normal
+80,NL,Temporal Demand,Session,0.0,None,None,PASS,0.9841015966314098,Normal
+81,NL,Performance,Session,0.003,None,None,PASS,0.8650534901817614,Highly normal
+82,NL,Effort,Session,0.0,None,None,PASS,1.0175862906331883,Highly normal
+83,NL,Frustration Level,Session,0.019,None,None,PASS,1.0203602601368078,Highly normal
+84,NL,It is easy to understand.,None,None,Session,0.077,PASS,1.0,False
+85,NL,It is distracting.,Session,0.001,None,None,PASS,1.0065459550095215,Normal
+86,NL,It is user-friendly.,Session,0.004,None,None,PASS,1.0043035523529622,False
+87,NL,Using it is effortless.,Session,0.0,None,None,PASS,1.020203573285195,Normal
+88,NL,Both occasional and Regular users would like it.,Session,0.0,None,None,PASS,1.017283897289714,False
+89,NL,It is difficult to learn how to use.,Session,0.035,None,None,PASS,0.7096644351270991,Normal
+90,NL,It works the way I want it to work.,Session,0.028,None,None,PASS,0.8342651042133933,Normal
+91,NL,It is pleasant to use.,Session,0.0,None,None,PASS,1.0012466101397923,Normal
+92,NL,TLX totals,Session,0.0,None,None,PASS,0.06590200591820083,Highly normal
+93,NL,Q totals,Session,0.0,None,None,PASS,0.21896810430896071,Highly normal
+94,ADL,Cups,None,None,None,None,PASS,0.13332787767719273,Normal
+95,ADL,Pegs,Interaction,0.034,None,None,PASS,0.3741867239511447,Normal
+96,ADL,Pens,None,None,None,None,FAIL,0.007241462646566199,Highly normal

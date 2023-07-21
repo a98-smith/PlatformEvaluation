@@ -1,0 +1,98 @@
+,load,var,sig_high,sig_high_p,sig_low,sig_low_p,spher,spher_p,norm_res
+0,,,,,,,,,
+1,COMB,P,None,None,Interaction,0.053,PASS,1.0,Perfectly normal
+2,COMB,P_l,Interaction,0.023,Session,0.059,PASS,1.0,Normal
+3,COMB,P_h,None,None,None,None,PASS,1.0,Perfectly normal
+4,COMB,G,"Session, Interaction","0.018, 0.014",None,None,PASS,1.0,False
+5,COMB,G_l,"Session, Interaction","0.004, 0.005",None,None,PASS,1.0,False
+6,COMB,G_h,None,None,None,None,PASS,1.0,False
+7,COMB,T,None,None,None,None,PASS,1.0,Normal
+8,COMB,T_l,None,None,None,None,PASS,1.0,False
+9,COMB,T_h,None,None,None,None,PASS,1.0,Normal
+10,COMB,F,None,None,None,None,PASS,1.0,Perfectly normal
+11,COMB,F_l,None,None,None,None,PASS,1.0,Perfectly normal
+12,COMB,F_h,None,None,None,None,PASS,1.0,Perfectly normal
+13,COMB,grasps,"Feedback, Session, Interaction","0.025, 0.001, 0.001",None,None,PASS,1.0,Perfectly normal
+14,COMB,crushes,None,None,Session,0.069,PASS,1.0,False
+15,COMB,drops,None,None,None,None,PASS,1.0,False
+16,COMB,Mental Demand,Interaction,0.029,None,None,PASS,1.0,Perfectly normal
+17,COMB,Physical Demand,None,None,Session,0.051,PASS,1.0,Perfectly normal
+18,COMB,Temporal Demand,None,None,None,None,PASS,1.0,Normal
+19,COMB,Performance,None,None,None,None,PASS,1.0,Normal
+20,COMB,Effort,None,None,None,None,PASS,1.0,Perfectly normal
+21,COMB,Frustration Level,None,None,None,None,PASS,1.0,False
+22,COMB,It is easy to understand.,None,None,None,None,PASS,1.0,False
+23,COMB,It is distracting.,None,None,Session,0.079,PASS,1.0,Normal
+24,COMB,It is user-friendly.,None,None,Session,0.082,PASS,1.0,False
+25,COMB,Using it is effortless.,None,None,None,None,PASS,1.0,False
+26,COMB,Both occasional and Regular users would like it.,None,None,None,None,PASS,1.0,False
+27,COMB,It is difficult to learn how to use.,None,None,None,None,PASS,1.0,Normal
+28,COMB,It works the way I want it to work.,None,None,Session,0.066,PASS,1.0,False
+29,COMB,It is pleasant to use.,Session,0.03,None,None,PASS,1.0,False
+30,COMB,TLX totals,None,None,None,None,PASS,1.0,Normal
+31,COMB,Q totals,Session,0.041,None,None,PASS,1.0,Perfectly normal
+32,CL,P,None,None,Interaction,0.059,PASS,1.0,Normal
+33,CL,P_l,Interaction,0.041,None,None,PASS,1.0,Normal
+34,CL,P_h,None,None,Interaction,0.089,PASS,1.0,Normal
+35,CL,G,"Session, Interaction","0.037, 0.023",None,None,PASS,1.0,False
+36,CL,G_l,"Session, Interaction","0.038, 0.026",None,None,PASS,1.0,False
+37,CL,G_h,"Session, Interaction","0.004, 0.007",None,None,PASS,1.0,False
+38,CL,T,None,None,None,None,PASS,1.0,False
+39,CL,T_l,None,None,None,None,PASS,1.0,Normal
+40,CL,T_h,None,None,None,None,PASS,1.0,Normal
+41,CL,F,None,None,None,None,PASS,1.0,Normal
+42,CL,F_l,None,None,None,None,PASS,1.0,Normal
+43,CL,F_h,None,None,None,None,PASS,1.0,Normal
+44,CL,grasps,"Feedback, Interaction","0.014, 0.028",Session,0.06,PASS,1.0,Normal
+45,CL,crushes,None,None,Session,0.098,PASS,1.0,Normal
+46,CL,drops,None,None,None,None,PASS,1.0,False
+47,CL,Mental Demand,Interaction,0.034,None,None,PASS,1.0,Normal
+48,CL,Physical Demand,None,None,None,None,PASS,1.0,Normal
+49,CL,Temporal Demand,None,None,None,None,PASS,1.0,Normal
+50,CL,Performance,None,None,None,None,PASS,1.0,False
+51,CL,Effort,None,None,None,None,PASS,1.0,False
+52,CL,Frustration Level,None,None,None,None,PASS,1.0,False
+53,CL,It is easy to understand.,None,None,None,None,PASS,1.0,Normal
+54,CL,It is distracting.,None,None,Session,0.068,PASS,1.0,Normal
+55,CL,It is user-friendly.,None,None,Session,0.085,PASS,1.0,False
+56,CL,Using it is effortless.,None,None,Session,0.091,PASS,1.0,Normal
+57,CL,Both occasional and Regular users would like it.,None,None,None,None,PASS,1.0,False
+58,CL,It is difficult to learn how to use.,None,None,None,None,PASS,1.0,False
+59,CL,It works the way I want it to work.,Session,0.018,None,None,PASS,1.0,False
+60,CL,It is pleasant to use.,Session,0.029,None,None,PASS,1.0,False
+61,CL,TLX totals,None,None,None,None,PASS,1.0,Normal
+62,CL,Q totals,None,None,Session,0.056,PASS,1.0,Normal
+63,NL,P,None,None,None,None,PASS,1.0,Normal
+64,NL,P_l,None,None,Session,0.097,PASS,1.0,Normal
+65,NL,P_h,None,None,None,None,PASS,1.0,Normal
+66,NL,G,None,None,"Session, Interaction","0.062, 0.07",PASS,1.0,Normal
+67,NL,G_l,Session,0.044,None,None,PASS,1.0,Normal
+68,NL,G_h,None,None,None,None,PASS,1.0,False
+69,NL,T,None,None,None,None,PASS,1.0,Normal
+70,NL,T_l,None,None,None,None,PASS,1.0,False
+71,NL,T_h,None,None,Session,0.097,PASS,1.0,Normal
+72,NL,F,None,None,None,None,PASS,1.0,Normal
+73,NL,F_l,None,None,None,None,PASS,1.0,Normal
+74,NL,F_h,None,None,None,None,PASS,1.0,False
+75,NL,grasps,"Session, Interaction","0.004, 0.004",None,None,PASS,1.0,Normal
+76,NL,crushes,None,None,None,None,PASS,1.0,False
+77,NL,drops,None,None,None,None,PASS,1.0,False
+78,NL,Mental Demand,Interaction,0.036,None,None,PASS,1.0,False
+79,NL,Physical Demand,Session,0.029,None,None,PASS,1.0,Normal
+80,NL,Temporal Demand,Interaction,0.022,None,None,PASS,1.0,False
+81,NL,Performance,None,None,None,None,PASS,1.0,Normal
+82,NL,Effort,None,None,None,None,PASS,1.0,Normal
+83,NL,Frustration Level,None,None,None,None,PASS,1.0,False
+84,NL,It is easy to understand.,None,None,Session,0.059,PASS,1.0,False
+85,NL,It is distracting.,None,None,None,None,PASS,1.0,False
+86,NL,It is user-friendly.,None,None,None,None,PASS,1.0,False
+87,NL,Using it is effortless.,None,None,Interaction,0.087,PASS,1.0,False
+88,NL,Both occasional and Regular users would like it.,Session,0.044,None,None,PASS,1.0,False
+89,NL,It is difficult to learn how to use.,None,None,None,None,PASS,1.0,False
+90,NL,It works the way I want it to work.,None,None,None,None,PASS,1.0,False
+91,NL,It is pleasant to use.,None,None,Session,0.091,PASS,1.0,False
+92,NL,TLX totals,None,None,None,None,PASS,1.0,False
+93,NL,Q totals,Session,0.05,None,None,PASS,1.0,Normal
+94,ADL,Cups,None,None,None,None,PASS,1.0,Normal
+95,ADL,Pegs,None,None,None,None,PASS,1.0,Normal
+96,ADL,Pens,None,None,None,None,PASS,1.0,Normal
