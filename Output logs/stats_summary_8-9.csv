@@ -1,98 +1,98 @@
-,load,var,sig_high,sig_high_p,sig_low,sig_low_p,spher,spher_p,norm_res
-0,,,,,,,,,
-1,COMB,P,None,None,Interaction,0.053,PASS,1.0,Perfectly normal
-2,COMB,P_l,Interaction,0.023,Session,0.059,PASS,1.0,Normal
-3,COMB,P_h,None,None,None,None,PASS,1.0,Perfectly normal
-4,COMB,G,"Session, Interaction","0.018, 0.014",None,None,PASS,1.0,False
-5,COMB,G_l,"Session, Interaction","0.004, 0.005",None,None,PASS,1.0,False
-6,COMB,G_h,None,None,None,None,PASS,1.0,False
-7,COMB,T,None,None,None,None,PASS,1.0,Normal
-8,COMB,T_l,None,None,None,None,PASS,1.0,False
-9,COMB,T_h,None,None,None,None,PASS,1.0,Normal
-10,COMB,F,None,None,None,None,PASS,1.0,Perfectly normal
-11,COMB,F_l,None,None,None,None,PASS,1.0,Perfectly normal
-12,COMB,F_h,None,None,None,None,PASS,1.0,Perfectly normal
-13,COMB,grasps,"Feedback, Session, Interaction","0.025, 0.001, 0.001",None,None,PASS,1.0,Perfectly normal
-14,COMB,crushes,None,None,Session,0.069,PASS,1.0,False
-15,COMB,drops,None,None,None,None,PASS,1.0,False
-16,COMB,Mental Demand,Interaction,0.029,None,None,PASS,1.0,Perfectly normal
-17,COMB,Physical Demand,None,None,Session,0.051,PASS,1.0,Perfectly normal
-18,COMB,Temporal Demand,None,None,None,None,PASS,1.0,Normal
-19,COMB,Performance,None,None,None,None,PASS,1.0,Normal
-20,COMB,Effort,None,None,None,None,PASS,1.0,Perfectly normal
-21,COMB,Frustration Level,None,None,None,None,PASS,1.0,False
-22,COMB,It is easy to understand.,None,None,None,None,PASS,1.0,False
-23,COMB,It is distracting.,None,None,Session,0.079,PASS,1.0,Normal
-24,COMB,It is user-friendly.,None,None,Session,0.082,PASS,1.0,False
-25,COMB,Using it is effortless.,None,None,None,None,PASS,1.0,False
-26,COMB,Both occasional and Regular users would like it.,None,None,None,None,PASS,1.0,False
-27,COMB,It is difficult to learn how to use.,None,None,None,None,PASS,1.0,Normal
-28,COMB,It works the way I want it to work.,None,None,Session,0.066,PASS,1.0,False
-29,COMB,It is pleasant to use.,Session,0.03,None,None,PASS,1.0,False
-30,COMB,TLX totals,None,None,None,None,PASS,1.0,Normal
-31,COMB,Q totals,Session,0.041,None,None,PASS,1.0,Perfectly normal
-32,CL,P,None,None,Interaction,0.059,PASS,1.0,Normal
-33,CL,P_l,Interaction,0.041,None,None,PASS,1.0,Normal
-34,CL,P_h,None,None,Interaction,0.089,PASS,1.0,Normal
-35,CL,G,"Session, Interaction","0.037, 0.023",None,None,PASS,1.0,False
-36,CL,G_l,"Session, Interaction","0.038, 0.026",None,None,PASS,1.0,False
-37,CL,G_h,"Session, Interaction","0.004, 0.007",None,None,PASS,1.0,False
-38,CL,T,None,None,None,None,PASS,1.0,False
-39,CL,T_l,None,None,None,None,PASS,1.0,Normal
-40,CL,T_h,None,None,None,None,PASS,1.0,Normal
-41,CL,F,None,None,None,None,PASS,1.0,Normal
-42,CL,F_l,None,None,None,None,PASS,1.0,Normal
-43,CL,F_h,None,None,None,None,PASS,1.0,Normal
-44,CL,grasps,"Feedback, Interaction","0.014, 0.028",Session,0.06,PASS,1.0,Normal
-45,CL,crushes,None,None,Session,0.098,PASS,1.0,Normal
-46,CL,drops,None,None,None,None,PASS,1.0,False
-47,CL,Mental Demand,Interaction,0.034,None,None,PASS,1.0,Normal
-48,CL,Physical Demand,None,None,None,None,PASS,1.0,Normal
-49,CL,Temporal Demand,None,None,None,None,PASS,1.0,Normal
-50,CL,Performance,None,None,None,None,PASS,1.0,False
-51,CL,Effort,None,None,None,None,PASS,1.0,False
-52,CL,Frustration Level,None,None,None,None,PASS,1.0,False
-53,CL,It is easy to understand.,None,None,None,None,PASS,1.0,Normal
-54,CL,It is distracting.,None,None,Session,0.068,PASS,1.0,Normal
-55,CL,It is user-friendly.,None,None,Session,0.085,PASS,1.0,False
-56,CL,Using it is effortless.,None,None,Session,0.091,PASS,1.0,Normal
-57,CL,Both occasional and Regular users would like it.,None,None,None,None,PASS,1.0,False
-58,CL,It is difficult to learn how to use.,None,None,None,None,PASS,1.0,False
-59,CL,It works the way I want it to work.,Session,0.018,None,None,PASS,1.0,False
-60,CL,It is pleasant to use.,Session,0.029,None,None,PASS,1.0,False
-61,CL,TLX totals,None,None,None,None,PASS,1.0,Normal
-62,CL,Q totals,None,None,Session,0.056,PASS,1.0,Normal
-63,NL,P,None,None,None,None,PASS,1.0,Normal
-64,NL,P_l,None,None,Session,0.097,PASS,1.0,Normal
-65,NL,P_h,None,None,None,None,PASS,1.0,Normal
-66,NL,G,None,None,"Session, Interaction","0.062, 0.07",PASS,1.0,Normal
-67,NL,G_l,Session,0.044,None,None,PASS,1.0,Normal
-68,NL,G_h,None,None,None,None,PASS,1.0,False
-69,NL,T,None,None,None,None,PASS,1.0,Normal
-70,NL,T_l,None,None,None,None,PASS,1.0,False
-71,NL,T_h,None,None,Session,0.097,PASS,1.0,Normal
-72,NL,F,None,None,None,None,PASS,1.0,Normal
-73,NL,F_l,None,None,None,None,PASS,1.0,Normal
-74,NL,F_h,None,None,None,None,PASS,1.0,False
-75,NL,grasps,"Session, Interaction","0.004, 0.004",None,None,PASS,1.0,Normal
-76,NL,crushes,None,None,None,None,PASS,1.0,False
-77,NL,drops,None,None,None,None,PASS,1.0,False
-78,NL,Mental Demand,Interaction,0.036,None,None,PASS,1.0,False
-79,NL,Physical Demand,Session,0.029,None,None,PASS,1.0,Normal
-80,NL,Temporal Demand,Interaction,0.022,None,None,PASS,1.0,False
-81,NL,Performance,None,None,None,None,PASS,1.0,Normal
-82,NL,Effort,None,None,None,None,PASS,1.0,Normal
-83,NL,Frustration Level,None,None,None,None,PASS,1.0,False
-84,NL,It is easy to understand.,None,None,Session,0.059,PASS,1.0,False
-85,NL,It is distracting.,None,None,None,None,PASS,1.0,False
-86,NL,It is user-friendly.,None,None,None,None,PASS,1.0,False
-87,NL,Using it is effortless.,None,None,Interaction,0.087,PASS,1.0,False
-88,NL,Both occasional and Regular users would like it.,Session,0.044,None,None,PASS,1.0,False
-89,NL,It is difficult to learn how to use.,None,None,None,None,PASS,1.0,False
-90,NL,It works the way I want it to work.,None,None,None,None,PASS,1.0,False
-91,NL,It is pleasant to use.,None,None,Session,0.091,PASS,1.0,False
-92,NL,TLX totals,None,None,None,None,PASS,1.0,False
-93,NL,Q totals,Session,0.05,None,None,PASS,1.0,Normal
-94,ADL,Cups,None,None,None,None,PASS,1.0,Normal
-95,ADL,Pegs,None,None,None,None,PASS,1.0,Normal
-96,ADL,Pens,None,None,None,None,PASS,1.0,Normal
+,load,var,significance,mm_session,mm_feedback,mm_interaction,rm_session,rm_loading,rm_interaction,spher,spher_p,norm_res
+0,,,,,,,,,,,,
+1,COMB,P,LOW,"F(1,6) = 1.423, p=0.278","F(1,6) = 0.806, p=0.404","F(1,6) = 5.768, p=0.053","F(1,7) = 0.846, p=0.388","F(1,7) = 3.655, p=0.097","F(1,7) = 0.679, p=0.437",PASS,1.0,Perfectly normal
+2,COMB,P_l,HIGH,"F(1,6) = 5.423, p=0.059","F(1,6) = 2.467, p=0.167","F(1,6) = 9.145, p=0.023","F(1,7) = 2.507, p=0.157","F(1,7) = 5.599, p=0.05","F(1,7) = 0.019, p=0.895",PASS,1.0,Normal
+3,COMB,P_h,LOW,"F(1,6) = 0.069, p=0.802","F(1,6) = 0.202, p=0.669","F(1,6) = 2.043, p=0.203","F(1,7) = 0.06, p=0.814","F(1,7) = 0.163, p=0.699","F(1,7) = 3.844, p=0.091",PASS,1.0,Perfectly normal
+4,COMB,G,HIGH,"F(1,6) = 10.503, p=0.018","F(1,6) = 1.004, p=0.355","F(1,6) = 11.693, p=0.014","F(1,7) = 4.155, p=0.081","F(1,7) = 3.392, p=0.108","F(1,7) = 0.128, p=0.731",PASS,1.0,False
+5,COMB,G_l,HIGH,"F(1,6) = 20.175, p=0.004","F(1,6) = 2.309, p=0.179","F(1,6) = 18.017, p=0.005","F(1,7) = 5.88, p=0.046","F(1,7) = 6.832, p=0.035","F(1,7) = 0.376, p=0.559",PASS,1.0,False
+6,COMB,G_h,NONE,"F(1,6) = 3.101, p=0.129","F(1,6) = 0.396, p=0.552","F(1,6) = 3.261, p=0.121","F(1,7) = 2.344, p=0.17","F(1,7) = 2.45, p=0.162","F(1,7) = 0.221, p=0.652",PASS,1.0,False
+7,COMB,T,NONE,"F(1,6) = 0.131, p=0.73","F(1,6) = 0.043, p=0.842","F(1,6) = 2.267, p=0.183","F(1,7) = 0.111, p=0.749","F(1,7) = 1.918, p=0.209","F(1,7) = 0.998, p=0.351",PASS,1.0,Normal
+8,COMB,T_l,NONE,"F(1,6) = 0.026, p=0.876","F(1,6) = 0.269, p=0.622","F(1,6) = 2.566, p=0.16","F(1,7) = 0.022, p=0.887","F(1,7) = 0.264, p=0.624","F(1,7) = 1.391, p=0.277",PASS,1.0,False
+9,COMB,T_h,HIGH,"F(1,6) = 0.704, p=0.434","F(1,6) = 0.004, p=0.954","F(1,6) = 0.9, p=0.379","F(1,7) = 0.714, p=0.426","F(1,7) = 0.149, p=0.711","F(1,7) = 12.341, p=0.01",PASS,1.0,Normal
+10,COMB,F,LOW,"F(1,6) = 0.005, p=0.947","F(1,6) = 0.493, p=0.509","F(1,6) = 0.992, p=0.358","F(1,7) = 0.005, p=0.947","F(1,7) = 0.001, p=0.979","F(1,7) = 5.206, p=0.057",PASS,1.0,Perfectly normal
+11,COMB,F_l,LOW,"F(1,6) = 0.628, p=0.458","F(1,6) = 0.877, p=0.385","F(1,6) = 0.012, p=0.918","F(1,7) = 0.731, p=0.421","F(1,7) = 0.522, p=0.493","F(1,7) = 3.669, p=0.097",PASS,1.0,Perfectly normal
+12,COMB,F_h,LOW,"F(1,6) = 0.205, p=0.667","F(1,6) = 1.718, p=0.238","F(1,6) = 1.452, p=0.274","F(1,7) = 0.193, p=0.674","F(1,7) = 0.426, p=0.535","F(1,7) = 4.368, p=0.075",PASS,1.0,Perfectly normal
+13,COMB,grasps,HIGH,"F(1,6) = 31.379, p=0.001","F(1,6) = 8.885, p=0.025","F(1,6) = 37.26, p=0.001","F(1,7) = 5.078, p=0.059","F(1,7) = 1.722, p=0.231","F(1,7) = 0.232, p=0.645",PASS,1.0,Perfectly normal
+14,COMB,crushes,SESSION ONLY,"F(1,6) = 4.912, p=0.069","F(1,6) = 0.585, p=0.473","F(1,6) = 3.4, p=0.115","F(1,7) = 3.658, p=0.097","F(1,7) = 2.157, p=0.185","F(1,7) = 0.686, p=0.435",PASS,1.0,False
+15,COMB,drops,NONE,"F(1,6) = 0.219, p=0.656","F(1,6) = 0.642, p=0.453","F(1,6) = 1.768, p=0.232","F(1,7) = 0.197, p=0.67","F(1,7) = 1.224, p=0.305","F(1,7) = 1.224, p=0.305",PASS,1.0,False
+16,COMB,Mental Demand,HIGH,"F(1,6) = 2.619, p=0.157","F(1,6) = 0.355, p=0.573","F(1,6) = 8.137, p=0.029","F(1,7) = 1.297, p=0.292","F(1,7) = 25.323, p=0.002","F(1,7) = 2.156, p=0.185",PASS,1.0,Perfectly normal
+17,COMB,Physical Demand,SESSION ONLY,"F(1,6) = 5.884, p=0.051","F(1,6) = 0.017, p=0.901","F(1,6) = 0.263, p=0.627","F(1,7) = 6.577, p=0.037","F(1,7) = 2.296, p=0.174","F(1,7) = 0.035, p=0.857",PASS,1.0,Perfectly normal
+18,COMB,Temporal Demand,LOW,"F(1,6) = 1.474, p=0.27","F(1,6) = 0.05, p=0.83","F(1,6) = 3.693, p=0.103","F(1,7) = 1.064, p=0.337","F(1,7) = 5.58, p=0.05","F(1,7) = 3.672, p=0.097",PASS,1.0,Normal
+19,COMB,Performance,HIGH,"F(1,6) = 1.412, p=0.28","F(1,6) = 0.034, p=0.86","F(1,6) = 0.001, p=0.982","F(1,7) = 1.648, p=0.24","F(1,7) = 1.423, p=0.272","F(1,7) = 10.287, p=0.015",PASS,1.0,Normal
+20,COMB,Effort,HIGH,"F(1,6) = 0.698, p=0.436","F(1,6) = 0.045, p=0.839","F(1,6) = 2.109, p=0.197","F(1,7) = 0.602, p=0.463","F(1,7) = 20.633, p=0.003","F(1,7) = 5.064, p=0.059",PASS,1.0,Perfectly normal
+21,COMB,Frustration Level,HIGH,"F(1,6) = 0.294, p=0.607","F(1,6) = 2.152, p=0.193","F(1,6) = 1.901, p=0.217","F(1,7) = 0.26, p=0.626","F(1,7) = 12.6, p=0.009","F(1,7) = 2.541, p=0.155",PASS,1.0,False
+22,COMB,It is easy to understand.,NONE,"F(1,6) = 1.885, p=0.219","F(1,6) = 0.453, p=0.526","F(1,6) = 0.126, p=0.735","F(1,7) = 2.154, p=0.186","F(1,7) = 3.5, p=0.104","F(1,7) = 0.636, p=0.451",PASS,1.0,False
+23,COMB,It is distracting.,HIGH,"F(1,6) = 4.482, p=0.079","F(1,6) = 0.006, p=0.939","F(1,6) = 0.494, p=0.509","F(1,7) = 4.831, p=0.064","F(1,7) = 14.0, p=0.007","F(1,7) = 4.2, p=0.08",PASS,1.0,Normal
+24,COMB,It is user-friendly.,HIGH,"F(1,6) = 4.36, p=0.082","F(1,6) = 0.117, p=0.744","F(1,6) = 0.105, p=0.757","F(1,7) = 5.0, p=0.06","F(1,7) = 9.333, p=0.018","F(1,7) = 3.5, p=0.104",PASS,1.0,False
+25,COMB,Using it is effortless.,LOW,"F(1,6) = 3.616, p=0.106","F(1,6) = 0.252, p=0.634","F(1,6) = 2.17, p=0.191","F(1,7) = 3.098, p=0.122","F(1,7) = 3.943, p=0.087","F(1,7) = 2.032, p=0.197",PASS,1.0,False
+26,COMB,Both occasional and Regular users would like it.,HIGH,"F(1,6) = 3.233, p=0.122","F(1,6) = 0.008, p=0.932","F(1,6) = 0.078, p=0.79","F(1,7) = 3.723, p=0.095","F(1,7) = 7.0, p=0.033","F(1,7) = 0.467, p=0.516",PASS,1.0,False
+27,COMB,It is difficult to learn how to use.,NONE,"F(1,6) = 1.566, p=0.257","F(1,6) = 0.035, p=0.857","F(1,6) = 0.36, p=0.57","F(1,7) = 1.724, p=0.231","F(1,7) = 0.304, p=0.598","F(1,7) = 0.08, p=0.785",PASS,1.0,Normal
+28,COMB,It works the way I want it to work.,HIGH,"F(1,6) = 5.031, p=0.066","F(1,6) = 0.021, p=0.89","F(1,6) = 1.826, p=0.225","F(1,7) = 4.5, p=0.072","F(1,7) = 21.0, p=0.003","F(1,7) = 5.727, p=0.048",PASS,1.0,False
+29,COMB,It is pleasant to use.,HIGH,"F(1,6) = 8.045, p=0.03","F(1,6) = 0.141, p=0.72","F(1,6) = 0.536, p=0.492","F(1,7) = 8.615, p=0.022","F(1,7) = 5.727, p=0.048","F(1,7) = 1.75, p=0.227",PASS,1.0,False
+30,COMB,TLX totals,HIGH,"F(1,6) = 2.359, p=0.175","F(1,6) = 0.005, p=0.945","F(1,6) = 1.982, p=0.209","F(1,7) = 2.069, p=0.194","F(1,7) = 22.608, p=0.002","F(1,7) = 5.45, p=0.052",PASS,1.0,Normal
+31,COMB,Q totals,HIGH,"F(1,6) = 6.704, p=0.041","F(1,6) = 0.002, p=0.965","F(1,6) = 0.899, p=0.38","F(1,7) = 6.801, p=0.035","F(1,7) = 14.605, p=0.007","F(1,7) = 2.002, p=0.2",PASS,1.0,Perfectly normal
+32,CL,P,LOW,"F(1,6) = 1.678, p=0.243","F(1,6) = 0.89, p=0.382","F(1,6) = 5.402, p=0.059","F(1,7) = 1.03, p=0.344",,,PASS,1.0,Normal
+33,CL,P_l,HIGH,"F(1,6) = 2.293, p=0.181","F(1,6) = 2.433, p=0.17","F(1,6) = 6.72, p=0.041","F(1,7) = 1.262, p=0.298",,,PASS,1.0,Normal
+34,CL,P_h,LOW,"F(1,6) = 1.742, p=0.235","F(1,6) = 0.382, p=0.559","F(1,6) = 4.116, p=0.089","F(1,7) = 1.206, p=0.309",,,PASS,1.0,Normal
+35,CL,G,HIGH,"F(1,6) = 7.123, p=0.037","F(1,6) = 1.427, p=0.277","F(1,6) = 9.156, p=0.023","F(1,7) = 3.29, p=0.113",,,PASS,1.0,False
+36,CL,G_l,HIGH,"F(1,6) = 7.076, p=0.038","F(1,6) = 2.638, p=0.155","F(1,6) = 8.615, p=0.026","F(1,7) = 3.389, p=0.108",,,PASS,1.0,False
+37,CL,G_h,HIGH,"F(1,6) = 21.567, p=0.004","F(1,6) = 1.099, p=0.335","F(1,6) = 16.479, p=0.007","F(1,7) = 6.716, p=0.036",,,PASS,1.0,False
+38,CL,T,NONE,"F(1,6) = 0.0, p=0.986","F(1,6) = 0.0, p=0.994","F(1,6) = 2.668, p=0.154","F(1,7) = 0.0, p=0.987",,,PASS,1.0,False
+39,CL,T_l,NONE,"F(1,6) = 0.254, p=0.632","F(1,6) = 0.032, p=0.864","F(1,6) = 2.951, p=0.137","F(1,7) = 0.199, p=0.669",,,PASS,1.0,Normal
+40,CL,T_h,NONE,"F(1,6) = 0.06, p=0.815","F(1,6) = 0.0, p=0.988","F(1,6) = 1.556, p=0.259","F(1,7) = 0.055, p=0.821",,,PASS,1.0,Normal
+41,CL,F,NONE,"F(1,6) = 1.149, p=0.325","F(1,6) = 0.061, p=0.814","F(1,6) = 0.067, p=0.804","F(1,7) = 1.325, p=0.287",,,PASS,1.0,Normal
+42,CL,F_l,NONE,"F(1,6) = 1.986, p=0.208","F(1,6) = 0.157, p=0.706","F(1,6) = 0.035, p=0.857","F(1,7) = 2.303, p=0.173",,,PASS,1.0,Normal
+43,CL,F_h,NONE,"F(1,6) = 1.713, p=0.238","F(1,6) = 0.098, p=0.765","F(1,6) = 0.001, p=0.977","F(1,7) = 1.999, p=0.2",,,PASS,1.0,Normal
+44,CL,grasps,HIGH,"F(1,6) = 5.326, p=0.06","F(1,6) = 11.755, p=0.014","F(1,6) = 8.338, p=0.028","F(1,7) = 2.6, p=0.151",,,PASS,1.0,Normal
+45,CL,crushes,SESSION ONLY,"F(1,6) = 3.835, p=0.098","F(1,6) = 0.908, p=0.377","F(1,6) = 2.865, p=0.141","F(1,7) = 3.028, p=0.125",,,PASS,1.0,Normal
+46,CL,drops,NONE,"F(1,6) = 0.616, p=0.462","F(1,6) = 0.585, p=0.473","F(1,6) = 2.014, p=0.206","F(1,7) = 0.538, p=0.487",,,PASS,1.0,False
+47,CL,Mental Demand,HIGH,"F(1,6) = 3.137, p=0.127","F(1,6) = 0.0, p=1.0","F(1,6) = 7.529, p=0.034","F(1,7) = 1.623, p=0.243",,,PASS,1.0,Normal
+48,CL,Physical Demand,SESSION ONLY,"F(1,6) = 3.746, p=0.101","F(1,6) = 0.106, p=0.755","F(1,6) = 0.312, p=0.597","F(1,7) = 4.154, p=0.081",,,PASS,1.0,Normal
+49,CL,Temporal Demand,NONE,"F(1,6) = 2.273, p=0.182","F(1,6) = 0.182, p=0.685","F(1,6) = 1.364, p=0.287","F(1,7) = 2.16, p=0.185",,,PASS,1.0,Normal
+50,CL,Performance,SESSION ONLY,"F(1,6) = 3.388, p=0.115","F(1,6) = 0.003, p=0.96","F(1,6) = 0.004, p=0.953","F(1,7) = 3.951, p=0.087",,,PASS,1.0,False
+51,CL,Effort,NONE,"F(1,6) = 1.935, p=0.214","F(1,6) = 0.0, p=0.984","F(1,6) = 2.73, p=0.15","F(1,7) = 1.552, p=0.253",,,PASS,1.0,False
+52,CL,Frustration Level,NONE,"F(1,6) = 0.784, p=0.41","F(1,6) = 2.938, p=0.137","F(1,6) = 1.793, p=0.229","F(1,7) = 0.704, p=0.429",,,PASS,1.0,False
+53,CL,It is easy to understand.,NONE,"F(1,6) = 0.569, p=0.479","F(1,6) = 0.099, p=0.764","F(1,6) = 0.004, p=0.95","F(1,7) = 0.663, p=0.442",,,PASS,1.0,Normal
+54,CL,It is distracting.,SESSION ONLY,"F(1,6) = 4.934, p=0.068","F(1,6) = 0.214, p=0.66","F(1,6) = 0.118, p=0.742","F(1,7) = 5.645, p=0.049",,,PASS,1.0,Normal
+55,CL,It is user-friendly.,SESSION ONLY,"F(1,6) = 4.24, p=0.085","F(1,6) = 0.003, p=0.962","F(1,6) = 0.144, p=0.717","F(1,7) = 4.831, p=0.064",,,PASS,1.0,False
+56,CL,Using it is effortless.,SESSION ONLY,"F(1,6) = 4.05, p=0.091","F(1,6) = 0.667, p=0.445","F(1,6) = 0.75, p=0.42","F(1,7) = 4.2, p=0.08",,,PASS,1.0,Normal
+57,CL,Both occasional and Regular users would like it.,NONE,"F(1,6) = 2.005, p=0.207","F(1,6) = 0.029, p=0.871","F(1,6) = 0.015, p=0.907","F(1,7) = 2.333, p=0.17",,,PASS,1.0,False
+58,CL,It is difficult to learn how to use.,NONE,"F(1,6) = 2.109, p=0.197","F(1,6) = 0.089, p=0.775","F(1,6) = 1.266, p=0.304","F(1,7) = 2.032, p=0.197",,,PASS,1.0,False
+59,CL,It works the way I want it to work.,SESSION ONLY,"F(1,6) = 10.355, p=0.018","F(1,6) = 0.094, p=0.77","F(1,6) = 3.077, p=0.13","F(1,7) = 7.986, p=0.026",,,PASS,1.0,False
+60,CL,It is pleasant to use.,SESSION ONLY,"F(1,6) = 8.152, p=0.029","F(1,6) = 0.604, p=0.466","F(1,6) = 0.196, p=0.674","F(1,7) = 9.211, p=0.019",,,PASS,1.0,False
+61,CL,TLX totals,NONE,"F(1,6) = 3.249, p=0.122","F(1,6) = 0.217, p=0.658","F(1,6) = 1.621, p=0.25","F(1,7) = 2.984, p=0.128",,,PASS,1.0,Normal
+62,CL,Q totals,SESSION ONLY,"F(1,6) = 5.587, p=0.056","F(1,6) = 0.105, p=0.757","F(1,6) = 0.43, p=0.536","F(1,7) = 6.082, p=0.043",,,PASS,1.0,Normal
+63,NL,P,NONE,"F(1,6) = 0.595, p=0.47","F(1,6) = 0.593, p=0.471","F(1,6) = 3.659, p=0.104","F(1,7) = 0.431, p=0.532",,,PASS,1.0,Normal
+64,NL,P_l,SESSION ONLY,"F(1,6) = 3.876, p=0.097","F(1,6) = 1.17, p=0.321","F(1,6) = 2.691, p=0.152","F(1,7) = 3.122, p=0.121",,,PASS,1.0,Normal
+65,NL,P_h,NONE,"F(1,6) = 0.205, p=0.666","F(1,6) = 0.041, p=0.846","F(1,6) = 0.771, p=0.414","F(1,7) = 0.212, p=0.659",,,PASS,1.0,Normal
+66,NL,G,LOW,"F(1,6) = 5.235, p=0.062","F(1,6) = 0.55, p=0.486","F(1,6) = 4.835, p=0.07","F(1,7) = 3.382, p=0.109",,,PASS,1.0,Normal
+67,NL,G_l,SESSION ONLY,"F(1,6) = 6.424, p=0.044","F(1,6) = 0.946, p=0.368","F(1,6) = 3.208, p=0.123","F(1,7) = 4.884, p=0.063",,,PASS,1.0,Normal
+68,NL,G_h,NONE,"F(1,6) = 0.673, p=0.443","F(1,6) = 0.075, p=0.793","F(1,6) = 1.049, p=0.345","F(1,7) = 0.668, p=0.441",,,PASS,1.0,False
+69,NL,T,NONE,"F(1,6) = 0.728, p=0.426","F(1,6) = 0.173, p=0.692","F(1,6) = 1.336, p=0.292","F(1,7) = 0.695, p=0.432",,,PASS,1.0,Normal
+70,NL,T_l,NONE,"F(1,6) = 0.612, p=0.464","F(1,6) = 0.905, p=0.378","F(1,6) = 0.849, p=0.392","F(1,7) = 0.625, p=0.455",,,PASS,1.0,False
+71,NL,T_h,SESSION ONLY,"F(1,6) = 3.851, p=0.097","F(1,6) = 0.016, p=0.903","F(1,6) = 0.292, p=0.609","F(1,7) = 4.285, p=0.077",,,PASS,1.0,Normal
+72,NL,F,NONE,"F(1,6) = 2.265, p=0.183","F(1,6) = 1.178, p=0.319","F(1,6) = 2.491, p=0.166","F(1,7) = 1.867, p=0.214",,,PASS,1.0,Normal
+73,NL,F_l,NONE,"F(1,6) = 0.0, p=1.0","F(1,6) = 1.897, p=0.218","F(1,6) = 0.165, p=0.699","F(1,7) = 0.0, p=1.0",,,PASS,1.0,Normal
+74,NL,F_h,SESSION ONLY,"F(1,6) = 4.796, p=0.071","F(1,6) = 1.647, p=0.247","F(1,6) = 2.125, p=0.195","F(1,7) = 4.132, p=0.082",,,PASS,1.0,Normal
+75,NL,grasps,HIGH,"F(1,6) = 21.05, p=0.004","F(1,6) = 2.907, p=0.139","F(1,6) = 19.496, p=0.004","F(1,7) = 5.779, p=0.047",,,PASS,1.0,Normal
+76,NL,crushes,NONE,"F(1,6) = 2.383, p=0.174","F(1,6) = 0.162, p=0.702","F(1,6) = 1.43, p=0.277","F(1,7) = 2.245, p=0.178",,,PASS,1.0,False
+77,NL,drops,NONE,"F(1,6) = 0.281, p=0.615","F(1,6) = 0.362, p=0.57","F(1,6) = 0.469, p=0.519","F(1,7) = 0.304, p=0.598",,,PASS,1.0,False
+78,NL,Mental Demand,HIGH,"F(1,6) = 1.421, p=0.278","F(1,6) = 2.229, p=0.186","F(1,6) = 7.193, p=0.036","F(1,7) = 0.754, p=0.414",,,PASS,1.0,False
+79,NL,Physical Demand,SESSION ONLY,"F(1,6) = 8.182, p=0.029","F(1,6) = 0.47, p=0.518","F(1,6) = 0.136, p=0.725","F(1,7) = 9.333, p=0.018",,,PASS,1.0,Normal
+80,NL,Temporal Demand,HIGH,"F(1,6) = 0.192, p=0.677","F(1,6) = 0.013, p=0.912","F(1,6) = 9.32, p=0.022","F(1,7) = 0.088, p=0.776",,,PASS,1.0,False
+81,NL,Performance,NONE,"F(1,6) = 0.309, p=0.598","F(1,6) = 0.111, p=0.75","F(1,6) = 0.0, p=0.992","F(1,7) = 0.361, p=0.567",,,PASS,1.0,Normal
+82,NL,Effort,NONE,"F(1,6) = 0.0, p=1.0","F(1,6) = 0.549, p=0.487","F(1,6) = 1.079, p=0.339","F(1,7) = 0.0, p=1.0",,,PASS,1.0,Normal
+83,NL,Frustration Level,NONE,"F(1,6) = 0.0, p=1.0","F(1,6) = 0.678, p=0.442","F(1,6) = 1.67, p=0.244","F(1,7) = 0.0, p=1.0",,,PASS,1.0,False
+84,NL,It is easy to understand.,SESSION ONLY,"F(1,6) = 5.409, p=0.059","F(1,6) = 0.934, p=0.371","F(1,6) = 0.707, p=0.433","F(1,7) = 5.645, p=0.049",,,PASS,1.0,False
+85,NL,It is distracting.,NONE,"F(1,6) = 2.5, p=0.165","F(1,6) = 0.221, p=0.655","F(1,6) = 1.5, p=0.267","F(1,7) = 2.333, p=0.17",,,PASS,1.0,False
+86,NL,It is user-friendly.,SESSION ONLY,"F(1,6) = 3.616, p=0.106","F(1,6) = 0.469, p=0.519","F(1,6) = 0.027, p=0.875","F(1,7) = 4.2, p=0.08",,,PASS,1.0,False
+87,NL,Using it is effortless.,LOW,"F(1,6) = 1.947, p=0.212","F(1,6) = 0.014, p=0.911","F(1,6) = 4.168, p=0.087","F(1,7) = 1.34, p=0.285",,,PASS,1.0,False
+88,NL,Both occasional and Regular users would like it.,SESSION ONLY,"F(1,6) = 6.429, p=0.044","F(1,6) = 0.0, p=1.0","F(1,6) = 0.429, p=0.537","F(1,7) = 7.0, p=0.033",,,PASS,1.0,False
+89,NL,It is difficult to learn how to use.,NONE,"F(1,6) = 0.865, p=0.388","F(1,6) = 0.006, p=0.939","F(1,6) = 0.058, p=0.818","F(1,7) = 1.0, p=0.351",,,PASS,1.0,False
+90,NL,It works the way I want it to work.,NONE,"F(1,6) = 0.938, p=0.37","F(1,6) = 0.001, p=0.971","F(1,6) = 0.563, p=0.482","F(1,7) = 1.0, p=0.351",,,PASS,1.0,False
+91,NL,It is pleasant to use.,SESSION ONLY,"F(1,6) = 4.05, p=0.091","F(1,6) = 0.0, p=1.0","F(1,6) = 0.75, p=0.42","F(1,7) = 4.2, p=0.08",,,PASS,1.0,False
+92,NL,TLX totals,NONE,"F(1,6) = 0.956, p=0.366","F(1,6) = 0.293, p=0.608","F(1,6) = 2.355, p=0.176","F(1,7) = 0.801, p=0.4",,,PASS,1.0,False
+93,NL,Q totals,SESSION ONLY,"F(1,6) = 6.006, p=0.05","F(1,6) = 0.057, p=0.819","F(1,6) = 1.602, p=0.253","F(1,7) = 5.531, p=0.051",,,PASS,1.0,Normal
+94,ADL,Cups,NONE,"F(1,6) = 0.654, p=0.449","F(1,6) = 1.158, p=0.323","F(1,6) = 0.067, p=0.804",,,,PASS,1.0,Normal
+95,ADL,Pegs,NONE,"F(1,6) = 0.823, p=0.399","F(1,6) = 0.109, p=0.752","F(1,6) = 0.67, p=0.444",,,,PASS,1.0,Normal
+96,ADL,Pens,NONE,"F(1,6) = 0.219, p=0.656","F(1,6) = 0.088, p=0.777","F(1,6) = 0.001, p=0.979",,,,PASS,1.0,Normal

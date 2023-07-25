@@ -1,10 +1,10 @@
 import analysis_utils as utils
 import os
-import pandas as pd
+import pandas as pd, numpy as np
 import matplotlib.pyplot as plt
 
 # Directory definitions
-data_dir = 'C:\\Users\\adr-smith\\Documents\\GitHub\\PlatformEvaluation\\Output logs'
+data_dir = os.path.join( os.getcwd(), 'Output logs')
 filenames = ['combined_df.csv', 'cl_df.csv', 'nl_df.csv', 'adl_df.csv']
 fig_dir = os.path.join(os.getcwd(), "Output figs")
 utils.check_or_create_folder(fig_dir)
@@ -29,12 +29,12 @@ labels = ['No Feedback (NTFB)', 'w/ Feedback (TFB)']
 labels_l = ['NTFB (Light)', 'TFB (Light)']
 labels_h = ['NTFB (Heavy)', 'TFB (Heavy)']
 
-s1_8 = True
-# s1_8 = False
+# s1_8 = True
+s1_8 = False
 # s1_9 = True
 s1_9 = False
-# s8_9 = True
-s8_9 = False
+s8_9 = True
+# s8_9 = False
 
 
 
@@ -84,9 +84,11 @@ def plot_performance( perf_df, load=None, show=False, save=False, plot_as_one=Fa
 			_tmp_df = _data.iloc[:,_data.columns.str.contains(var)]
 			for var in _tmp_df.columns.values:
 				fig, ax = plt.subplots()
-				utils.interaction_plot_w_errorbars( ax=ax, x=_data['Session'], trace=_data['Feedback'], response=_tmp_df[var], errorbars=True, colors=colors, e_colors=e_colors, markers=markers, e_markers=e_markers, linestyles=linestyles, labels=labels, legend=True)
-				ax.set_title(var+' '+load)
-				
+				if not s8_9: utils.interaction_plot_w_errorbars( ax=ax, x=_data['Session'], trace=_data['Feedback'], response=_tmp_df[var], errorbars=True, colors=colors, e_colors=e_colors, markers=markers, e_markers=e_markers, linestyles=linestyles, labels=labels, legend=True)
+				if s8_9 and var != 'Feedback': 
+					plt.boxplot([_data.loc[(_data['Session']==8) & (_data['Feedback']==True)][var].values, _data.loc[(_data['Session']==9) & (_data['Feedback']==True)][var].values, _data.loc[(_data['Session']==8) & (_data['Feedback']==False)][var].values, _data.loc[(_data['Session']==9) & (_data['Feedback']==False)][var].values], labels=[8,9,8,9])
+				if not s8_9: ax.set_title(var+' '+load)
+				if s8_9: plt.suptitle(var+' '+load)
 				if save: plt.savefig( os.path.join(fig_path, 'Performance metrics {}-{}'.format(load, var)) )
 				if show:plt.show()
 
@@ -207,6 +209,60 @@ def plot_grasp_metric_breakdown( gmb_df, load=None, show=False, save=False ):
 		if show: plt.show()
 		plt.close()
 
+def plot_adls(adl_df, load=None, show=False, save=False ):
+
+	fig, axlist = plt.subplots(3,2,sharex=True, sharey=True)
+	axes = list(axlist.flatten())
+	
+	tasks = ['Cups', 'Pegs', 'Pens']
+
+	S1 = adl_df[adl_df.Session == 1]
+	S4 = adl_df[adl_df.Session == 4]
+	S8 = adl_df[adl_df.Session == 8]
+	S9 = adl_df[adl_df.Session == 9]
+
+	for axis in axes:
+		NFB_flag = False
+		test_loc = axes.index(axis)
+		print('test_loc = ', test_loc)
+		if (test_loc % 2) == 0: test_loc = test_loc / 2
+		else: 
+			print('odd testloc')
+			NFB_flag = True
+			test_loc = (test_loc - 1) / 2
+		print('adj_test loc =', test_loc)
+		task = tasks[int(test_loc)]
+		print(task, test_loc,'vs',axes.index(axis), NFB_flag)
+
+		if NFB_flag:
+			axis.boxplot([S1[S1.Feedback == False][task], S4[S4.Feedback == False][task], S8[S8.Feedback == False][task]])#, S9[S9.Feedback == False][task]])
+			FB_fit = np.polyfit([1,2,3], [S1[S1.Feedback == False][task].mean(), S4[S4.Feedback == False][task].mean(), S8[S8.Feedback == False][task].mean()], 2)
+			FB_fit_func = np.poly1d(FB_fit)
+			axis.plot(np.arange(1,3,0.1),FB_fit_func(np.arange(1,3,0.1)))
+			axis.set_title(task + ' NTFB')
+		else:
+			axis.boxplot([S1[S1.Feedback == True][task], S4[S4.Feedback == True][task], S8[S8.Feedback == True][task]])#, S9[S9.Feedback == True][task]])
+			FB_fit = np.polyfit([1,2,3], [S1[S1.Feedback == True][task].mean(), S4[S4.Feedback == True][task].mean(), S8[S8.Feedback == True][task].mean()], 2)
+			FB_fit_func = np.poly1d(FB_fit)
+			axis.plot(np.arange(1,3,0.1),FB_fit_func(np.arange(1,3,0.1)))
+			axis.set_title( task + ' TFB')
+		
+		axis.set_yticks( np.arange(0,12,1), minor=True )
+		axis.set_ylabel('Impairment Ratio')
+
+		if axes.index(axis) in [4,5]:	axis.set_xlabel('ADL assessment Session')
+		axis.grid()
+   
+
+	
+	# fig.legend()
+	fig.set_size_inches(10,8)
+	fig.suptitle('Comparison of Impairment ratios between conditions')
+	if save: plt.savefig( os.path.join( fig_path, "ADL metric scores" ) )
+	if show: plt.show()
+
+
+
 if __name__ == '__main__':
 
 	for file in filenames:
@@ -220,7 +276,7 @@ if __name__ == '__main__':
 		elif s1_9:
 			fig_path = os.path.join(fig_dir, "Output_figs 1-9")
 		elif s8_9:
-			data = data[data.Session in [8,9]]
+			data = data[data['Session'].isin([8,9])]
 			fig_path = os.path.join(fig_dir, "Output_figs 8-9")
    
 		utils.check_or_create_folder(fig_path)
@@ -228,6 +284,7 @@ if __name__ == '__main__':
   
 
 		if file != 'adl_df.csv':
+			# print('boop')
 			performance_results = data[[
 								'P', 'P_l', 'P_h', 'G', 'G_l', 'G_h', 'T', 'T_l', 'T_h', 'F', 'F_l', 'F_h', 'Session', 'Feedback' ]]
 			TLX_results = data[['Mental Demand', 'Physical Demand', 'Temporal Demand',
@@ -241,3 +298,5 @@ if __name__ == '__main__':
 			plot_tlx( TLX_results, load=load, show=False, save=True )
 			plot_qual( Q_results, load=load, show=False, save=True )
 			plot_grasp_metric_breakdown( grasp_breakdown_results, load=load, show=False, save=True )
+
+		else: plot_adls(data, show=False, save=True)
