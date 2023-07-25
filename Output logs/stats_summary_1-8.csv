@@ -1,21 +1,21 @@
 ,load,var,sig_high,sig_high_p,sig_low,sig_low_p,spher,spher_p,norm_res
 0,,,,,,,,,
-1,COMB,P,Session,0.0,None,None,PASS,0.7444990443208832,Highly normal
+1,COMB,P,Session,0.0,None,None,PASS,0.8316127505664499,Perfectly normal
 2,COMB,P_l,Session,0.0,None,None,PASS,1.0,Highly normal
 3,COMB,P_h,Session,0.0,None,None,PASS,1.0,Highly normal
-4,COMB,G,Session,0.0,None,None,PASS,1.0,Normal
-5,COMB,G_l,Session,0.0,None,None,PASS,1.0,Highly normal
-6,COMB,G_h,Session,0.004,None,None,PASS,1.0,Normal
+4,COMB,G,Session,0.0,None,None,PASS,0.9624431547426682,Normal
+5,COMB,G_l,Session,0.0,None,None,PASS,0.7950744738474406,Normal
+6,COMB,G_h,Session,0.01,None,None,PASS,1.0,Normal
 7,COMB,T,Session,0.0,None,None,PASS,1.0,Normal
 8,COMB,T_l,Session,0.0,None,None,PASS,1.0,Normal
 9,COMB,T_h,Session,0.0,None,None,PASS,1.0,Highly normal
-10,COMB,F,Session,0.002,None,None,PASS,0.37277854352417733,Highly normal
-11,COMB,F_l,Interaction,0.044,None,None,FAIL,0.01978779847571609,Highly normal
-12,COMB,F_h,Session,0.01,None,None,PASS,0.052595803321821094,Perfectly normal
+10,COMB,F,Session,0.0,None,None,PASS,0.4497997912795302,Perfectly normal
+11,COMB,F_l,Session,0.0,Interaction,0.094,PASS,0.29063692983397044,Perfectly normal
+12,COMB,F_h,Session,0.001,None,None,FAIL,0.017361331562448474,Perfectly normal
 13,COMB,grasps,Session,0.0,None,None,PASS,0.2102116204105398,Highly normal
 14,COMB,crushes,None,None,Session,0.094,FAIL,0.038548961752294095,False
 15,COMB,drops,None,None,None,None,FAIL,0.0012762947839556349,False
-16,COMB,Mental Demand,Session,0.0,None,None,PASS,0.1046785026024783,Normal
+16,COMB,Mental Demand,Session,0.0,Interaction,nan,PASS,0.1046785026024783,Normal
 17,COMB,Physical Demand,Session,0.0,None,None,PASS,0.07359628184048936,Highly normal
 18,COMB,Temporal Demand,Session,0.0,None,None,PASS,0.4533918239517475,Highly normal
 19,COMB,Performance,Session,0.0,None,None,PASS,0.4424099775968615,Highly normal
@@ -32,17 +32,17 @@
 30,COMB,TLX totals,Session,0.0,None,None,PASS,0.13675429274753526,Highly normal
 31,COMB,Q totals,Session,0.002,None,None,PASS,0.1692644630437145,Highly normal
 32,CL,P,Session,0.0,None,None,PASS,1.0,Highly normal
-33,CL,P_l,Session,0.006,None,None,PASS,1.0,Highly normal
-34,CL,P_h,Session,0.031,None,None,PASS,1.0,Highly normal
+33,CL,P_l,Session,0.011,None,None,PASS,1.0,Highly normal
+34,CL,P_h,Session,0.038,None,None,PASS,1.0,Highly normal
 35,CL,G,Session,0.001,None,None,PASS,1.0,Normal
-36,CL,G_l,Session,0.007,None,None,PASS,1.0,Highly normal
+36,CL,G_l,Session,0.011,None,None,PASS,1.0,Highly normal
 37,CL,G_h,None,None,None,None,PASS,1.0,Normal
 38,CL,T,Session,0.002,None,None,PASS,1.0,Highly normal
 39,CL,T_l,Session,0.01,None,None,PASS,1.0,Highly normal
 40,CL,T_h,Session,0.03,None,None,PASS,1.0,Highly normal
-41,CL,F,Session,0.006,None,None,PASS,0.4684718649709144,Highly normal
-42,CL,F_l,None,None,None,None,PASS,0.4106036188516885,Highly normal
-43,CL,F_h,Session,0.024,None,None,FAIL,0.008207000277946595,Highly normal
+41,CL,F,Session,0.0,None,None,PASS,0.09130396649083641,Highly normal
+42,CL,F_l,Session,0.033,None,None,PASS,0.9638106703061204,Highly normal
+43,CL,F_h,Session,0.0,None,None,PASS,0.9821804965399906,Highly normal
 44,CL,grasps,Session,0.002,None,None,PASS,0.3374992710201745,Perfectly normal
 45,CL,crushes,None,None,None,None,FAIL,1.0439811564141164e-06,Normal
 46,CL,drops,None,None,None,None,FAIL,2.664104379677103e-05,False
@@ -63,19 +63,19 @@
 61,CL,TLX totals,Session,0.0,None,None,PASS,0.8599960201038838,Highly normal
 62,CL,Q totals,Session,0.001,None,None,FAIL,0.021932592268788006,Highly normal
 63,NL,P,Session,0.0,None,None,PASS,1.0,Highly normal
-64,NL,P_l,"Session, Interaction","0.0, 0.031",None,None,PASS,1.0,Highly normal
-65,NL,P_h,Session,0.013,None,None,PASS,1.0,Normal
+64,NL,P_l,"Session, Interaction","0.0, 0.018",None,None,PASS,1.0,Highly normal
+65,NL,P_h,Session,0.022,None,None,PASS,1.0,Highly normal
 66,NL,G,Session,0.0,None,None,PASS,1.0,Highly normal
-67,NL,G_l,Session,0.0,None,None,PASS,0.9999999999257788,Highly normal
+67,NL,G_l,Session,0.0,Interaction,0.062,PASS,0.11826513400389671,Highly normal
 68,NL,G_h,None,None,None,None,PASS,1.0,Normal
 69,NL,T,Session,0.0,None,None,PASS,1.0,Highly normal
 70,NL,T_l,"Session, Interaction","0.0, 0.014",None,None,PASS,0.9999999987151204,Normal
 71,NL,T_h,Session,0.006,None,None,PASS,1.0,Highly normal
-72,NL,F,None,None,None,None,PASS,0.614114123328166,Highly normal
-73,NL,F_l,None,None,None,None,PASS,0.6428679875221404,Highly normal
-74,NL,F_h,None,None,None,None,PASS,0.5705411421926353,Highly normal
+72,NL,F,Session,0.01,None,None,PASS,0.4252890183485022,Highly normal
+73,NL,F_l,Session,0.003,None,None,PASS,0.9401630352970463,Highly normal
+74,NL,F_h,None,None,None,None,FAIL,0.005634539433728521,Highly normal
 75,NL,grasps,Session,0.001,None,None,FAIL,0.04641106664311535,Highly normal
-76,NL,crushes,None,None,Session,0.055,FAIL,1.0020508564857312e-06,False
+76,NL,crushes,None,None,"Session, Feedback","0.055, nan",FAIL,1.0020508564857312e-06,False
 77,NL,drops,None,None,Session,0.077,PASS,0.08766562577118563,False
 78,NL,Mental Demand,Session,0.0,None,None,PASS,0.05786882572761544,Normal
 79,NL,Physical Demand,Session,0.0,None,None,FAIL,0.022141641668024986,Normal

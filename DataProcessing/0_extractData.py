@@ -9,7 +9,7 @@ import warnings
 class Participant:
 
 	_misgrasp_adj = 0.125
-	_fail_adj = 0.33
+	_fail_adj = 0.45
 
 	def __init__( self, results_dir, participant_number, questionnaire_filename='PEQRs.csv', debug=False, timeout=20 ):
 		

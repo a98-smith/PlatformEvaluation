@@ -29,7 +29,7 @@ linestyles = ['solid', 'solid']
 ###
 
 debug = False
-save = False
+save = True
 s8_9 = False
 s1_8 = True
 s1_9 = False
@@ -115,7 +115,7 @@ if __name__ == '__main__':
 				dv=var, within='Session', subject='ID', between='Feedback', correction='auto')
 			warnings.filterwarnings('default')
    
-			print(file, var, '\n', aov)
+			# print(file, var, '\n', aov)
 
 			# if file == 'adl_df.csv': print(var, '----------------------------------------\n', aov, '\n')
 			# Create str variables to store results in
@@ -131,21 +131,17 @@ if __name__ == '__main__':
 				print(f'Greenhouse-Geisser p for {var}')
 
 			# If any results from the ANOVA have a p-value below 0.05
-			if (aov[p_interest] <= 0.05).any():
+			if (aov[p_interest] <= 0.05).any() or (aov['p-unc'] <= 0.05).any():
 
 				# Extract these results
 				high_significance = aov[(aov[p_interest] <= 0.05)]['Source']
+				if p_interest != 'p-unc': high_significance = pd.concat( [high_significance, aov[(aov['p-unc'] <= 0.05) & (aov['Source'] != 'Session')]['Source']] )
 
 				for val in high_significance.values:  # Report all high sig results and store them in _tmp_df
 
 					# Plots all results that are significant (excluding significance across sessions)
 					if val != 'Session':
 						fig, ax = plt.subplots()
-						utils.interaction_plot_w_errorbars(ax=ax, x=data['Session'], trace=data['Feedback'], response=data[var],
-														   errorbars=True, colors=colors, e_colors=e_colors, markers=markers, e_markers=e_markers, linestyles=linestyles, legend=True)
-						# plt.savefig(os.path.join(high_sig_path, str(
-							# _tmp_df['load'].values[0]) + ' ' + var))
-						plt.close()
 					if high_str != 'None':
 						high_str = high_str + ', ' + str(val)
 						high_p_str = high_p_str + ', ' + \
@@ -160,21 +156,15 @@ if __name__ == '__main__':
 			_tmp_df['sig_high_p'] = high_p_str
 
 			# If any results from the ANOVA have a p-value between 0.05 and 0.1
-			if (aov[p_interest] <= 0.1).any() and (aov[p_interest] > 0.05).any():
+			if ((aov[p_interest] <= 0.1).any() and (aov[p_interest] > 0.05).any()) or ((aov['p-unc'] <= 0.1).any() and (aov['p-unc'] > 0.05).any()):
 
 				# Extract these results
-				low_significance = aov[(aov[p_interest] <= 0.1)
-									   & (aov[p_interest] > 0.05)]['Source']
-
+				low_significance = aov[(aov[p_interest] <= 0.1) & (aov[p_interest] > 0.05)]['Source']
+				if p_interest != 'p-unc': low_significance = pd.concat( [low_significance, aov[(aov['p-unc'] > 0.05) & (aov['p-unc'] <= 0.1)& (aov['Source'] != 'Session')]['Source']] )
 				# Plots all results that are significant (excluding significance across sessions)
 				for val in low_significance.values:
 					if val != 'Session':
 						fig, ax = plt.subplots()
-						utils.interaction_plot_w_errorbars(ax=ax, x=data['Session'], trace=data['Feedback'], response=data[var],
-														   errorbars=True, colors=colors, e_colors=e_colors, markers=markers, e_markers=e_markers, linestyles=linestyles)
-						# plt.savefig(os.path.join(low_sig_path, str(
-						# 	_tmp_df['load'].values[0]) + ' ' + var))
-						plt.close()
 					if low_str != 'None':
 						low_str = low_str + ', ' + str(val)
 						low_p_str = low_p_str + ', ' + \
