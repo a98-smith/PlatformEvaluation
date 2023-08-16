@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 # Directory definitions
 data_dir = os.path.join( os.getcwd(), 'Output logs')
-filenames = ['combined_df.csv', 'cl_df.csv', 'nl_df.csv', 'adl_df.csv']
+filenames = ['combined_df.csv', 'cl_df.csv', 'nl_df.csv']#, 'adl_df.csv']
 fig_dir = os.path.join(os.getcwd(), "Output figs")
 utils.check_or_create_folder(fig_dir)
 
@@ -29,20 +29,25 @@ labels = ['No Feedback (NTFB)', 'w/ Feedback (TFB)']
 labels_l = ['NTFB (Light)', 'TFB (Light)']
 labels_h = ['NTFB (Heavy)', 'TFB (Heavy)']
 
-# s1_8 = True
-s1_8 = False
+s1_8 = True
+# s1_8 = False
 # s1_9 = True
 s1_9 = False
-s8_9 = True
-# s8_9 = False
+# s8_9 = True
+s8_9 = False
 
 
 
 def plot_performance( perf_df, load=None, show=False, save=False, plot_as_one=False, plot_many=False):
 	
 	_data = perf_df
-	measures = ['P', 'G', 'T', 'F']
-
+	measures = ['G', 'T']
+	loads = {'COMB':'irrespective of loading condition',
+			 'CL':'under high cognitive loading',
+			 'NL':'under low cognitive loading'}
+	vars = {'P':'Session Performance', 'G':'Dexterity', 'T':'Speed', 
+			'P_l':'Light Egg Session Performance', 'G_l':'Light Egg Dexterity', 'T_l':'Light Egg Speed', 
+			'P_h':'Session Performance', 'G_h':'Heavy Egg Dexterity', 'T_h':'Heavy Egg Speed', }
 
 	if plot_as_one == True:
 	 
@@ -86,8 +91,16 @@ def plot_performance( perf_df, load=None, show=False, save=False, plot_as_one=Fa
 				fig, ax = plt.subplots()
 				if not s8_9: utils.interaction_plot_w_errorbars( ax=ax, x=_data['Session'], trace=_data['Feedback'], response=_tmp_df[var], errorbars=True, colors=colors, e_colors=e_colors, markers=markers, e_markers=e_markers, linestyles=linestyles, labels=labels, legend=True)
 				if s8_9 and var != 'Feedback': 
-					plt.boxplot([_data.loc[(_data['Session']==8) & (_data['Feedback']==True)][var].values, _data.loc[(_data['Session']==9) & (_data['Feedback']==True)][var].values, _data.loc[(_data['Session']==8) & (_data['Feedback']==False)][var].values, _data.loc[(_data['Session']==9) & (_data['Feedback']==False)][var].values], labels=[8,9,8,9])
-				if not s8_9: ax.set_title(var+' '+load)
+					ticks = ['Session 8','Session 9']
+					_fb_data = [_data.loc[(_data['Session']==8) & (_data['Feedback']==True)][var].values.tolist(), _data.loc[(_data['Session']==9) & (_data['Feedback']==True)][var].values.tolist()]
+					_nfb_data = [ _data.loc[(_data['Session']==8) & (_data['Feedback']==False)][var].values.tolist(), _data.loc[(_data['Session']==9) & (_data['Feedback']==False)][var].values.tolist()]
+
+					utils.comparison_boxplot(_fb_data,_nfb_data, ticks=ticks, colours=['#D7191C','#2C7BB6'], labels=['TFB to NTFB','NTFB to TFB'])
+     
+				# plt.grid(axis='both')
+				if not s8_9: 
+					ax.set_title(vars[var]+' '+loads[load])
+					ax.set_ylim(0.2,1)
 				if s8_9: plt.suptitle(var+' '+load)
 				if save: plt.savefig( os.path.join(fig_path, 'Performance metrics {}-{}'.format(load, var)) )
 				if show:plt.show()
@@ -99,35 +112,35 @@ def plot_tlx(tlx_df, load=None, show=False, save=False):
 
 	_data = tlx_df
 	# Create axes and figure objects
-	fig, axlist = plt.subplots(2, 3, sharex=True, sharey=True)
-	axes = list(axlist.flatten())  # Convert axlist from a np.array to a list
+	# fig, axlist = plt.subplots(2, 3, sharex=True, sharey=True)
+	# axes = list(axlist.flatten())  # Convert axlist from a np.array to a list
 
-	fig.suptitle('Comparison of TLX results ({})'.format(load))
-	fig.set_size_inches(12, 8)
+	# fig.suptitle('Comparison of TLX results ({})'.format(load))
+	# fig.set_size_inches(12, 8)
 
-	for axis in axes:
-		var_loc = axes.index(axis)  # Create index for plotting varibale in df
-		var = _data.iloc[:, var_loc]
+	# for axis in axes:
+	# 	var_loc = axes.index(axis)  # Create index for plotting varibale in df
+	# 	var = _data.iloc[:, var_loc]
 
-		utils.interaction_plot_w_errorbars(ax=axis, x=_data['Session'], trace=_data['Feedback'], response=var,
-										   errorbars=True, colors=colors, e_colors=e_colors, markers=markers, e_markers=e_markers, linestyles=linestyles)
-		axis.xaxis.set_ticks([1, 2, 3, 4, 5, 6, 7, 8], minor=True)
-		axis.xaxis.grid(which='minor', ls=':')
+	# 	utils.interaction_plot_w_errorbars(ax=axis, x=_data['Session'], trace=_data['Feedback'], response=var,
+	# 									   errorbars=True, colors=colors, e_colors=e_colors, markers=markers, e_markers=e_markers, linestyles=linestyles)
+	# 	axis.xaxis.set_ticks([1, 2, 3, 4, 5, 6, 7, 8], minor=True)
+	# 	axis.xaxis.grid(which='minor', ls=':')
 
-	# Create some space below the plots by increasing the bottom-value
-	fig.tight_layout(pad=1)
-	fig.subplots_adjust(top=0.9, left=0.1, right=0.9, bottom=0.18)
-	axlist.flatten()[-2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.18),
-								ncol=2, labels=labels)  # Place legend
-	if save:
-		plt.savefig(os.path.join(fig_path, 'Individual TLX {}'.format(load)))
-	if show:
-		plt.show()
+	# # Create some space below the plots by increasing the bottom-value
+	# fig.tight_layout(pad=1)
+	# fig.subplots_adjust(top=0.9, left=0.1, right=0.9, bottom=0.18)
+	# axlist.flatten()[-2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.18),
+	# 							ncol=2, labels=labels)  # Place legend
+	# if save:
+	# 	plt.savefig(os.path.join(fig_path, 'Individual TLX {}'.format(load)))
+	# if show:
+	# 	plt.show()
 
 
-	# Cleanup any figs that might still be active
-	plt.clf()
-	plt.close()
+	# # Cleanup any figs that might still be active
+	# plt.clf()
+	# plt.close()
 
 	fig, ax = plt.subplots()
 	utils.interaction_plot_w_errorbars(ax=ax, x=_data['Session'], trace=_data['Feedback'], response=_data['TLX totals'],
@@ -145,41 +158,51 @@ def plot_tlx(tlx_df, load=None, show=False, save=False):
 def plot_qual(qual_df, load=None, show=False, save=False):
 
 	_data = qual_df
-	fig, axlist = plt.subplots(3, 3)  # Create axes and figure objects
-	axes = list(axlist.flatten())  # Convert axlist from a np.array to a list
+	# fig, axlist = plt.subplots(3, 3)  # Create axes and figure objects
+	# axes = list(axlist.flatten())  # Convert axlist from a np.array to a list
 
-	fig.suptitle('Comparison of Qualitative results ({})'.format(load))
-	fig.set_size_inches(12, 8)
+	# fig.suptitle('Comparison of Qualitative results ({})'.format(load))
+	# fig.set_size_inches(12, 8)
 
-	for axis in axes:
-		var_loc = axes.index(axis)  # Create index for plotting varibale in df
-		var = _data.iloc[:, var_loc]
+	# for axis in axes:
+	# 	var_loc = axes.index(axis)  # Create index for plotting varibale in df
+	# 	var = _data.iloc[:, var_loc]
 
-		utils.interaction_plot_w_errorbars(ax=axis, x=_data['Session'], trace=_data['Feedback'], response=var,
-										   errorbars=True, colors=colors, e_colors=e_colors, markers=markers, e_markers=e_markers, linestyles=linestyles)
-		axis.xaxis.set_ticks([1, 2, 3, 4, 5, 6, 7, 8], minor=True)
-		axis.xaxis.grid(which='minor', ls=':')
+	# 	utils.interaction_plot_w_errorbars(ax=axis, x=_data['Session'], trace=_data['Feedback'], response=var,
+	# 									   errorbars=True, colors=colors, e_colors=e_colors, markers=markers, e_markers=e_markers, linestyles=linestyles)
+	# 	axis.xaxis.set_ticks([1, 2, 3, 4, 5, 6, 7, 8], minor=True)
+	# 	axis.xaxis.grid(which='minor', ls=':')
 
-		if var.name != 'Q totals':
-			axis.set_ylim([1, 8])
-			axis.yaxis.set_ticks([1, 2, 3, 4, 5, 6, 7, 8], minor=True)
-			axis.yaxis.grid(which='minor', ls=':')
+	# 	if var.name != 'Q totals':
+	# 		axis.set_ylim([1, 8])
+	# 		axis.yaxis.set_ticks([1, 2, 3, 4, 5, 6, 7, 8], minor=True)
+	# 		axis.yaxis.grid(which='minor', ls=':')
 
-	fig.tight_layout(pad=1)
-	# Create some space below the plots by increasing the bottom-value
-	fig.subplots_adjust(top=0.9, left=0.1, right=0.9, bottom=0.12)
-	axlist.flatten()[-2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.25),
-								ncol=3, labels=['No Feedback', 'Feedback'])  # Place legend
-	if save:
-		plt.savefig(os.path.join(
-			fig_path, 'Individual Qualitative {}'.format(load)))
-	if show:
-		plt.show()
+	# fig.tight_layout(pad=1)
+	# # Create some space below the plots by increasing the bottom-value
+	# fig.subplots_adjust(top=0.9, left=0.1, right=0.9, bottom=0.12)
+	# axlist.flatten()[-2].legend(loc='upper center', bbox_to_anchor=(0.5, -0.25),
+	# 							ncol=3, labels=['No Feedback', 'Feedback'])  # Place legend
+	# if save:
+	# 	plt.savefig(os.path.join(
+	# 		fig_path, 'Individual Qualitative {}'.format(load)))
+	# if show:
+	# 	plt.show()
 
 
-	# Cleanup any figs that might still be active
-	plt.clf()
-	plt.close()
+	# # Cleanup any figs that might still be active
+	# plt.clf()
+	# plt.close()
+ 
+	for var in _data.columns:
+		if (var != 'Session') and (var != 'Feedback'):
+			print(var)
+			fig, ax = plt.subplots()
+			utils.interaction_plot_w_errorbars(ax=ax, x=_data['Session'], trace=_data['Feedback'], response=_data[var], errorbars=True,
+									   colors=colors, e_colors=e_colors, markers=markers, e_markers=e_markers, linestyles=linestyles, legend=True)
+			if save: plt.savefig(os.path.join( fig_path, '{}_{}.png'.format(var, load)))
+			plt.clf()
+			plt.close()
 
 	fig, ax = plt.subplots()
 	utils.interaction_plot_w_errorbars(ax=ax, x=_data['Session'], trace=_data['Feedback'], response=_data['Q totals'], errorbars=True,
@@ -286,17 +309,17 @@ if __name__ == '__main__':
 		if file != 'adl_df.csv':
 			# print('boop')
 			performance_results = data[[
-								'P', 'P_l', 'P_h', 'G', 'G_l', 'G_h', 'T', 'T_l', 'T_h', 'F', 'F_l', 'F_h', 'Session', 'Feedback' ]]
+								'G', 'G_l', 'G_h', 'T', 'T_l', 'T_h', 'Session', 'Feedback' ]]
 			TLX_results = data[['Mental Demand', 'Physical Demand', 'Temporal Demand',
 								'Performance', 'Effort', 'Frustration Level', 'TLX totals', 'Session', 'Feedback']]
 			Q_results = data[['It is easy to understand.', 'It is distracting.', 'It is user-friendly.', 'Using it is effortless.',
 								'Both occasional and Regular users would like it.', 'It is difficult to learn how to use.', 'It works the way I want it to work.', 'It is pleasant to use.', 'Q totals', 'Session', 'Feedback']]
-
+			# Q_results = data[['Q totals', 'Session', 'Feedback']]
 			grasp_breakdown_results = data[['grasps', 'drops', 'crushes', 'Session', 'Feedback']]
 
-			plot_performance( performance_results, load=load, show=False, save=True, plot_as_one=False, plot_many=True )
-			plot_tlx( TLX_results, load=load, show=False, save=True )
+			# plot_performance( performance_results, load=load, show=False, save=True, plot_as_one=False, plot_many=True )
+			# plot_tlx( TLX_results, load=load, show=False, save=True )
 			plot_qual( Q_results, load=load, show=False, save=True )
-			plot_grasp_metric_breakdown( grasp_breakdown_results, load=load, show=False, save=True )
+			# plot_grasp_metric_breakdown( grasp_breakdown_results, load=load, show=False, save=True )
 
 		else: plot_adls(data, show=False, save=True)
