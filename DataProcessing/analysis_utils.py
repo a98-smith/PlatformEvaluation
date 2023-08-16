@@ -1,5 +1,6 @@
-import os, pandas as pd, numpy as np, matplotlib, warnings
+import os, pandas as pd, numpy as np, matplotlib.pyplot as plt, warnings
 from scipy.stats import t
+from statistics import mean
 
 def extract_questionnaire_rows( df, column_name, search_string ):
 	"""
@@ -38,7 +39,9 @@ def interaction_plot_w_errorbars( x, trace, response, func=np.mean, ax=None, plo
 	data = pd.DataFrame(dict(x=x, trace=trace, response=response))
 	plot_data = data.groupby(['trace', 'x']).aggregate(func).reset_index()
 
-	ax.set_title('{}'.format(response.name))
+	if response.name == 'Q totals': ax.set_title('Overall Questionnaire Scores')
+	elif response.name == 'TLX totals': ax.set_title('Overall TLX Scores')
+	else: ax.set_title('{}'.format(response.name))
 	ax.set_xlabel(x.name)
 	ax.set_ylabel('Score')
 	ax.grid(True)
@@ -83,3 +86,40 @@ def t_ci( x, C=0.95 ):
     n = len( x )
     tstat = t.ppf( (1-C)/2, n )
     return np.std( x, ddof=1 ) * tstat / np.sqrt( n )
+
+def set_box_color(bp, color):
+    plt.setp(bp['boxes'], color=color)
+    plt.setp(bp['whiskers'], color=color)
+    plt.setp(bp['caps'], color=color)
+    plt.setp(bp['medians'], color=color)
+
+def comparison_boxplot(data1, data2, data3=None, ticks=None, ylims=None, colours=None, labels=['data1','data2'], trendline=True ):
+ 
+	# Create boxplots
+	bpl = plt.boxplot( data1, positions=np.array(range(len(data1)))*2.0-0.4, sym='', widths=0.6, patch_artist=True )
+	bpr = plt.boxplot( data2, positions=np.array(range(len(data2)))*2.0+0.4, sym='', widths=0.6, patch_artist=True )
+ 
+
+	for bplot in (bpl, bpr):
+		for patch, color in zip(bplot['boxes'], colours):
+			patch.set_facecolor(color)
+	
+	if trendline:
+		data1_trend = [mean(instance) for instance in data1]
+		data2_trend = [mean(instance) for instance in data2]
+		plt.plot( np.array(range(len(data1)))*2.0, data1_trend, c=colours[0], linestyle='dashed', label=labels[0]+' trendline' )
+		plt.plot( np.array(range(len(data2)))*2.0, data2_trend, c=colours[1], linestyle='dashed', label=labels[1]+' trendline' )
+
+	set_box_color(bpl, colours[0])
+	set_box_color(bpr, colours[1])
+
+	plt.plot([], c=colours[0], label=labels[0])
+	plt.plot([], c=colours[1], label=labels[1])
+	plt.legend()
+
+	plt.xticks(range(0, len(ticks) * 2, 2), ticks)
+	plt.xlim(-1, (len(ticks)*2) -1)
+	if ylims == None: 
+		ylims = [0,1]
+	plt.ylim(ylims[0], ylims[1])
+	# plt.tight_layout()

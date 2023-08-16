@@ -13,8 +13,8 @@ import matplotlib.pyplot as plt
 
 
 data_dir = os.path.join( os.getcwd(), 'Output logs')
-filenames = ['combined_df.csv', 'cl_df.csv', 'nl_df.csv', 'adl_df.csv']
-# filenames = ['combined_df.csv']
+# filenames = ['combined_df.csv', 'cl_df.csv', 'nl_df.csv', 'adl_df.csv']
+filenames = ['combined_df.csv']
 
 # Directory definitions
 
@@ -35,29 +35,16 @@ linestyles = ['solid', 'solid']
 
 ###
 
-debug = False
-save = True
-s8_9 = True
-s1_8 = False
+debug = True
+save = False
+s8_9 = False
+s1_8 = True
 s1_9 = False
 
 
-output_log = pd.DataFrame(index=[0], columns=['load', 'var', 'significance', 'mm_session','mm_feedback','mm_interaction','rm_session','rm_loading','rm_interaction','spher','spher_p','norm_res'])
+output_log = pd.DataFrame(index=[0], columns=['load', 'var', 'mm_sig', 'mm_session','mm_feedback','mm_interaction', 'rm_sig','rm_session','rm_loading','rm_interaction','spher','spher_p','norm_res'])
 
 if __name__ == '__main__':
-
-	# 	# install packages
-	# packageNames = ("afex", "emmeans")
-	# utils2 = rpackages.importr("utils")
-	# utils2.chooseCRANmirror(ind=1)
-
-	# packnames_to_install = [x for x in packageNames if not rpackages.isinstalled(x)]
-
-	# if len(packnames_to_install) > 0:
-	# 	utils2.install_packages(StrVector(packnames_to_install))
-
-
-
 
 
 	for path in log_paths:  # Check and create directories to save resultant images to
@@ -67,13 +54,6 @@ if __name__ == '__main__':
 		filepath = os.path.join(data_dir, file)
 		# Reads the .csv file into a pd.DataFrame object
 		data = pd.read_csv(filepath, index_col=0)
-
-		# 		# convert pandas DF ("tmp") to R data.frame
-		# with localconverter(ro.default_converter + pandas2ri.converter):
-		# 	r_from_pd_df = ro.conversion.py2rpy(data)
-
-		# r_from_pd_df.head()
-	
   
 		if s8_9:	data = data[data['Session'].isin([8,9])] #pd.concat([utils.extract_questionnaire_rows(data, 'Session', '8'), utils.extract_questionnaire_rows(data, 'Session', '9')])
 		elif s1_9:	data = data
@@ -81,6 +61,8 @@ if __name__ == '__main__':
    
 		data['factor_comb'] = data['Feedback'].astype(
 			str) + '-' + data['Session'].astype(str)  # Create factor comb for normailty checks
+
+		# data = data[data.Feedback == False]
 
 		if file == 'adl_df.csv':
 			vars = data.columns[2:-2]
@@ -92,9 +74,7 @@ if __name__ == '__main__':
 		for var in vars:
 
 			# Create a temp pd.DataFrame to store the analysis results of var
-			_tmp_df = pd.DataFrame(index=[0], columns=['load', 'var', 'significance', 'mm_session','mm_feedback','mm_interaction','rm_session','rm_loading','rm_interaction','spher','spher_p','norm_res'])
-							#	   'load', 'var', 'sig_high', 'sig_high_p', 'sig_low', 'sig_low_p', 'spher', 'spher_p', 'norm_res'])
-							#		'load', 'var', 'mm_session','mm_feedback','mm_interaction','rm_session','rm_loading','rm_interaction','spher','spher_p','norm_res'])
+			_tmp_df = pd.DataFrame(index=[0], columns=['load', 'var', 'mm_sig', 'mm_session','mm_feedback','mm_interaction', 'rm_sig','rm_session','rm_loading','rm_interaction','spher','spher_p','norm_res'])
 			_tmp_df['load'] = file[:4].split('_', 1)[0].upper()
 			_tmp_df['var'] = var
 
@@ -147,107 +127,63 @@ if __name__ == '__main__':
 			elif file != 'adl_df.csv': aov2 = data.rm_anova(dv=var, within='Session', subject='ID')
 			else: aov2 = aov
 
-			# print(file, var, '\n', aov, '\n', aov2)
+			if debug: print(file, var, '\n', aov, '\n', aov2)
 
-			# if file == 'adl_df.csv': print(var, '----------------------------------------\n', aov, '\n')
 			# Create str variables to store results in
-			high_str = 'None'
-			high_p_str = 'None'
-			low_str = 'None'
-			low_p_str = 'None'
+	# 		high_str = 'None'
+	# 		high_p_str = 'None'
+	# 		low_str = 'None'
+	# 		low_p_str = 'None'
 
-			p_interest = 'p-unc'
-			p2_interest = 'p-unc'
+	# 		p_interest = 'p-unc'
+	# 		p2_interest = 'p-unc'
 
-			if 'p-GG-corr' in aov.columns:
-				p_interest = 'p-GG-corr'
-				# print(f'Greenhouse-Geisser p for {var}')
-			if 'p-GG-corr' in aov2.columns:
-				p2_interest = 'p-GG-corr'
-				# print(f'Greenhouse-Geisser p for {var}')
+	# 		if 'p-GG-corr' in aov.columns:
+	# 			p_interest = 'p-GG-corr'
+	# 			# print(f'Greenhouse-Geisser p for {var}')
+	# 		if 'p-GG-corr' in aov2.columns:
+	# 			p2_interest = 'p-GG-corr'
+	# 			# print(f'Greenhouse-Geisser p for {var}')
 
-			# If any results from the ANOVA have a p-value below 0.05
-			if (aov[aov['Source'] != 'Session'][p_interest] < 0.05).any() or (aov2[aov2.Source != 'Session'][p_interest] < 0.05).any():
-				_tmp_df['significance'] = 'HIGH'
-			elif (aov[aov['Source'] != 'Session'][p_interest] < 0.1).any() or (aov2[aov2.Source != 'Session'][p_interest] < 0.1).any():
-				_tmp_df['significance'] = 'LOW' 
-			elif (aov[aov.Source == 'Session'][p_interest] < 0.1).any() or (aov2[aov2.Source == 'Session'][p_interest] < 0.1).any():
-				_tmp_df['significance'] = 'SESSION ONLY'
-			else: _tmp_df['significance'] = 'NONE'
+	# 		# If any results from the ANOVA have a p-value below significance report it in the dataframe
+	# 		if (aov[aov['Source'] != 'Session'][p_interest] < 0.05).any():
+	# 			_tmp_df['mm_sig'] = 'HIGH'
+	# 		elif (aov[aov['Source'] != 'Session'][p_interest] < 0.1).any():
+	# 			_tmp_df['mm_sig'] = 'LOW' 
+	# 		elif (aov[aov.Source == 'Session'][p_interest] < 0.1).any():
+	# 			_tmp_df['mm_sig'] = 'SESSION ONLY'
+	# 		else: _tmp_df['mm_sig'] = 'NONE'
+   
+	# 		if (aov2[aov2.Source != 'Session'][p_interest] < 0.05).any():
+	# 			_tmp_df['rm_sig'] = 'HIGH'
+	# 		elif (aov2[aov2.Source != 'Session'][p_interest] < 0.1).any():
+	# 			_tmp_df['rm_sig'] = 'LOW'
+	# 		elif (aov2[aov2.Source == 'Session'][p_interest] < 0.1).any():
+	# 			_tmp_df['rm_sig'] = 'SESSION ONLY'
+	# 		else: _tmp_df['rm_sig'] = 'NONE'
 
-			loc = {'Session':'mm_session', 'Feedback':'mm_feedback','Interaction':'mm_interaction'}
-			loc2 = {'Session':'rm_session', 'Loading':'rm_loading','Session * Loading':'rm_interaction'}
+	# 		loc = {'Session':'mm_session', 'Feedback':'mm_feedback','Interaction':'mm_interaction'}
+	# 		loc2 = {'Session':'rm_session', 'Loading':'rm_loading','Session * Loading':'rm_interaction'}
 
-			for val in aov['Source'].values:  # Report all high sig results and store them in _tmp_df
-				if aov[aov.Source == val][p_interest].values[0] == 'nan': p_interest = 'p-unc'
-				_tmp_df[loc[val]] = 'F({},{}) = {}, p={}'.format(aov[aov['Source']==val]['DF1'].round(3).values[0],aov[aov['Source']==val]['DF2'].round(3).values[0],aov[aov['Source']==val]['F'].round(3).values[0],aov[aov['Source']==val]['p-unc'].round(3).values[0])
+	# 		for val in aov['Source'].values:  # Report all high sig results and store them in _tmp_df
+	# 			if aov[aov.Source == val][p_interest].values[0] == 'nan': p_interest = 'p-unc'
+	# 			_tmp_df[loc[val]] = 'F({},{}) = {},\ p={}'.format(aov[aov['Source']==val]['DF1'].round(3).values[0],aov[aov['Source']==val]['DF2'].round(3).values[0],aov[aov['Source']==val]['F'].round(3).values[0],aov[aov['Source']==val]['p-unc'].round(3).values[0])
+
+	# 		if file !='adl_df.csv':
+	# 			for val in aov2['Source'].values:  # Report all high sig results and store them in _tmp_df
+	# 				if val != 'Error':
+	# 					try: _tmp_df[loc2[val]] = 'F({}) = {},\ p={}'.format(aov2[aov2['Source']==val]['DF'].round(3).values[0],aov2[aov2['Source']==val]['F'].round(3).values[0],aov2[aov2['Source']==val][p2_interest].round(3).values[0])
+	# 					except:	_tmp_df[loc2[val]] = 'F({},{}) = {},\ p={}'.format(aov2[aov2['Source']==val]['ddof1'].round(3).values[0],aov2[aov2['Source']==val]['ddof2'].round(3).values[0],aov2[aov2['Source']==val]['F'].round(3).values[0],aov2[aov2['Source']==val][p2_interest].round(3).values[0])
 
 
-					# if high_str != 'None':
-					# 	high_str = high_str + ', ' + str(val)
-					# 	high_p_str = high_p_str + ', ' + \
-					# 		str(aov[aov['Source'] == val]
-					# 			[p_interest].round(3).values[0])
-					# else:
-					# 	high_str = str(val)
-					# 	high_p_str = str(
-					# 		aov[aov['Source'] == val][p_interest].round(3).values[0])
-			if file !='adl_df.csv':
-				for val in aov2['Source'].values:  # Report all high sig results and store them in _tmp_df
-					if val != 'Error':
-						try: _tmp_df[loc2[val]] = 'F({}) = {}, p={}'.format(aov2[aov2['Source']==val]['DF'].round(3).values[0],aov2[aov2['Source']==val]['F'].round(3).values[0],aov2[aov2['Source']==val][p2_interest].round(3).values[0])
-						except:	_tmp_df[loc2[val]] = 'F({},{}) = {}, p={}'.format(aov2[aov2['Source']==val]['ddof1'].round(3).values[0],aov2[aov2['Source']==val]['ddof2'].round(3).values[0],aov2[aov2['Source']==val]['F'].round(3).values[0],aov2[aov2['Source']==val][p2_interest].round(3).values[0])
+	# 		# Adds _tmp_df for the processed variable to the output log
+	# 		output_log = pd.concat([output_log, _tmp_df])
 
-			# 		if high_str != 'None':
-			# 			high_str = high_str + ', ' + str(val)
-			# 			high_p_str = high_p_str + ', ' + \
-			# 				str(aov2[aov2['Source'] == val]
-			# 					[p2_interest].round(3).values[0])
-			# 		else:
-			# 			high_str = str(val)
-			# 			high_p_str = str(
-			# 				aov2[aov2['Source'] == val][p2_interest].round(3).values[0])
-
-			# _tmp_df['sig_high'] = high_str
-			# _tmp_df['sig_high_p'] = high_p_str
-
-			# # If any results from the ANOVA have a p-value between 0.05 and 0.1
-			# if (aov[p_interest] <= 0.1).any() and (aov[p_interest] > 0.05).any():
-
-			# 	# Extract these results
-			# 	low_significance = aov[(aov[p_interest] <= 0.1)
-			# 						   & (aov[p_interest] > 0.05)]['Source']
-
-			# 	# Plots all results that are significant (excluding significance across sessions)
-			# 	for val in low_significance.values:
-			# 		if val != 'Session':
-			# 			fig, ax = plt.subplots()
-			# 			utils.interaction_plot_w_errorbars(ax=ax, x=data['Session'], trace=data['Feedback'], response=data[var],
-			# 											   errorbars=True, colors=colors, e_colors=e_colors, markers=markers, e_markers=e_markers, linestyles=linestyles)
-			# 			# plt.savefig(os.path.join(low_sig_path, str(
-			# 			# 	_tmp_df['load'].values[0]) + ' ' + var))
-			# 			plt.close()
-			# 		if low_str != 'None':
-			# 			low_str = low_str + ', ' + str(val)
-			# 			low_p_str = low_p_str + ', ' + \
-			# 				str(aov[aov['Source'] == val]
-			# 					[p_interest].round(3).values[0])
-			# 		else:
-			# 			low_str = str(val)
-			# 			low_p_str = str(
-			# 				aov[aov['Source'] == val][p_interest].round(3).values[0])
-
-			# _tmp_df['sig_low'] = low_str
-			# _tmp_df['sig_low_p'] = low_p_str
-
-			# Adds _tmp_df for the processed variable to the output log
-			output_log = pd.concat([output_log, _tmp_df])
-
-	output_log.reset_index(inplace=True, drop=True)
-	if save:
-		if s8_9:	output_log.to_csv(os.path.join(
-			os.getcwd(), os.path.join('Output logs', 'stats_summary_8-9.csv')))
-		elif s1_8:	output_log.to_csv(os.path.join(
-			os.getcwd(), os.path.join('Output logs', 'stats_summary_1-8.csv')))
-		elif s1_9:	output_log.to_csv(os.path.join(
-			os.getcwd(), os.path.join('Output logs', 'stats_summary_1-9.csv')))
+	# output_log.reset_index(inplace=True, drop=True)
+	# if save:
+	# 	if s8_9:	output_log.to_csv(os.path.join(
+	# 		os.getcwd(), os.path.join('Output logs', 'stats_summary_8-9.csv')))
+	# 	elif s1_8:	output_log.to_csv(os.path.join(
+	# 		os.getcwd(), os.path.join('Output logs', 'stats_summary_1-8.csv')))
+	# 	elif s1_9:	output_log.to_csv(os.path.join(
+	# 		os.getcwd(), os.path.join('Output logs', 'stats_summary_1-9.csv')))
