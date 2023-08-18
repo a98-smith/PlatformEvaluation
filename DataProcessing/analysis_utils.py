@@ -1,6 +1,10 @@
 import os, pandas as pd, numpy as np, matplotlib.pyplot as plt, warnings
 from scipy.stats import t
 from statistics import mean
+import psutil
+import pyautogui
+import time
+import xlwings as xw
 
 def extract_questionnaire_rows( df, column_name, search_string ):
 	"""
@@ -123,3 +127,27 @@ def comparison_boxplot(data1, data2, data3=None, ticks=None, ylims=None, colours
 		ylims = [0,1]
 	plt.ylim(ylims[0], ylims[1])
 	# plt.tight_layout()
+ 
+ 
+
+# Nice idea but doesnt work
+def close_excel_for_file(file_path):
+	app = xw.App(visible=False)  # Open Excel in the background
+	try:
+		workbook = app.books.open(file_path)
+		workbook.close()  # Close the workbook
+		app.quit()  # Quit Excel
+		return True
+	except xw.exceptions.XlwingsError:
+		app.quit()  # Quit Excel if an error occurs
+		print('Some error')
+		return False
+
+import atexit
+import asyncio
+
+def close_event_loop():
+	loop = asyncio.get_event_loop()
+	if not loop.is_closed():
+		loop.close()
+

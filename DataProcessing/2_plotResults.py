@@ -5,8 +5,9 @@ import matplotlib.pyplot as plt
 
 # Directory definitions
 data_dir = os.path.join( os.getcwd(), 'Output logs')
-filenames = ['combined_df.csv', 'cl_df.csv', 'nl_df.csv']#, 'adl_df.csv']
-fig_dir = os.path.join(os.getcwd(), "Output figs")
+# filenames = ['combined_df.csv', 'cl_df.csv', 'nl_df.csv']#, 'adl_df.csv']
+filenames = ['combined_df.csv','adl_df.csv']
+fig_dir = os.path.join(os.getcwd(), "Output figs22")
 utils.check_or_create_folder(fig_dir)
 
 
