@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 
 # Directory definitions
 data_dir = os.path.join( os.getcwd(), 'Output logs')
-# filenames = ['combined_df.csv', 'cl_df.csv', 'nl_df.csv']#, 'adl_df.csv']
-filenames = ['combined_df.csv','adl_df.csv']
+filenames = ['combined_df.csv', 'cl_df.csv', 'nl_df.csv']#, 'adl_df.csv']
+# filenames = ['combined_df.csv','adl_df.csv']
 fig_dir = os.path.join(os.getcwd(), "Output figs22")
 utils.check_or_create_folder(fig_dir)
 
@@ -142,6 +142,17 @@ def plot_tlx(tlx_df, load=None, show=False, save=False):
 	# # Cleanup any figs that might still be active
 	# plt.clf()
 	# plt.close()
+
+	for var in _data.columns:
+		if (var != 'Session') and (var != 'Feedback'):
+			print(var)
+			fig, ax = plt.subplots()
+			utils.interaction_plot_w_errorbars(ax=ax, x=_data['Session'], trace=_data['Feedback'], response=_data[var], errorbars=True,
+										colors=colors, e_colors=e_colors, markers=markers, e_markers=e_markers, linestyles=linestyles, legend=True)
+			ax.set_ylim(0,18)
+			if save: plt.savefig(os.path.join( fig_path, '{}_{}.png'.format(var, load)))
+			plt.clf()
+			plt.close()
 
 	fig, ax = plt.subplots()
 	utils.interaction_plot_w_errorbars(ax=ax, x=_data['Session'], trace=_data['Feedback'], response=_data['TLX totals'],
@@ -319,8 +330,8 @@ if __name__ == '__main__':
 			grasp_breakdown_results = data[['grasps', 'drops', 'crushes', 'Session', 'Feedback']]
 
 			# plot_performance( performance_results, load=load, show=False, save=True, plot_as_one=False, plot_many=True )
-			# plot_tlx( TLX_results, load=load, show=False, save=True )
-			plot_qual( Q_results, load=load, show=False, save=True )
+			plot_tlx( TLX_results, load=load, show=False, save=True )
+			# plot_qual( Q_results, load=load, show=False, save=True )
 			# plot_grasp_metric_breakdown( grasp_breakdown_results, load=load, show=False, save=True )
 
-		else: plot_adls(data, show=False, save=True)
+		# else: plot_adls(data, show=False, save=True)
