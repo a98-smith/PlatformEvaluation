@@ -1,0 +1,97 @@
+load,var,rm_sig,rm_session,rm_loading,rm_interaction,spher,spher_p,norm_res
+COMB FB,P,SESSION ONLY,"F(1,4) = 4.962,\ p=0.09","F(1,4) = 2.168,\ p=0.215","F(1,4) = 1.36,\ p=0.308",PASS,1,Perfectly normal
+COMB FB,P_l,SESSION ONLY,"F(1,4) = 9.78,\ p=0.035","F(1,4) = 3.744,\ p=0.125","F(1,4) = 0.893,\ p=0.398",PASS,1,Perfectly normal
+COMB FB,P_h,NONE,"F(1,4) = 1.177,\ p=0.339","F(1,4) = 0.001,\ p=0.976","F(1,4) = 2.259,\ p=0.207",PASS,1,Perfectly normal
+COMB FB,G,SESSION ONLY,"F(1,4) = 13.443,\ p=0.021","F(1,4) = 2.433,\ p=0.194","F(1,4) = 0.373,\ p=0.575",PASS,1,Perfectly normal
+COMB FB,G_l,SESSION ONLY,"F(1,4) = 25.735,\ p=0.007","F(1,4) = 4.21,\ p=0.109","F(1,4) = 1.277,\ p=0.322",PASS,1,FALSE
+COMB FB,G_h,NONE,"F(1,4) = 3.661,\ p=0.128","F(1,4) = 0.338,\ p=0.592","F(1,4) = 0.183,\ p=0.69",PASS,1,FALSE
+COMB FB,T,NONE,"F(1,4) = 0.521,\ p=0.511","F(1,4) = 0.494,\ p=0.521","F(1,4) = 4.504,\ p=0.101",PASS,1,FALSE
+COMB FB,T_l,NONE,"F(1,4) = 1.006,\ p=0.373","F(1,4) = 0.057,\ p=0.822","F(1,4) = 0.247,\ p=0.645",PASS,1,FALSE
+COMB FB,T_h,HIGH,"F(1,4) = 0.01,\ p=0.927","F(1,4) = 0.133,\ p=0.734","F(1,4) = 14.809,\ p=0.018",PASS,1,FALSE
+COMB FB,F,LOW,"F(1,4) = 0.391,\ p=0.566","F(1,4) = 0.122,\ p=0.745","F(1,4) = 5.022,\ p=0.089",PASS,1,Perfectly normal
+COMB FB,F_l,LOW,"F(1,4) = 0.261,\ p=0.636","F(1,4) = 0.037,\ p=0.858","F(1,4) = 6.969,\ p=0.058",PASS,1,Perfectly normal
+COMB FB,F_h,NONE,"F(1,4) = 0.836,\ p=0.412","F(1,4) = 0.49,\ p=0.522","F(1,4) = 3.176,\ p=0.149",PASS,1,Perfectly normal
+COMB FB,grasps,SESSION ONLY,"F(1,4) = 64.671,\ p=0.001","F(1,4) = 1.665,\ p=0.266","F(1,4) = 0.081,\ p=0.791",PASS,1,Perfectly normal
+COMB FB,crushes,SESSION ONLY,"F(1,4) = 5.554,\ p=0.078","F(1,4) = 2.074,\ p=0.223","F(1,4) = 0.874,\ p=0.403",PASS,1,FALSE
+COMB FB,drops,NONE,"F(1,4) = 0.935,\ p=0.388","F(1,4) = 0.865,\ p=0.405","F(1,4) = 2.667,\ p=0.178",PASS,1,FALSE
+COMB FB,Mental Demand,HIGH,"F(1,4) = 6.861,\ p=0.059","F(1,4) = 20.196,\ p=0.011","F(1,4) = 4.444,\ p=0.103",PASS,1,Perfectly normal
+COMB FB,Physical Demand,SESSION ONLY,"F(1,4) = 4.76,\ p=0.095","F(1,4) = 4.0,\ p=0.116","F(1,4) = 0.138,\ p=0.729",PASS,1,Perfectly normal
+COMB FB,Temporal Demand,NONE,"F(1,4) = 3.066,\ p=0.155","F(1,4) = 4.246,\ p=0.108","F(1,4) = 1.0,\ p=0.374",PASS,1,FALSE
+COMB FB,Performance,LOW,"F(1,4) = 3.31,\ p=0.143","F(1,4) = 2.613,\ p=0.181","F(1,4) = 5.352,\ p=0.082",PASS,1,Perfectly normal
+COMB FB,Effort,HIGH,"F(1,4) = 1.75,\ p=0.256","F(1,4) = 9.231,\ p=0.038","F(1,4) = 10.595,\ p=0.031",PASS,1,Perfectly normal
+COMB FB,Frustration Level,HIGH,"F(1,4) = 1.343,\ p=0.311","F(1,4) = 12.414,\ p=0.024","F(1,4) = 2.796,\ p=0.17",PASS,1,FALSE
+COMB FB,It is easy to understand.,LOW,"F(1,4) = 1.263,\ p=0.324","F(1,4) = 4.571,\ p=0.099","F(1,4) = 0.615,\ p=0.477",PASS,1,FALSE
+COMB FB,It is distracting.,HIGH,"F(1,4) = 5.149,\ p=0.086","F(1,4) = 14.696,\ p=0.019","F(1,4) = 1.385,\ p=0.305",PASS,1,FALSE
+COMB FB,It is user-friendly.,HIGH,"F(1,4) = 3.5,\ p=0.135","F(1,4) = 12.25,\ p=0.025","F(1,4) = 2.25,\ p=0.208",PASS,1,FALSE
+COMB FB,Using it is effortless.,LOW,"F(1,4) = 4.378,\ p=0.105","F(1,4) = 7.538,\ p=0.052","F(1,4) = 0.286,\ p=0.621",PASS,1,FALSE
+COMB FB,Both occasional and Regular users would like it.,LOW,"F(1,4) = 4.261,\ p=0.108","F(1,4) = 6.0,\ p=0.07","F(1,4) = 0.286,\ p=0.621",PASS,1,FALSE
+COMB FB,It is difficult to learn how to use.,NONE,"F(1,4) = 1.532,\ p=0.284","F(1,4) = 0.0,\ p=1.0","F(1,4) = 0.0,\ p=1.0",PASS,1,FALSE
+COMB FB,It works the way I want it to work.,HIGH,"F(1,4) = 4.654,\ p=0.097","F(1,4) = -5629499534213120.0,\ p=1.0","F(1,4) = inf,\ p=0.0",PASS,1,FALSE
+COMB FB,It is pleasant to use.,HIGH,"F(1,4) = 8.727,\ p=0.042","F(1,4) = 10.286,\ p=0.033","F(1,4) = 0.615,\ p=0.477",PASS,1,FALSE
+COMB FB,TLX totals,HIGH,"F(1,4) = 3.583,\ p=0.131","F(1,4) = 18.65,\ p=0.012","F(1,4) = 3.628,\ p=0.13",PASS,1,Perfectly normal
+COMB FB,Q totals,HIGH,"F(1,4) = 5.482,\ p=0.079","F(1,4) = 23.143,\ p=0.009","F(1,4) = 1.194,\ p=0.336",PASS,1,Perfectly normal
+CL FB,P,SESSION ONLY,"F(1,4) = 5.935,\ p=0.072",,,PASS,1,Perfectly normal
+CL FB,P_l,SESSION ONLY,"F(1,4) = 6.432,\ p=0.064",,,PASS,1,Perfectly normal
+CL FB,P_h,SESSION ONLY,"F(1,4) = 9.56,\ p=0.037",,,PASS,1,Perfectly normal
+CL FB,G,SESSION ONLY,"F(1,4) = 10.535,\ p=0.032",,,PASS,1,Perfectly normal
+CL FB,G_l,SESSION ONLY,"F(1,4) = 10.912,\ p=0.03",,,PASS,1,Perfectly normal
+CL FB,G_h,SESSION ONLY,"F(1,4) = 32.119,\ p=0.005",,,PASS,1,FALSE
+CL FB,T,NONE,"F(1,4) = 1.869,\ p=0.243",,,PASS,1,FALSE
+CL FB,T_l,NONE,"F(1,4) = 0.589,\ p=0.486",,,PASS,1,Perfectly normal
+CL FB,T_h,NONE,"F(1,4) = 1.832,\ p=0.247",,,PASS,1,Perfectly normal
+CL FB,F,NONE,"F(1,4) = 0.419,\ p=0.553",,,PASS,1,Perfectly normal
+CL FB,F_l,NONE,"F(1,4) = 1.238,\ p=0.328",,,PASS,1,Perfectly normal
+CL FB,F_h,NONE,"F(1,4) = 0.782,\ p=0.426",,,PASS,1,Perfectly normal
+CL FB,grasps,SESSION ONLY,"F(1,4) = 11.838,\ p=0.026",,,PASS,1,Perfectly normal
+CL FB,crushes,NONE,"F(1,4) = 4.482,\ p=0.102",,,PASS,1,Perfectly normal
+CL FB,drops,NONE,"F(1,4) = 1.532,\ p=0.284",,,PASS,1,FALSE
+CL FB,Mental Demand,SESSION ONLY,"F(1,4) = 6.541,\ p=0.063",,,PASS,1,Perfectly normal
+CL FB,Physical Demand,NONE,"F(1,4) = 2.748,\ p=0.173",,,PASS,1,Perfectly normal
+CL FB,Temporal Demand,NONE,"F(1,4) = 2.462,\ p=0.192",,,PASS,1,Perfectly normal
+CL FB,Performance,SESSION ONLY,"F(1,4) = 4.808,\ p=0.093",,,PASS,1,Perfectly normal
+CL FB,Effort,NONE,"F(1,4) = 3.273,\ p=0.145",,,PASS,1,Perfectly normal
+CL FB,Frustration Level,NONE,"F(1,4) = 1.774,\ p=0.254",,,PASS,1,FALSE
+CL FB,It is easy to understand.,NONE,"F(1,4) = 0.286,\ p=0.621",,,PASS,1,Perfectly normal
+CL FB,It is distracting.,NONE,"F(1,4) = 4.261,\ p=0.108",,,PASS,1,Perfectly normal
+CL FB,It is user-friendly.,NONE,"F(1,4) = 3.333,\ p=0.142",,,PASS,1,FALSE
+CL FB,Using it is effortless.,NONE,"F(1,4) = 3.333,\ p=0.142",,,PASS,1,Perfectly normal
+CL FB,Both occasional and Regular users would like it.,NONE,"F(1,4) = 2.667,\ p=0.178",,,PASS,1,FALSE
+CL FB,It is difficult to learn how to use.,NONE,"F(1,4) = 2.25,\ p=0.208",,,PASS,1,FALSE
+CL FB,It works the way I want it to work.,SESSION ONLY,"F(1,4) = 9.846,\ p=0.035",,,PASS,1,FALSE
+CL FB,It is pleasant to use.,SESSION ONLY,"F(1,4) = 12.25,\ p=0.025",,,PASS,1,FALSE
+CL FB,TLX totals,NONE,"F(1,4) = 3.767,\ p=0.124",,,PASS,1,Perfectly normal
+CL FB,Q totals,SESSION ONLY,"F(1,4) = 4.824,\ p=0.093",,,PASS,1,Perfectly normal
+NL FB,P,NONE,"F(1,4) = 2.312,\ p=0.203",,,PASS,1,Perfectly normal
+NL FB,P_l,SESSION ONLY,"F(1,4) = 6.44,\ p=0.064",,,PASS,1,Perfectly normal
+NL FB,P_h,NONE,"F(1,4) = 0.03,\ p=0.872",,,PASS,1,Perfectly normal
+NL FB,G,SESSION ONLY,"F(1,4) = 6.413,\ p=0.065",,,PASS,1,Perfectly normal
+NL FB,G_l,SESSION ONLY,"F(1,4) = 11.424,\ p=0.028",,,PASS,1,FALSE
+NL FB,G_h,NONE,"F(1,4) = 0.838,\ p=0.412",,,PASS,1,Perfectly normal
+NL FB,T,NONE,"F(1,4) = 0.001,\ p=0.977",,,PASS,1,Perfectly normal
+NL FB,T_l,NONE,"F(1,4) = 0.937,\ p=0.388",,,PASS,1,Perfectly normal
+NL FB,T_h,NONE,"F(1,4) = 1.496,\ p=0.288",,,PASS,1,Perfectly normal
+NL FB,F,NONE,"F(1,4) = 4.051,\ p=0.114",,,PASS,1,Perfectly normal
+NL FB,F_l,NONE,"F(1,4) = 0.065,\ p=0.812",,,PASS,1,Perfectly normal
+NL FB,F_h,SESSION ONLY,"F(1,4) = 4.783,\ p=0.094",,,PASS,1,Perfectly normal
+NL FB,grasps,SESSION ONLY,"F(1,4) = 26.722,\ p=0.007",,,PASS,1,Perfectly normal
+NL FB,crushes,NONE,"F(1,4) = 2.641,\ p=0.179",,,PASS,1,FALSE
+NL FB,drops,NONE,"F(1,4) = 0.0,\ p=1.0",,,PASS,1,Perfectly normal
+NL FB,Mental Demand,SESSION ONLY,"F(1,4) = 6.698,\ p=0.061",,,PASS,1,FALSE
+NL FB,Physical Demand,SESSION ONLY,"F(1,4) = 8.963,\ p=0.04",,,PASS,1,Perfectly normal
+NL FB,Temporal Demand,NONE,"F(1,4) = 3.945,\ p=0.118",,,PASS,1,FALSE
+NL FB,Performance,NONE,"F(1,4) = 1.041,\ p=0.365",,,PASS,1,Perfectly normal
+NL FB,Effort,NONE,"F(1,4) = 0.33,\ p=0.596",,,PASS,1,Perfectly normal
+NL FB,Frustration Level,NONE,"F(1,4) = 0.662,\ p=0.461",,,PASS,1,Perfectly normal
+NL FB,It is easy to understand.,SESSION ONLY,"F(1,4) = 4.571,\ p=0.099",,,PASS,1,FALSE
+NL FB,It is distracting.,SESSION ONLY,"F(1,4) = 4.571,\ p=0.099",,,PASS,1,FALSE
+NL FB,It is user-friendly.,NONE,"F(1,4) = 2.667,\ p=0.178",,,PASS,1,FALSE
+NL FB,Using it is effortless.,SESSION ONLY,"F(1,4) = 4.571,\ p=0.099",,,PASS,1,FALSE
+NL FB,Both occasional and Regular users would like it.,SESSION ONLY,"F(1,4) = 6.0,\ p=0.07",,,PASS,1,FALSE
+NL FB,It is difficult to learn how to use.,NONE,"F(1,4) = 0.783,\ p=0.426",,,PASS,1,FALSE
+NL FB,It works the way I want it to work.,NONE,"F(1,4) = 1.385,\ p=0.305",,,PASS,1,FALSE
+NL FB,It is pleasant to use.,NONE,"F(1,4) = 3.333,\ p=0.142",,,PASS,1,FALSE
+NL FB,TLX totals,NONE,"F(1,4) = 2.935,\ p=0.162",,,PASS,1,Perfectly normal
+NL FB,Q totals,SESSION ONLY,"F(1,4) = 5.01,\ p=0.089",,,PASS,1,Perfectly normal
+ADL FB,Cups,NONE,,,,PASS,1,Perfectly normal
+ADL FB,Pegs,NONE,,,,PASS,1,Perfectly normal
+ADL FB,Pens,NONE,,,,PASS,1,Perfectly normal

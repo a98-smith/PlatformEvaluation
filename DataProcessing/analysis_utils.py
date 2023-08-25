@@ -1,10 +1,11 @@
 import os, pandas as pd, numpy as np, matplotlib.pyplot as plt, warnings
 from scipy.stats import t
 from statistics import mean
-import psutil
-import pyautogui
-import time
-import xlwings as xw
+
+import matplotlib.patheffects as path_effects
+
+import matplotlib.colors as mc
+import colorsys
 
 def extract_questionnaire_rows( df, column_name, search_string ):
 	"""
@@ -128,26 +129,32 @@ def comparison_boxplot(data1, data2, data3=None, ticks=None, ylims=None, colours
 	plt.ylim(ylims[0], ylims[1])
 	# plt.tight_layout()
  
+
+def add_median_labels(ax, fmt='.1f',order=['TFB','NTFB','TFB','NTFB','NTFB','TFB']):
+    lines = ax.get_lines()
+    boxes = [c for c in ax.get_children() if type(c).__name__ == 'PathPatch']
+    lines_per_box = int(len(lines) / len(boxes))
+    i = 0
+    for median in lines[4:len(lines):lines_per_box]:
+        x, y = (data.mean() for data in median.get_data())
+        # choose value depending on horizontal or vertical plot orientation
+        value = x if (median.get_xdata()[1] - median.get_xdata()[0]) == 0 else y
+        text = ax.text(x, y, f'{order[i]}', ha='center', va='center',
+                       fontweight='bold', color='white')
+        # create median-colored border around white text for contrast
+        text.set_path_effects([
+            path_effects.Stroke(linewidth=3, foreground=median.get_color()),
+            path_effects.Normal(),
+        ])
+        i+=1
  
+ 
+def adjust_lightness(color, amount=0.5):
 
-# Nice idea but doesnt work
-def close_excel_for_file(file_path):
-	app = xw.App(visible=False)  # Open Excel in the background
-	try:
-		workbook = app.books.open(file_path)
-		workbook.close()  # Close the workbook
-		app.quit()  # Quit Excel
-		return True
-	except xw.exceptions.XlwingsError:
-		app.quit()  # Quit Excel if an error occurs
-		print('Some error')
-		return False
-
-import atexit
-import asyncio
-
-def close_event_loop():
-	loop = asyncio.get_event_loop()
-	if not loop.is_closed():
-		loop.close()
+    try:
+        c = mc.cnames[color]
+    except:
+        c = color
+    c = colorsys.rgb_to_hls(*mc.to_rgb(c))
+    return colorsys.hls_to_rgb(c[0], max(0, amount * c[1]), c[2])
 

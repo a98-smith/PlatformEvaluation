@@ -1,94 +1,98 @@
-load,var,rm_sig,rm_session,rm_loading,rm_interaction,spher,spher_p,norm_res
-COMB NFB,P,NONE,"F(7,21) = 3.096,\ p=0.113","F(1,3) = 2.162,\ p=0.238","F(7,21) = 0.677,\ p=0.556",PASS,1,Perfectly normal
-COMB NFB,P_l,NONE,"F(7,21) = 2.849,\ p=0.119","F(1,3) = 1.897,\ p=0.262","F(7,21) = 0.884,\ p=0.46",PASS,1,Highly normal
-COMB NFB,P_h,NONE,"F(7,21) = 1.264,\ p=0.348","F(1,3) = 0.005,\ p=0.95","F(7,21) = 0.525,\ p=0.616",PASS,1,Normal
-COMB NFB,G,SESSION ONLY,"F(7,21) = 3.152,\ p=0.099","F(1,3) = 1.435,\ p=0.317","F(7,21) = 0.763,\ p=0.513",PASS,1,Normal
-COMB NFB,G_l,NONE,"F(7,21) = 1.709,\ p=0.266","F(1,3) = 1.567,\ p=0.299","F(7,21) = 0.55,\ p=0.617",PASS,1,Highly normal
-COMB NFB,G_h,NONE,"F(7,21) = 0.912,\ p=0.455","F(1,3) = 0.457,\ p=0.548","F(7,21) = 0.793,\ p=0.462",PASS,1,FALSE
-COMB NFB,T,NONE,"F(7,21) = 2.685,\ p=0.131","F(1,3) = 1.969,\ p=0.255","F(7,21) = 0.611,\ p=0.576",PASS,1,Normal
-COMB NFB,T_l,NONE,"F(7,21) = 2.847,\ p=0.115","F(1,3) = 0.246,\ p=0.654","F(7,21) = 1.497,\ p=0.29",PASS,1,FALSE
-COMB NFB,T_h,NONE,"F(7,21) = 1.18,\ p=0.37","F(1,3) = 0.022,\ p=0.891","F(7,21) = 0.598,\ p=0.564",PASS,1,Highly normal
-COMB NFB,F,SESSION ONLY,"F(7,21) = 5.013,\ p=0.032","F(1,3) = 1.226,\ p=0.349","F(7,21) = 0.522,\ p=0.583",PASS,14.90358902,Perfectly normal
-COMB NFB,F_l,SESSION ONLY,"F(7,21) = 3.517,\ p=0.076","F(1,3) = 4.602,\ p=0.121","F(7,21) = 1.197,\ p=0.364",PASS,13.59707449,Perfectly normal
-COMB NFB,F_h,NONE,"F(7,21) = 2.394,\ p=0.158","F(1,3) = 1.758,\ p=0.277","F(7,21) = 0.638,\ p=0.574",PASS,15.14979332,Highly normal
-COMB NFB,grasps,NONE,"F(7,21) = 2.746,\ p=0.122","F(1,3) = 0.515,\ p=0.525","F(7,21) = 2.248,\ p=0.173",PASS,1.000000048,Highly normal
-COMB NFB,crushes,NONE,"F(7,21) = 1.186,\ p=0.364","F(1,3) = 1.278,\ p=0.34","F(7,21) = 1.629,\ p=0.282",PASS,1.000000008,FALSE
-COMB NFB,drops,NONE,"F(7,21) = 1.127,\ p=0.375","F(1,3) = 2.586,\ p=0.206","F(7,21) = 0.256,\ p=0.762",PASS,1,FALSE
-COMB NFB,Mental Demand,SESSION ONLY,"F(7,21) = 3.435,\ p=0.095","F(1,3) = 4.692,\ p=0.119","F(7,21) = 1.804,\ p=0.232",PASS,1.000000669,FALSE
-COMB NFB,Physical Demand,SESSION ONLY,"F(7,21) = 5.432,\ p=0.049","F(1,3) = 1.276,\ p=0.341","F(7,21) = 0.809,\ p=0.466",PASS,1.000082709,Normal
-COMB NFB,Temporal Demand,LOW,"F(7,21) = 1.788,\ p=0.247","F(1,3) = 5.601,\ p=0.099","F(7,21) = 3.751,\ p=0.072",PASS,1,Normal
-COMB NFB,Performance,SESSION ONLY,"F(7,21) = 7.099,\ p=0.013","F(1,3) = 2.633,\ p=0.203","F(7,21) = 2.035,\ p=0.208",PASS,1.00000152,Normal
-COMB NFB,Effort,LOW,"F(7,21) = 2.527,\ p=0.152","F(1,3) = 6.02,\ p=0.091","F(7,21) = 0.494,\ p=0.65",PASS,1.000021465,Highly normal
-COMB NFB,Frustration Level,NONE,"F(7,21) = 1.501,\ p=0.295","F(1,3) = 2.91,\ p=0.187","F(7,21) = 0.887,\ p=0.448",PASS,1.000002281,FALSE
-COMB NFB,It is easy to understand.,NONE,"F(7,21) = 1.148,\ p=0.376","F(1,3) = 1.0,\ p=0.391","F(7,21) = 0.803,\ p=0.454",PASS,1,Normal
-COMB NFB,It is distracting.,NONE,"F(7,21) = 2.939,\ p=0.159","F(1,3) = 1.523,\ p=0.305","F(7,21) = 1.342,\ p=0.332",PASS,1,Highly normal
-COMB NFB,It is user-friendly.,NONE,"F(7,21) = 1.881,\ p=0.23","F(1,3) = 2.069,\ p=0.246","F(7,21) = 2.045,\ p=0.205",PASS,1,Normal
-COMB NFB,Using it is effortless.,LOW,"F(7,21) = 3.69,\ p=0.092","F(1,3) = 8.758,\ p=0.06","F(7,21) = 1.6,\ p=0.269",PASS,1,FALSE
-COMB NFB,Both occasional and Regular users would like it.,NONE,"F(7,21) = 0.842,\ p=0.486","F(1,3) = 1.944,\ p=0.258","F(7,21) = 1.487,\ p=0.29",PASS,1,FALSE
-COMB NFB,It is difficult to learn how to use.,NONE,"F(7,21) = 0.569,\ p=0.521","F(1,3) = 3.947,\ p=0.141","F(7,21) = 0.908,\ p=0.431",PASS,1.000000002,FALSE
-COMB NFB,It works the way I want it to work.,NONE,"F(7,21) = 1.134,\ p=0.382","F(1,3) = 1.944,\ p=0.258","F(7,21) = 0.849,\ p=0.482",PASS,1,Normal
-COMB NFB,It is pleasant to use.,NONE,"F(7,21) = 1.087,\ p=0.394","F(1,3) = 0.103,\ p=0.769","F(7,21) = 2.65,\ p=0.155",PASS,1,FALSE
-COMB NFB,TLX totals,SESSION ONLY,"F(7,21) = 5.381,\ p=0.05","F(1,3) = 4.814,\ p=0.116","F(7,21) = 1.005,\ p=0.414",PASS,1.025148448,Normal
-COMB NFB,Q totals,NONE,"F(7,21) = 1.671,\ p=0.269","F(1,3) = 2.057,\ p=0.247","F(7,21) = 1.703,\ p=0.265",PASS,1.000050212,Highly normal
-CL NFB,P,NONE,"F(7,21) = 1.68,\ p=0.168",,,PASS,1,Perfectly normal
-CL NFB,P_l,NONE,"F(7,21) = 1.254,\ p=0.319",,,PASS,1,Perfectly normal
-CL NFB,P_h,NONE,"F(7,21) = 1.703,\ p=0.163",,,PASS,1,Highly normal
-CL NFB,G,NONE,"F(7,21) = 1.983,\ p=0.106",,,PASS,1,Normal
-CL NFB,G_l,NONE,"F(7,21) = 1.043,\ p=0.432",,,PASS,1,Highly normal
-CL NFB,G_h,NONE,"F(7,21) = 1.383,\ p=0.264",,,PASS,1,Highly normal
-CL NFB,T,NONE,"F(7,21) = 1.407,\ p=0.254",,,PASS,1,Perfectly normal
-CL NFB,T_l,NONE,"F(7,21) = 1.141,\ p=0.376",,,PASS,1,Normal
-CL NFB,T_h,NONE,"F(7,21) = 1.692,\ p=0.165",,,PASS,1,Perfectly normal
-CL NFB,F,SESSION ONLY,"F(7,21) = 2.977,\ p=0.025",,,PASS,10.23241647,Perfectly normal
-CL NFB,F_l,NONE,"F(7,21) = 1.072,\ p=0.415",,,PASS,10.53368226,Perfectly normal
-CL NFB,F_h,SESSION ONLY,"F(7,21) = 3.91,\ p=0.007",,,PASS,11.90862172,Perfectly normal
-CL NFB,grasps,SESSION ONLY,"F(7,21) = 2.947,\ p=0.026",,,PASS,1.000000066,Perfectly normal
-CL NFB,crushes,NONE,"F(7,21) = 1.306,\ p=0.296",,,PASS,1.000001352,Normal
-CL NFB,drops,NONE,"F(7,21) = 0.691,\ p=0.678",,,PASS,1,FALSE
-CL NFB,Mental Demand,SESSION ONLY,"F(7,21) = 3.508,\ p=0.012",,,PASS,1.000003243,Perfectly normal
-CL NFB,Physical Demand,SESSION ONLY,"F(7,21) = 2.979,\ p=0.025",,,PASS,1.0000051,Highly normal
-CL NFB,Temporal Demand,SESSION ONLY,"F(7,21) = 2.529,\ p=0.047",,,PASS,1.000000038,Perfectly normal
-CL NFB,Performance,SESSION ONLY,"F(7,21) = 4.669,\ p=0.003",,,PASS,1.000001625,Normal
-CL NFB,Effort,SESSION ONLY,"F(7,21) = 2.044,\ p=0.097",,,PASS,1.000003533,Highly normal
-CL NFB,Frustration Level,NONE,"F(7,21) = 1.421,\ p=0.249",,,PASS,1.000020397,Perfectly normal
-CL NFB,It is easy to understand.,NONE,"F(7,21) = 1.047,\ p=0.43",,,PASS,1,Normal
-CL NFB,It is distracting.,NONE,"F(7,21) = 0.795,\ p=0.6",,,PASS,1,Highly normal
-CL NFB,It is user-friendly.,NONE,"F(7,21) = 1.176,\ p=0.357",,,PASS,1,Normal
-CL NFB,Using it is effortless.,SESSION ONLY,"F(7,21) = 2.108,\ p=0.088",,,PASS,1,Normal
-CL NFB,Both occasional and Regular users would like it.,NONE,"F(7,21) = 0.827,\ p=0.576",,,PASS,1,Normal
-CL NFB,It is difficult to learn how to use.,NONE,"F(7,21) = 0.844,\ p=0.564",,,PASS,1,Normal
-CL NFB,It works the way I want it to work.,NONE,"F(7,21) = 0.893,\ p=0.529",,,PASS,1,Perfectly normal
-CL NFB,It is pleasant to use.,NONE,"F(7,21) = 0.895,\ p=0.528",,,PASS,1,Perfectly normal
-CL NFB,TLX totals,SESSION ONLY,"F(7,21) = 3.89,\ p=0.007",,,PASS,1.035656792,Perfectly normal
-CL NFB,Q totals,NONE,"F(7,21) = 1.093,\ p=0.403",,,PASS,1.00191607,Highly normal
-NL NFB,P,SESSION ONLY,"F(7,21) = 3.806,\ p=0.008",,,PASS,1,Perfectly normal
-NL NFB,P_l,SESSION ONLY,"F(7,21) = 3.636,\ p=0.01",,,PASS,1,Perfectly normal
-NL NFB,P_h,NONE,"F(7,21) = 0.649,\ p=0.711",,,PASS,1,Perfectly normal
-NL NFB,G,SESSION ONLY,"F(7,21) = 2.634,\ p=0.04",,,PASS,1,Perfectly normal
-NL NFB,G_l,NONE,"F(7,21) = 1.82,\ p=0.136",,,PASS,1,Perfectly normal
-NL NFB,G_h,NONE,"F(7,21) = 0.747,\ p=0.636",,,PASS,1,Normal
-NL NFB,T,SESSION ONLY,"F(7,21) = 3.81,\ p=0.008",,,PASS,1,Perfectly normal
-NL NFB,T_l,SESSION ONLY,"F(7,21) = 4.135,\ p=0.005",,,PASS,1,Normal
-NL NFB,T_h,NONE,"F(7,21) = 0.504,\ p=0.821",,,PASS,1,Highly normal
-NL NFB,F,SESSION ONLY,"F(7,21) = 3.196,\ p=0.018",,,PASS,10.57990287,Perfectly normal
-NL NFB,F_l,SESSION ONLY,"F(7,21) = 3.648,\ p=0.01",,,PASS,11.93875633,Highly normal
-NL NFB,F_h,NONE,"F(7,21) = 0.942,\ p=0.496",,,PASS,15.15666753,Perfectly normal
-NL NFB,grasps,SESSION ONLY,"F(7,21) = 2.398,\ p=0.057",,,PASS,1.000001279,Perfectly normal
-NL NFB,crushes,NONE,"F(7,21) = 1.274,\ p=0.31",,,PASS,1,Highly normal
-NL NFB,drops,NONE,"F(7,21) = 0.748,\ p=0.635",,,PASS,1,FALSE
-NL NFB,Mental Demand,NONE,"F(7,21) = 1.485,\ p=0.226",,,PASS,1.000000304,Normal
-NL NFB,Physical Demand,SESSION ONLY,"F(7,21) = 2.82,\ p=0.031",,,PASS,1.000000279,Normal
-NL NFB,Temporal Demand,NONE,"F(7,21) = 1.448,\ p=0.239",,,PASS,1.000000004,Normal
-NL NFB,Performance,SESSION ONLY,"F(7,21) = 7.228,\ p=0.0",,,PASS,1.000000605,Normal
-NL NFB,Effort,NONE,"F(7,21) = 1.139,\ p=0.377",,,PASS,1.000000404,Highly normal
-NL NFB,Frustration Level,NONE,"F(7,21) = 0.782,\ p=0.609",,,PASS,1,Normal
-NL NFB,It is easy to understand.,NONE,"F(7,21) = 0.913,\ p=0.516",,,PASS,1,Perfectly normal
-NL NFB,It is distracting.,SESSION ONLY,"F(7,21) = 4.434,\ p=0.004",,,PASS,1,Highly normal
-NL NFB,It is user-friendly.,SESSION ONLY,"F(7,21) = 3.38,\ p=0.014",,,PASS,1,Normal
-NL NFB,Using it is effortless.,SESSION ONLY,"F(7,21) = 4.517,\ p=0.003",,,PASS,1,FALSE
-NL NFB,Both occasional and Regular users would like it.,NONE,"F(7,21) = 1.18,\ p=0.355",,,PASS,1,Normal
-NL NFB,It is difficult to learn how to use.,NONE,"F(7,21) = 0.566,\ p=0.775",,,PASS,1.00000008,Normal
-NL NFB,It works the way I want it to work.,NONE,"F(7,21) = 1.5,\ p=0.221",,,PASS,1,FALSE
-NL NFB,It is pleasant to use.,NONE,"F(7,21) = 1.657,\ p=0.174",,,PASS,1,Normal
-NL NFB,TLX totals,SESSION ONLY,"F(7,21) = 4.499,\ p=0.003",,,PASS,1.00515326,Normal
-NL NFB,Q totals,SESSION ONLY,"F(7,21) = 3.085,\ p=0.021",,,PASS,1.000031166,Highly normal
+,load,var,mm_sig,mm_session,mm_feedback,mm_interaction,rm_sig,rm_session,rm_loading,rm_interaction,spher,spher_p,norm_res
+0,,,,,,,,,,,,,
+1,COMB NFB,P,SESSION ONLY,"F(7,21) = 3.096,\ p=0.021","F(0,3) = nan,\ p=nan","F(0,21) = -inf,\ p=nan",NONE,"F(7,21) = 3.096,\ p=0.113","F(1,3) = 2.162,\ p=0.238","F(7,21) = 0.677,\ p=0.556",PASS,1.0,Perfectly normal
+2,COMB NFB,P_l,SESSION ONLY,"F(7,21) = 2.849,\ p=0.03","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 2.849,\ p=0.119","F(1,3) = 1.897,\ p=0.262","F(7,21) = 0.884,\ p=0.46",PASS,1.0,Highly normal
+3,COMB NFB,P_h,NONE,"F(7,21) = 1.264,\ p=0.314","F(0,3) = inf,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.264,\ p=0.348","F(1,3) = 0.005,\ p=0.95","F(7,21) = 0.525,\ p=0.616",PASS,1.0,Normal
+4,COMB NFB,G,SESSION ONLY,"F(7,21) = 3.152,\ p=0.019","F(0,3) = inf,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 3.152,\ p=0.099","F(1,3) = 1.435,\ p=0.317","F(7,21) = 0.763,\ p=0.513",PASS,1.0,Normal
+5,COMB NFB,G_l,NONE,"F(7,21) = 1.709,\ p=0.161","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.709,\ p=0.266","F(1,3) = 1.567,\ p=0.299","F(7,21) = 0.55,\ p=0.617",PASS,1.0,Highly normal
+6,COMB NFB,G_h,NONE,"F(7,21) = 0.912,\ p=0.516","F(0,3) = nan,\ p=nan","F(0,21) = -inf,\ p=nan",NONE,"F(7,21) = 0.912,\ p=0.455","F(1,3) = 0.457,\ p=0.548","F(7,21) = 0.793,\ p=0.462",PASS,1.0,False
+7,COMB NFB,T,SESSION ONLY,"F(7,21) = 2.685,\ p=0.037","F(0,3) = inf,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 2.685,\ p=0.131","F(1,3) = 1.969,\ p=0.255","F(7,21) = 0.611,\ p=0.576",PASS,1.0,Normal
+8,COMB NFB,T_l,SESSION ONLY,"F(7,21) = 2.847,\ p=0.03","F(0,3) = inf,\ p=nan","F(0,21) = -inf,\ p=nan",NONE,"F(7,21) = 2.847,\ p=0.115","F(1,3) = 0.246,\ p=0.654","F(7,21) = 1.497,\ p=0.29",PASS,1.0,False
+9,COMB NFB,T_h,NONE,"F(7,21) = 1.18,\ p=0.355","F(0,3) = nan,\ p=nan","F(0,21) = -inf,\ p=nan",NONE,"F(7,21) = 1.18,\ p=0.37","F(1,3) = 0.022,\ p=0.891","F(7,21) = 0.598,\ p=0.564",PASS,1.0,Highly normal
+10,COMB NFB,F,SESSION ONLY,"F(7,21) = 5.013,\ p=0.002","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 5.013,\ p=0.032","F(1,3) = 1.226,\ p=0.349","F(7,21) = 0.522,\ p=0.583",PASS,14.903589020994499,Perfectly normal
+11,COMB NFB,F_l,SESSION ONLY,"F(7,21) = 3.517,\ p=0.012","F(0,3) = inf,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 3.517,\ p=0.076","F(1,3) = 4.602,\ p=0.121","F(7,21) = 1.197,\ p=0.364",PASS,13.597074485402588,Perfectly normal
+12,COMB NFB,F_h,SESSION ONLY,"F(7,21) = 2.394,\ p=0.057","F(0,3) = nan,\ p=nan","F(0,21) = -inf,\ p=nan",NONE,"F(7,21) = 2.394,\ p=0.158","F(1,3) = 1.758,\ p=0.277","F(7,21) = 0.638,\ p=0.574",PASS,15.149793315061713,Highly normal
+13,COMB NFB,grasps,SESSION ONLY,"F(7,21) = 2.746,\ p=0.034","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 2.746,\ p=0.122","F(1,3) = 0.515,\ p=0.525","F(7,21) = 2.248,\ p=0.173",PASS,1.0000000476106716,Highly normal
+14,COMB NFB,crushes,NONE,"F(7,21) = 1.186,\ p=0.353","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.186,\ p=0.364","F(1,3) = 1.278,\ p=0.34","F(7,21) = 1.629,\ p=0.282",PASS,1.0000000078621987,False
+15,COMB NFB,drops,NONE,"F(7,21) = 1.127,\ p=0.384","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.127,\ p=0.375","F(1,3) = 2.586,\ p=0.206","F(7,21) = 0.256,\ p=0.762",PASS,1.0000000000000104,False
+16,COMB NFB,Mental Demand,SESSION ONLY,"F(7,21) = 3.435,\ p=0.013","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 3.435,\ p=0.095","F(1,3) = 4.692,\ p=0.119","F(7,21) = 1.804,\ p=0.232",PASS,1.0000006688824787,False
+17,COMB NFB,Physical Demand,SESSION ONLY,"F(7,21) = 5.432,\ p=0.001","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 5.432,\ p=0.049","F(1,3) = 1.276,\ p=0.341","F(7,21) = 0.809,\ p=0.466",PASS,1.0000827089882784,Normal
+18,COMB NFB,Temporal Demand,NONE,"F(7,21) = 1.788,\ p=0.143","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",LOW,"F(7,21) = 1.788,\ p=0.247","F(1,3) = 5.601,\ p=0.099","F(7,21) = 3.751,\ p=0.072",PASS,1.000000000000031,Normal
+19,COMB NFB,Performance,SESSION ONLY,"F(7,21) = 7.099,\ p=0.0","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 7.099,\ p=0.013","F(1,3) = 2.633,\ p=0.203","F(7,21) = 2.035,\ p=0.208",PASS,1.0000015203242367,Normal
+20,COMB NFB,Effort,SESSION ONLY,"F(7,21) = 2.527,\ p=0.047","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",LOW,"F(7,21) = 2.527,\ p=0.152","F(1,3) = 6.02,\ p=0.091","F(7,21) = 0.494,\ p=0.65",PASS,1.000021464687568,Highly normal
+21,COMB NFB,Frustration Level,NONE,"F(7,21) = 1.501,\ p=0.221","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.501,\ p=0.295","F(1,3) = 2.91,\ p=0.187","F(7,21) = 0.887,\ p=0.448",PASS,1.0000022805298732,False
+22,COMB NFB,It is easy to understand.,NONE,"F(7,21) = 1.148,\ p=0.372","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.148,\ p=0.376","F(1,3) = 1.0,\ p=0.391","F(7,21) = 0.803,\ p=0.454",PASS,1.0,Normal
+23,COMB NFB,It is distracting.,SESSION ONLY,"F(7,21) = 2.939,\ p=0.026","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 2.939,\ p=0.159","F(1,3) = 1.523,\ p=0.305","F(7,21) = 1.342,\ p=0.332",PASS,1.0000000000655984,Highly normal
+24,COMB NFB,It is user-friendly.,NONE,"F(7,21) = 1.881,\ p=0.124","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.881,\ p=0.23","F(1,3) = 2.069,\ p=0.246","F(7,21) = 2.045,\ p=0.205",PASS,1.0,Normal
+25,COMB NFB,Using it is effortless.,SESSION ONLY,"F(7,21) = 3.69,\ p=0.009","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",LOW,"F(7,21) = 3.69,\ p=0.092","F(1,3) = 8.758,\ p=0.06","F(7,21) = 1.6,\ p=0.269",PASS,1.0,False
+26,COMB NFB,Both occasional and Regular users would like it.,NONE,"F(7,21) = 0.842,\ p=0.565","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.842,\ p=0.486","F(1,3) = 1.944,\ p=0.258","F(7,21) = 1.487,\ p=0.29",PASS,1.0,False
+27,COMB NFB,It is difficult to learn how to use.,NONE,"F(7,21) = 0.569,\ p=0.773","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.569,\ p=0.521","F(1,3) = 3.947,\ p=0.141","F(7,21) = 0.908,\ p=0.431",PASS,1.0000000016333188,False
+28,COMB NFB,It works the way I want it to work.,NONE,"F(7,21) = 1.134,\ p=0.38","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.134,\ p=0.382","F(1,3) = 1.944,\ p=0.258","F(7,21) = 0.849,\ p=0.482",PASS,1.0,Normal
+29,COMB NFB,It is pleasant to use.,NONE,"F(7,21) = 1.087,\ p=0.406","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.087,\ p=0.394","F(1,3) = 0.103,\ p=0.769","F(7,21) = 2.65,\ p=0.155",PASS,1.0,False
+30,COMB NFB,TLX totals,SESSION ONLY,"F(7,21) = 5.381,\ p=0.001","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 5.381,\ p=0.05","F(1,3) = 4.814,\ p=0.116","F(7,21) = 1.005,\ p=0.414",PASS,1.0251484477128752,Normal
+31,COMB NFB,Q totals,NONE,"F(7,21) = 1.671,\ p=0.171","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.671,\ p=0.269","F(1,3) = 2.057,\ p=0.247","F(7,21) = 1.703,\ p=0.265",PASS,1.0000502119318357,Highly normal
+32,CL NFB,P,NONE,"F(7,21) = 1.68,\ p=0.168","F(0,3) = nan,\ p=nan","F(0,21) = -inf,\ p=nan",NONE,"F(7,21) = 1.68,\ p=0.168",,,PASS,1.0,Perfectly normal
+33,CL NFB,P_l,NONE,"F(7,21) = 1.254,\ p=0.319","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.254,\ p=0.319",,,PASS,1.0,Perfectly normal
+34,CL NFB,P_h,NONE,"F(7,21) = 1.703,\ p=0.163","F(0,3) = inf,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.703,\ p=0.163",,,PASS,1.0,Highly normal
+35,CL NFB,G,NONE,"F(7,21) = 1.983,\ p=0.106","F(0,3) = nan,\ p=nan","F(0,21) = -inf,\ p=nan",NONE,"F(7,21) = 1.983,\ p=0.106",,,PASS,1.0,Normal
+36,CL NFB,G_l,NONE,"F(7,21) = 1.043,\ p=0.432","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.043,\ p=0.432",,,PASS,1.0,Highly normal
+37,CL NFB,G_h,NONE,"F(7,21) = 1.383,\ p=0.264","F(0,3) = inf,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.383,\ p=0.264",,,PASS,1.0,Highly normal
+38,CL NFB,T,NONE,"F(7,21) = 1.407,\ p=0.254","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.407,\ p=0.254",,,PASS,1.0,Perfectly normal
+39,CL NFB,T_l,NONE,"F(7,21) = 1.141,\ p=0.376","F(0,3) = inf,\ p=nan","F(0,21) = -inf,\ p=nan",NONE,"F(7,21) = 1.141,\ p=0.376",,,PASS,1.0,Normal
+40,CL NFB,T_h,NONE,"F(7,21) = 1.692,\ p=0.165","F(0,3) = nan,\ p=nan","F(0,21) = -inf,\ p=nan",NONE,"F(7,21) = 1.692,\ p=0.165",,,PASS,1.0,Perfectly normal
+41,CL NFB,F,SESSION ONLY,"F(7,21) = 2.977,\ p=0.025","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 2.977,\ p=0.025",,,PASS,10.232416470099873,Perfectly normal
+42,CL NFB,F_l,NONE,"F(7,21) = 1.072,\ p=0.415","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.072,\ p=0.415",,,PASS,10.53368226161311,Perfectly normal
+43,CL NFB,F_h,SESSION ONLY,"F(7,21) = 3.91,\ p=0.007","F(0,3) = inf,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 3.91,\ p=0.007",,,PASS,11.908621720670952,Perfectly normal
+44,CL NFB,grasps,SESSION ONLY,"F(7,21) = 2.947,\ p=0.026","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 2.947,\ p=0.026",,,PASS,1.0000000662787005,Perfectly normal
+45,CL NFB,crushes,NONE,"F(7,21) = 1.306,\ p=0.296","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.306,\ p=0.296",,,PASS,1.0000013516997783,Normal
+46,CL NFB,drops,NONE,"F(7,21) = 0.691,\ p=0.678","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.691,\ p=0.678",,,PASS,1.0000000000000104,False
+47,CL NFB,Mental Demand,SESSION ONLY,"F(7,21) = 3.508,\ p=0.012","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 3.508,\ p=0.012",,,PASS,1.000003242627055,Perfectly normal
+48,CL NFB,Physical Demand,SESSION ONLY,"F(7,21) = 2.979,\ p=0.025","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 2.979,\ p=0.025",,,PASS,1.000005099936483,Highly normal
+49,CL NFB,Temporal Demand,SESSION ONLY,"F(7,21) = 2.529,\ p=0.047","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 2.529,\ p=0.047",,,PASS,1.0000000377282836,Perfectly normal
+50,CL NFB,Performance,SESSION ONLY,"F(7,21) = 4.669,\ p=0.003","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 4.669,\ p=0.003",,,PASS,1.0000016249440418,Normal
+51,CL NFB,Effort,SESSION ONLY,"F(7,21) = 2.044,\ p=0.097","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 2.044,\ p=0.097",,,PASS,1.0000035326693155,Highly normal
+52,CL NFB,Frustration Level,NONE,"F(7,21) = 1.421,\ p=0.249","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.421,\ p=0.249",,,PASS,1.0000203973532944,Perfectly normal
+53,CL NFB,It is easy to understand.,NONE,"F(7,21) = 1.047,\ p=0.43","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.047,\ p=0.43",,,PASS,1.0,Normal
+54,CL NFB,It is distracting.,NONE,"F(7,21) = 0.795,\ p=0.6","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.795,\ p=0.6",,,PASS,1.00000000000031,Highly normal
+55,CL NFB,It is user-friendly.,NONE,"F(7,21) = 1.176,\ p=0.357","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.176,\ p=0.357",,,PASS,1.0,Normal
+56,CL NFB,Using it is effortless.,SESSION ONLY,"F(7,21) = 2.108,\ p=0.088","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 2.108,\ p=0.088",,,PASS,1.0,Normal
+57,CL NFB,Both occasional and Regular users would like it.,NONE,"F(7,21) = 0.827,\ p=0.576","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.827,\ p=0.576",,,PASS,1.0,Normal
+58,CL NFB,It is difficult to learn how to use.,NONE,"F(7,21) = 0.844,\ p=0.564","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.844,\ p=0.564",,,PASS,1.000000000000599,Normal
+59,CL NFB,It works the way I want it to work.,NONE,"F(7,21) = 0.893,\ p=0.529","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.893,\ p=0.529",,,PASS,1.0000000000000104,Perfectly normal
+60,CL NFB,It is pleasant to use.,NONE,"F(7,21) = 0.895,\ p=0.528","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.895,\ p=0.528",,,PASS,1.0,Perfectly normal
+61,CL NFB,TLX totals,SESSION ONLY,"F(7,21) = 3.89,\ p=0.007","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 3.89,\ p=0.007",,,PASS,1.0356567921844844,Perfectly normal
+62,CL NFB,Q totals,NONE,"F(7,21) = 1.093,\ p=0.403","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.093,\ p=0.403",,,PASS,1.0019160703287444,Highly normal
+63,NL NFB,P,SESSION ONLY,"F(7,21) = 3.806,\ p=0.008","F(0,3) = nan,\ p=nan","F(0,21) = inf,\ p=nan",SESSION ONLY,"F(7,21) = 3.806,\ p=0.008",,,PASS,1.0,Perfectly normal
+64,NL NFB,P_l,SESSION ONLY,"F(7,21) = 3.636,\ p=0.01","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 3.636,\ p=0.01",,,PASS,1.0,Perfectly normal
+65,NL NFB,P_h,NONE,"F(7,21) = 0.649,\ p=0.711","F(0,3) = inf,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.649,\ p=0.711",,,PASS,1.0,Perfectly normal
+66,NL NFB,G,SESSION ONLY,"F(7,21) = 2.634,\ p=0.04","F(0,3) = nan,\ p=nan","F(0,21) = inf,\ p=nan",SESSION ONLY,"F(7,21) = 2.634,\ p=0.04",,,PASS,1.0,Perfectly normal
+67,NL NFB,G_l,NONE,"F(7,21) = 1.82,\ p=0.136","F(0,3) = inf,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.82,\ p=0.136",,,PASS,1.0,Perfectly normal
+68,NL NFB,G_h,NONE,"F(7,21) = 0.747,\ p=0.636","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.747,\ p=0.636",,,PASS,1.0,Normal
+69,NL NFB,T,SESSION ONLY,"F(7,21) = 3.81,\ p=0.008","F(0,3) = nan,\ p=nan","F(0,21) = inf,\ p=nan",SESSION ONLY,"F(7,21) = 3.81,\ p=0.008",,,PASS,1.0,Perfectly normal
+70,NL NFB,T_l,SESSION ONLY,"F(7,21) = 4.135,\ p=0.005","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 4.135,\ p=0.005",,,PASS,1.0,Normal
+71,NL NFB,T_h,NONE,"F(7,21) = 0.504,\ p=0.821","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.504,\ p=0.821",,,PASS,1.0,Highly normal
+72,NL NFB,F,SESSION ONLY,"F(7,21) = 3.196,\ p=0.018","F(0,3) = inf,\ p=nan","F(0,21) = -inf,\ p=nan",SESSION ONLY,"F(7,21) = 3.196,\ p=0.018",,,PASS,10.579902870718227,Perfectly normal
+73,NL NFB,F_l,SESSION ONLY,"F(7,21) = 3.648,\ p=0.01","F(0,3) = nan,\ p=nan","F(0,21) = -inf,\ p=nan",SESSION ONLY,"F(7,21) = 3.648,\ p=0.01",,,PASS,11.938756326429889,Highly normal
+74,NL NFB,F_h,NONE,"F(7,21) = 0.942,\ p=0.496","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.942,\ p=0.496",,,PASS,15.156667532888285,Perfectly normal
+75,NL NFB,grasps,SESSION ONLY,"F(7,21) = 2.398,\ p=0.057","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 2.398,\ p=0.057",,,PASS,1.0000012790720976,Perfectly normal
+76,NL NFB,crushes,NONE,"F(7,21) = 1.274,\ p=0.31","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.274,\ p=0.31",,,PASS,1.0,Highly normal
+77,NL NFB,drops,NONE,"F(7,21) = 0.748,\ p=0.635","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.748,\ p=0.635",,,PASS,1.0,False
+78,NL NFB,Mental Demand,NONE,"F(7,21) = 1.485,\ p=0.226","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.485,\ p=0.226",,,PASS,1.0000003038552159,Normal
+79,NL NFB,Physical Demand,SESSION ONLY,"F(7,21) = 2.82,\ p=0.031","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 2.82,\ p=0.031",,,PASS,1.0000002788186169,Normal
+80,NL NFB,Temporal Demand,NONE,"F(7,21) = 1.448,\ p=0.239","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.448,\ p=0.239",,,PASS,1.0000000040178252,Normal
+81,NL NFB,Performance,SESSION ONLY,"F(7,21) = 7.228,\ p=0.0","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 7.228,\ p=0.0",,,PASS,1.0000006049239683,Normal
+82,NL NFB,Effort,NONE,"F(7,21) = 1.139,\ p=0.377","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.139,\ p=0.377",,,PASS,1.0000004038030184,Highly normal
+83,NL NFB,Frustration Level,NONE,"F(7,21) = 0.782,\ p=0.609","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.782,\ p=0.609",,,PASS,1.000000000000093,Normal
+84,NL NFB,It is easy to understand.,NONE,"F(7,21) = 0.913,\ p=0.516","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.913,\ p=0.516",,,PASS,1.0,Perfectly normal
+85,NL NFB,It is distracting.,SESSION ONLY,"F(7,21) = 4.434,\ p=0.004","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 4.434,\ p=0.004",,,PASS,1.0,Highly normal
+86,NL NFB,It is user-friendly.,SESSION ONLY,"F(7,21) = 3.38,\ p=0.014","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 3.38,\ p=0.014",,,PASS,1.0,Normal
+87,NL NFB,Using it is effortless.,SESSION ONLY,"F(7,21) = 4.517,\ p=0.003","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 4.517,\ p=0.003",,,PASS,1.0,False
+88,NL NFB,Both occasional and Regular users would like it.,NONE,"F(7,21) = 1.18,\ p=0.355","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.18,\ p=0.355",,,PASS,1.0,Normal
+89,NL NFB,It is difficult to learn how to use.,NONE,"F(7,21) = 0.566,\ p=0.775","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 0.566,\ p=0.775",,,PASS,1.0000000800824769,Normal
+90,NL NFB,It works the way I want it to work.,NONE,"F(7,21) = 1.5,\ p=0.221","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.5,\ p=0.221",,,PASS,1.0,False
+91,NL NFB,It is pleasant to use.,NONE,"F(7,21) = 1.657,\ p=0.174","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",NONE,"F(7,21) = 1.657,\ p=0.174",,,PASS,1.0,Normal
+92,NL NFB,TLX totals,SESSION ONLY,"F(7,21) = 4.499,\ p=0.003","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 4.499,\ p=0.003",,,PASS,1.0051532604232765,Normal
+93,NL NFB,Q totals,SESSION ONLY,"F(7,21) = 3.085,\ p=0.021","F(0,3) = nan,\ p=nan","F(0,21) = nan,\ p=nan",SESSION ONLY,"F(7,21) = 3.085,\ p=0.021",,,PASS,1.0000311660149745,Highly normal
+94,ADL NFB,Cups,NONE,"F(2,6) = 1.405,\ p=0.316","F(0,3) = nan,\ p=nan","F(0,6) = inf,\ p=nan",NONE,,,,PASS,0.5646882496605075,Normal
+95,ADL NFB,Pegs,NONE,"F(2,6) = 0.23,\ p=0.801","F(0,3) = nan,\ p=nan","F(0,6) = -inf,\ p=nan",NONE,,,,PASS,0.5943209587158036,Normal
+96,ADL NFB,Pens,NONE,"F(2,6) = 0.362,\ p=0.711","F(0,3) = inf,\ p=nan","F(0,6) = -inf,\ p=nan",NONE,,,,PASS,0.662866402114433,Perfectly normal

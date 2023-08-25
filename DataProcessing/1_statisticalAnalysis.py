@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 
 
 data_dir = os.path.join( os.getcwd(), 'Output logs')
-filenames = ['combined_df.csv', 'cl_df.csv', 'nl_df.csv']#, 'adl_df.csv']
+filenames = ['combined_df.csv', 'cl_df.csv', 'nl_df.csv', 'adl_df.csv']
 # filenames = ['combined_df.csv']
 
 # Directory definitions
@@ -37,8 +37,8 @@ linestyles = ['solid', 'solid']
 
 debug = False
 save = True
-s8_9 = False
-s1_8 = True
+s8_9 = True
+s1_8 = False
 s1_9 = False
 
 conditions = ['fb','nfb','comb']
@@ -70,7 +70,7 @@ if __name__ == '__main__':
 	
 				
 			if file == 'adl_df.csv':
-				vars = data.columns[2:-2]
+				vars = data.columns[2:-1]
 				within = 'Session'
 			else:
 				vars = data.columns[3:-1]
@@ -157,38 +157,40 @@ if __name__ == '__main__':
 					p_interest = 'p-GG-corr'
 				if 'p-GG-corr' in aov2.columns:
 					p2_interest = 'p-GG-corr'
-
-
-				# If any results from the ANOVA have a p-value below significance report it in the dataframe
-				if (aov[aov['Source'] != 'Session'][p_interest] < 0.05).any():
-					_tmp_df['mm_sig'] = 'HIGH'
-				elif (aov[aov['Source'] != 'Session'][p_interest] < 0.1).any():
-					_tmp_df['mm_sig'] = 'LOW' 
-				elif (aov[aov.Source == 'Session'][p_interest] < 0.1).any():
-					_tmp_df['mm_sig'] = 'SESSION ONLY'
-				else: _tmp_df['mm_sig'] = 'NONE'
-	
-				if (aov2[aov2.Source != 'Session'][p2_interest] < 0.05).any():
-					_tmp_df['rm_sig'] = 'HIGH'
-				elif (aov2[aov2.Source != 'Session'][p2_interest] < 0.1).any():
-					_tmp_df['rm_sig'] = 'LOW'
-				elif (aov2[aov2.Source == 'Session'][p2_interest] < 0.1).any():
-					_tmp_df['rm_sig'] = 'SESSION ONLY'
-				else: _tmp_df['rm_sig'] = 'NONE'
-
+     
 				loc = {'Session':'mm_session', 'Feedback':'mm_feedback','Interaction':'mm_interaction'}
 				loc2 = {'Session':'rm_session', 'Loading':'rm_loading','Session * Loading':'rm_interaction'}
 
-				for val in aov['Source'].values:  # Report all high sig results and store them in _tmp_df
+				try:
+					# If any results from the ANOVA have a p-value below significance report it in the dataframe
+					if (aov[aov['Source'] != 'Session'][p_interest] < 0.05).any():
+						_tmp_df['mm_sig'] = 'HIGH'
+					elif (aov[aov['Source'] != 'Session'][p_interest] < 0.1).any():
+						_tmp_df['mm_sig'] = 'LOW' 
+					elif (aov[aov.Source == 'Session'][p_interest] < 0.1).any():
+						_tmp_df['mm_sig'] = 'SESSION ONLY'
+					else: _tmp_df['mm_sig'] = 'NONE'
+		
+					if (aov2[aov2.Source != 'Session'][p2_interest] < 0.05).any():
+						_tmp_df['rm_sig'] = 'HIGH'
+					elif (aov2[aov2.Source != 'Session'][p2_interest] < 0.1).any():
+						_tmp_df['rm_sig'] = 'LOW'
+					elif (aov2[aov2.Source == 'Session'][p2_interest] < 0.1).any():
+						_tmp_df['rm_sig'] = 'SESSION ONLY'
+					else: _tmp_df['rm_sig'] = 'NONE'
 
-					_tmp_df[loc[val]] = 'F({},{}) = {},\ p={}'.format(aov[aov['Source']==val]['DF1'].round(3).values[0],aov[aov['Source']==val]['DF2'].round(3).values[0],aov[aov['Source']==val]['F'].round(3).values[0],aov[aov['Source']==val]['p-unc'].round(3).values[0])
 
-				if file !='adl_df.csv':
-					for val in aov2['Source'].values:  # Report all high sig results and store them in _tmp_df
-						if val != 'Error':
-							try: _tmp_df[loc2[val]] = 'F({}) = {},\ p={}'.format(aov2[aov2['Source']==val]['DF'].round(3).values[0],aov2[aov2['Source']==val]['F'].round(3).values[0],aov2[aov2['Source']==val][p2_interest].round(3).values[0])
-							except:	_tmp_df[loc2[val]] = 'F({},{}) = {},\ p={}'.format(aov2[aov2['Source']==val]['ddof1'].round(3).values[0],aov2[aov2['Source']==val]['ddof2'].round(3).values[0],aov2[aov2['Source']==val]['F'].round(3).values[0],aov2[aov2['Source']==val][p2_interest].round(3).values[0])
 
+					for val in aov['Source'].values:  # Report all high sig results and store them in _tmp_df
+
+						_tmp_df[loc[val]] = 'F({},{}) = {},\ p={}'.format(aov[aov['Source']==val]['DF1'].round(3).values[0],aov[aov['Source']==val]['DF2'].round(3).values[0],aov[aov['Source']==val]['F'].round(3).values[0],aov[aov['Source']==val]['p-unc'].round(3).values[0])
+
+					if file !='adl_df.csv':
+						for val in aov2['Source'].values:  # Report all high sig results and store them in _tmp_df
+							if val != 'Error':
+								try: _tmp_df[loc2[val]] = 'F({}) = {},\ p={}'.format(aov2[aov2['Source']==val]['DF'].round(3).values[0],aov2[aov2['Source']==val]['F'].round(3).values[0],aov2[aov2['Source']==val][p2_interest].round(3).values[0])
+								except:	_tmp_df[loc2[val]] = 'F({},{}) = {},\ p={}'.format(aov2[aov2['Source']==val]['ddof1'].round(3).values[0],aov2[aov2['Source']==val]['ddof2'].round(3).values[0],aov2[aov2['Source']==val]['F'].round(3).values[0],aov2[aov2['Source']==val][p2_interest].round(3).values[0])
+				except: print(file, var, 'Done a bad')
 
 				# Adds _tmp_df for the processed variable to the output log
 				output_log = pd.concat([output_log, _tmp_df])

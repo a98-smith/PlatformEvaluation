@@ -1,94 +1,98 @@
-load,var,rm_sig,rm_session,rm_loading,rm_interaction,spher,spher_p,norm_res
-COMB FB,P,SESSION ONLY,"F(7,35) = 8.396,\ p=0.004","F(1,5) = 0.144,\ p=0.72","F(7,35) = 0.738,\ p=0.518",PASS,1,Perfectly normal
-COMB FB,P_l,HIGH,"F(7,35) = 5.325,\ p=0.017","F(1,5) = 9.322,\ p=0.028","F(7,35) = 1.06,\ p=0.38",PASS,1,Perfectly normal
-COMB FB,P_h,SESSION ONLY,"F(7,35) = 4.789,\ p=0.024","F(1,5) = 1.918,\ p=0.225","F(7,35) = 0.92,\ p=0.458",PASS,1,Perfectly normal
-COMB FB,G,SESSION ONLY,"F(7,35) = 6.006,\ p=0.008","F(1,5) = 0.117,\ p=0.746","F(7,35) = 0.42,\ p=0.728",PASS,1,Normal
-COMB FB,G_l,HIGH,"F(7,35) = 3.651,\ p=0.041","F(1,5) = 13.768,\ p=0.014","F(7,35) = 1.777,\ p=0.213",PASS,1,Normal
-COMB FB,G_h,SESSION ONLY,"F(7,35) = 2.979,\ p=0.092","F(1,5) = 1.11,\ p=0.34","F(7,35) = 0.722,\ p=0.533",PASS,1,FALSE
-COMB FB,T,SESSION ONLY,"F(7,35) = 6.39,\ p=0.011","F(1,5) = 0.672,\ p=0.45","F(7,35) = 1.359,\ p=0.299",PASS,1,Normal
-COMB FB,T_l,HIGH,"F(7,35) = 3.846,\ p=0.042","F(1,5) = 9.498,\ p=0.027","F(7,35) = 0.542,\ p=0.604",PASS,1,FALSE
-COMB FB,T_h,SESSION ONLY,"F(7,35) = 4.32,\ p=0.024","F(1,5) = 0.058,\ p=0.82","F(7,35) = 1.62,\ p=0.23",PASS,1,Normal
-COMB FB,F,SESSION ONLY,"F(7,35) = 3.374,\ p=0.039","F(1,5) = 0.294,\ p=0.611","F(7,35) = 0.974,\ p=0.431",FAIL,0.004708358,Perfectly normal
-COMB FB,F_l,SESSION ONLY,"F(7,35) = 2.675,\ p=0.095","F(1,5) = 0.0,\ p=0.983","F(7,35) = 1.115,\ p=0.373",FAIL,0.002156999,Highly normal
-COMB FB,F_h,SESSION ONLY,"F(7,35) = 3.399,\ p=0.064","F(1,5) = 0.146,\ p=0.718","F(7,35) = 1.258,\ p=0.325",FAIL,0.000315029,Perfectly normal
-COMB FB,grasps,SESSION ONLY,"F(7,35) = 4.456,\ p=0.044","F(1,5) = 1.069,\ p=0.348","F(7,35) = 0.427,\ p=0.667",PASS,1.205416139,Highly normal
-COMB FB,crushes,LOW,"F(7,35) = 2.467,\ p=0.143","F(1,5) = 0.598,\ p=0.474","F(7,35) = 3.358,\ p=0.068",PASS,1.048388501,FALSE
-COMB FB,drops,NONE,"F(7,35) = 1.546,\ p=0.264","F(1,5) = 0.025,\ p=0.88","F(7,35) = 0.346,\ p=0.696",PASS,1.027575681,FALSE
-COMB FB,Mental Demand,HIGH,"F(7,35) = 14.508,\ p=0.001","F(1,5) = 156.553,\ p=0.0","F(7,35) = 1.535,\ p=0.253",PASS,1.127595076,Perfectly normal
-COMB FB,Physical Demand,HIGH,"F(7,35) = 11.032,\ p=0.004","F(1,5) = 68.966,\ p=0.0","F(7,35) = 1.014,\ p=0.409",PASS,1.010113952,Perfectly normal
-COMB FB,Temporal Demand,HIGH,"F(7,35) = 5.753,\ p=0.007","F(1,5) = 24.851,\ p=0.004","F(7,35) = 1.478,\ p=0.261",PASS,1.004047654,Highly normal
-COMB FB,Performance,HIGH,"F(7,35) = 7.93,\ p=0.004","F(1,5) = 32.9,\ p=0.002","F(7,35) = 1.345,\ p=0.303",PASS,1.04524379,Perfectly normal
-COMB FB,Effort,HIGH,"F(7,35) = 14.426,\ p=0.0","F(1,5) = 52.863,\ p=0.001","F(7,35) = 1.233,\ p=0.333",PASS,1.000656651,Perfectly normal
-COMB FB,Frustration Level,HIGH,"F(7,35) = 6.516,\ p=0.008","F(1,5) = 36.243,\ p=0.002","F(7,35) = 0.334,\ p=0.824",PASS,1.00060079,Normal
-COMB FB,It is easy to understand.,NONE,"F(7,35) = 1.137,\ p=0.364","F(1,5) = 3.071,\ p=0.14","F(7,35) = 0.646,\ p=0.588",PASS,1,FALSE
-COMB FB,It is distracting.,HIGH,"F(7,35) = 3.026,\ p=0.08","F(1,5) = 9.0,\ p=0.03","F(7,35) = 0.455,\ p=0.673",PASS,1.002976554,FALSE
-COMB FB,It is user-friendly.,SESSION ONLY,"F(7,35) = 3.608,\ p=0.046","F(1,5) = 2.249,\ p=0.194","F(7,35) = 1.177,\ p=0.351",PASS,1.000171521,FALSE
-COMB FB,Using it is effortless.,SESSION ONLY,"F(7,35) = 9.702,\ p=0.003","F(1,5) = 3.627,\ p=0.115","F(7,35) = 2.716,\ p=0.111",PASS,1.000000001,Normal
-COMB FB,Both occasional and Regular users would like it.,LOW,"F(7,35) = 9.861,\ p=0.01","F(1,5) = 5.424,\ p=0.067","F(7,35) = 1.388,\ p=0.286",PASS,1.00000003,FALSE
-COMB FB,It is difficult to learn how to use.,LOW,"F(7,35) = 4.323,\ p=0.026","F(1,5) = 5.611,\ p=0.064","F(7,35) = 0.558,\ p=0.593",PASS,1.022260735,Normal
-COMB FB,It works the way I want it to work.,HIGH,"F(7,35) = 3.645,\ p=0.068","F(1,5) = 13.0,\ p=0.015","F(7,35) = 0.563,\ p=0.656",PASS,1.000000005,FALSE
-COMB FB,It is pleasant to use.,HIGH,"F(7,35) = 8.229,\ p=0.008","F(1,5) = 26.304,\ p=0.004","F(7,35) = 0.783,\ p=0.531",PASS,1,FALSE
-COMB FB,TLX totals,HIGH,"F(7,35) = 13.782,\ p=0.0","F(1,5) = 89.952,\ p=0.0","F(7,35) = 1.679,\ p=0.222",PASS,1.132316683,Perfectly normal
-COMB FB,Q totals,HIGH,"F(7,35) = 13.183,\ p=0.003","F(1,5) = 13.928,\ p=0.014","F(7,35) = 1.091,\ p=0.373",PASS,1.182432753,Perfectly normal
-CL FB,P,SESSION ONLY,"F(7,35) = 5.452,\ p=0.0",,,PASS,1,Perfectly normal
-CL FB,P_l,SESSION ONLY,"F(7,35) = 3.19,\ p=0.01",,,PASS,1,Perfectly normal
-CL FB,P_h,SESSION ONLY,"F(7,35) = 4.154,\ p=0.002",,,PASS,1,Perfectly normal
-CL FB,G,SESSION ONLY,"F(7,35) = 3.27,\ p=0.009",,,PASS,1,Normal
-CL FB,G_l,SESSION ONLY,"F(7,35) = 1.912,\ p=0.097",,,PASS,1,Perfectly normal
-CL FB,G_h,SESSION ONLY,"F(7,35) = 2.025,\ p=0.08",,,PASS,1,FALSE
-CL FB,T,SESSION ONLY,"F(7,35) = 4.292,\ p=0.002",,,PASS,1,Normal
-CL FB,T_l,SESSION ONLY,"F(7,35) = 2.122,\ p=0.067",,,PASS,1,Highly normal
-CL FB,T_h,SESSION ONLY,"F(7,35) = 3.401,\ p=0.007",,,PASS,1,Highly normal
-CL FB,F,SESSION ONLY,"F(7,35) = 3.441,\ p=0.049",,,FAIL,0.00517257,Perfectly normal
-CL FB,F_l,NONE,"F(7,35) = 1.703,\ p=0.223",,,FAIL,0.00204918,Perfectly normal
-CL FB,F_h,SESSION ONLY,"F(7,35) = 4.376,\ p=0.019",,,FAIL,0.005776396,Highly normal
-CL FB,grasps,SESSION ONLY,"F(7,35) = 2.611,\ p=0.028",,,PASS,1.204176975,Perfectly normal
-CL FB,crushes,SESSION ONLY,"F(7,35) = 2.121,\ p=0.067",,,PASS,1.199916247,Normal
-CL FB,drops,NONE,"F(7,35) = 1.013,\ p=0.439",,,PASS,1.100953249,FALSE
-CL FB,Mental Demand,SESSION ONLY,"F(7,35) = 15.777,\ p=0.0",,,PASS,1.021037775,Perfectly normal
-CL FB,Physical Demand,SESSION ONLY,"F(7,35) = 7.875,\ p=0.0",,,PASS,1.004719664,Perfectly normal
-CL FB,Temporal Demand,SESSION ONLY,"F(7,35) = 5.26,\ p=0.0",,,PASS,1.09262567,Perfectly normal
-CL FB,Performance,SESSION ONLY,"F(7,35) = 10.472,\ p=0.0",,,PASS,1.061692664,Perfectly normal
-CL FB,Effort,SESSION ONLY,"F(7,35) = 15.772,\ p=0.0",,,PASS,1.004647769,Perfectly normal
-CL FB,Frustration Level,SESSION ONLY,"F(7,35) = 5.016,\ p=0.001",,,PASS,1.058478183,Highly normal
-CL FB,It is easy to understand.,NONE,"F(7,35) = 0.676,\ p=0.691",,,PASS,1,FALSE
-CL FB,It is distracting.,SESSION ONLY,"F(7,35) = 2.387,\ p=0.042",,,PASS,1.000000006,Highly normal
-CL FB,It is user-friendly.,SESSION ONLY,"F(7,35) = 3.223,\ p=0.01",,,PASS,1,FALSE
-CL FB,Using it is effortless.,SESSION ONLY,"F(7,35) = 5.233,\ p=0.0",,,PASS,1.000237984,Normal
-CL FB,Both occasional and Regular users would like it.,SESSION ONLY,"F(7,35) = 6.897,\ p=0.0",,,PASS,1.000583804,FALSE
-CL FB,It is difficult to learn how to use.,SESSION ONLY,"F(7,35) = 2.885,\ p=0.017",,,PASS,1.000000003,Perfectly normal
-CL FB,It works the way I want it to work.,SESSION ONLY,"F(7,35) = 3.405,\ p=0.007",,,PASS,1.003564441,Normal
-CL FB,It is pleasant to use.,SESSION ONLY,"F(7,35) = 3.249,\ p=0.009",,,PASS,1.000007192,FALSE
-CL FB,TLX totals,SESSION ONLY,"F(7,35) = 14.713,\ p=0.0",,,PASS,1.181060704,Perfectly normal
-CL FB,Q totals,SESSION ONLY,"F(7,35) = 7.972,\ p=0.0",,,PASS,1.205002696,Perfectly normal
-NL FB,P,SESSION ONLY,"F(7,35) = 7.438,\ p=0.0",,,PASS,1,Perfectly normal
-NL FB,P_l,SESSION ONLY,"F(7,35) = 5.492,\ p=0.0",,,PASS,1,Perfectly normal
-NL FB,P_h,SESSION ONLY,"F(7,35) = 2.709,\ p=0.024",,,PASS,1,Highly normal
-NL FB,G,SESSION ONLY,"F(7,35) = 7.292,\ p=0.0",,,PASS,1,Perfectly normal
-NL FB,G_l,SESSION ONLY,"F(7,35) = 5.222,\ p=0.0",,,PASS,1,Normal
-NL FB,G_h,NONE,"F(7,35) = 1.558,\ p=0.181",,,PASS,1,Normal
-NL FB,T,SESSION ONLY,"F(7,35) = 5.518,\ p=0.0",,,PASS,1,Highly normal
-NL FB,T_l,SESSION ONLY,"F(7,35) = 4.393,\ p=0.001",,,PASS,1,Normal
-NL FB,T_h,SESSION ONLY,"F(7,35) = 3.118,\ p=0.012",,,PASS,1,Perfectly normal
-NL FB,F,NONE,"F(7,35) = 2.002,\ p=0.164",,,FAIL,0.004663104,Perfectly normal
-NL FB,F_l,NONE,"F(7,35) = 2.459,\ p=0.105",,,FAIL,0.006842993,Perfectly normal
-NL FB,F_h,NONE,"F(7,35) = 1.624,\ p=0.238",,,FAIL,0.000764132,Perfectly normal
-NL FB,grasps,SESSION ONLY,"F(7,35) = 6.094,\ p=0.0",,,PASS,1.087380333,Highly normal
-NL FB,crushes,SESSION ONLY,"F(7,35) = 2.963,\ p=0.015",,,PASS,1.17498923,FALSE
-NL FB,drops,SESSION ONLY,"F(7,35) = 2.096,\ p=0.07",,,PASS,1.000128835,FALSE
-NL FB,Mental Demand,SESSION ONLY,"F(7,35) = 5.824,\ p=0.0",,,PASS,1.013636856,Highly normal
-NL FB,Physical Demand,SESSION ONLY,"F(7,35) = 8.238,\ p=0.0",,,PASS,1.179267141,Perfectly normal
-NL FB,Temporal Demand,SESSION ONLY,"F(7,35) = 4.331,\ p=0.002",,,PASS,1.001015338,Highly normal
-NL FB,Performance,SESSION ONLY,"F(7,35) = 2.618,\ p=0.028",,,PASS,1.026816,Perfectly normal
-NL FB,Effort,SESSION ONLY,"F(7,35) = 7.245,\ p=0.0",,,PASS,1.010584354,Perfectly normal
-NL FB,Frustration Level,SESSION ONLY,"F(7,35) = 5.751,\ p=0.0",,,PASS,1.042985747,Perfectly normal
-NL FB,It is easy to understand.,NONE,"F(7,35) = 1.321,\ p=0.27",,,PASS,1,FALSE
-NL FB,It is distracting.,NONE,"F(7,35) = 1.572,\ p=0.176",,,PASS,1.000025111,Highly normal
-NL FB,It is user-friendly.,NONE,"F(7,35) = 1.838,\ p=0.111",,,PASS,1.001416214,FALSE
-NL FB,Using it is effortless.,SESSION ONLY,"F(7,35) = 12.609,\ p=0.0",,,PASS,1,Normal
-NL FB,Both occasional and Regular users would like it.,SESSION ONLY,"F(7,35) = 7.297,\ p=0.0",,,PASS,1.000057421,FALSE
-NL FB,It is difficult to learn how to use.,NONE,"F(7,35) = 1.292,\ p=0.283",,,PASS,1.000000002,Highly normal
-NL FB,It works the way I want it to work.,SESSION ONLY,"F(7,35) = 2.531,\ p=0.032",,,PASS,1.013945474,Perfectly normal
-NL FB,It is pleasant to use.,SESSION ONLY,"F(7,35) = 11.936,\ p=0.0",,,PASS,1,Normal
-NL FB,TLX totals,SESSION ONLY,"F(7,35) = 8.122,\ p=0.0",,,PASS,0.964175465,Perfectly normal
-NL FB,Q totals,SESSION ONLY,"F(7,35) = 13.225,\ p=0.0",,,PASS,1.061232484,Perfectly normal
+,load,var,mm_sig,mm_session,mm_feedback,mm_interaction,rm_sig,rm_session,rm_loading,rm_interaction,spher,spher_p,norm_res
+0,,,,,,,,,,,,,
+1,COMB FB,P,SESSION ONLY,"F(7,35) = 8.396,\ p=0.0","F(0,5) = inf,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 8.396,\ p=0.004","F(1,5) = 0.144,\ p=0.72","F(7,35) = 0.738,\ p=0.518",PASS,1.0,Perfectly normal
+2,COMB FB,P_l,SESSION ONLY,"F(7,35) = 5.325,\ p=0.0","F(0,5) = inf,\ p=nan","F(0,35) = -inf,\ p=nan",HIGH,"F(7,35) = 5.325,\ p=0.017","F(1,5) = 9.322,\ p=0.028","F(7,35) = 1.06,\ p=0.38",PASS,1.0,Perfectly normal
+3,COMB FB,P_h,SESSION ONLY,"F(7,35) = 4.789,\ p=0.001","F(0,5) = inf,\ p=nan","F(0,35) = inf,\ p=nan",SESSION ONLY,"F(7,35) = 4.789,\ p=0.024","F(1,5) = 1.918,\ p=0.225","F(7,35) = 0.92,\ p=0.458",PASS,1.0,Perfectly normal
+4,COMB FB,G,SESSION ONLY,"F(7,35) = 6.006,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 6.006,\ p=0.008","F(1,5) = 0.117,\ p=0.746","F(7,35) = 0.42,\ p=0.728",PASS,1.0,Normal
+5,COMB FB,G_l,SESSION ONLY,"F(7,35) = 3.651,\ p=0.005","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",HIGH,"F(7,35) = 3.651,\ p=0.041","F(1,5) = 13.768,\ p=0.014","F(7,35) = 1.777,\ p=0.213",PASS,1.0,Normal
+6,COMB FB,G_h,SESSION ONLY,"F(7,35) = 2.979,\ p=0.015","F(0,5) = inf,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 2.979,\ p=0.092","F(1,5) = 1.11,\ p=0.34","F(7,35) = 0.722,\ p=0.533",PASS,1.0,False
+7,COMB FB,T,SESSION ONLY,"F(7,35) = 6.39,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 6.39,\ p=0.011","F(1,5) = 0.672,\ p=0.45","F(7,35) = 1.359,\ p=0.299",PASS,1.0,Normal
+8,COMB FB,T_l,SESSION ONLY,"F(7,35) = 3.846,\ p=0.003","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",HIGH,"F(7,35) = 3.846,\ p=0.042","F(1,5) = 9.498,\ p=0.027","F(7,35) = 0.542,\ p=0.604",PASS,1.0,False
+9,COMB FB,T_h,SESSION ONLY,"F(7,35) = 4.32,\ p=0.002","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",SESSION ONLY,"F(7,35) = 4.32,\ p=0.024","F(1,5) = 0.058,\ p=0.82","F(7,35) = 1.62,\ p=0.23",PASS,1.0,Normal
+10,COMB FB,F,SESSION ONLY,"F(7,35) = 3.374,\ p=0.007","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 3.374,\ p=0.039","F(1,5) = 0.294,\ p=0.611","F(7,35) = 0.974,\ p=0.431",FAIL,0.004708357688405665,Perfectly normal
+11,COMB FB,F_l,SESSION ONLY,"F(7,35) = 2.675,\ p=0.025","F(0,5) = inf,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 2.675,\ p=0.095","F(1,5) = 0.0,\ p=0.983","F(7,35) = 1.115,\ p=0.373",FAIL,0.002156998581570144,Highly normal
+12,COMB FB,F_h,SESSION ONLY,"F(7,35) = 3.399,\ p=0.007","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 3.399,\ p=0.064","F(1,5) = 0.146,\ p=0.718","F(7,35) = 1.258,\ p=0.325",FAIL,0.00031502884648922905,Perfectly normal
+13,COMB FB,grasps,SESSION ONLY,"F(7,35) = 4.456,\ p=0.001","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 4.456,\ p=0.044","F(1,5) = 1.069,\ p=0.348","F(7,35) = 0.427,\ p=0.667",PASS,1.2054161385485227,Highly normal
+14,COMB FB,crushes,SESSION ONLY,"F(7,35) = 2.467,\ p=0.036","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",LOW,"F(7,35) = 2.467,\ p=0.143","F(1,5) = 0.598,\ p=0.474","F(7,35) = 3.358,\ p=0.068",PASS,1.048388501301992,False
+15,COMB FB,drops,NONE,"F(7,35) = 1.546,\ p=0.184","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",NONE,"F(7,35) = 1.546,\ p=0.264","F(1,5) = 0.025,\ p=0.88","F(7,35) = 0.346,\ p=0.696",PASS,1.0275756809657781,False
+16,COMB FB,Mental Demand,SESSION ONLY,"F(7,35) = 14.508,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",HIGH,"F(7,35) = 14.508,\ p=0.001","F(1,5) = 156.553,\ p=0.0","F(7,35) = 1.535,\ p=0.253",PASS,1.1275950760409792,Perfectly normal
+17,COMB FB,Physical Demand,SESSION ONLY,"F(7,35) = 11.032,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",HIGH,"F(7,35) = 11.032,\ p=0.004","F(1,5) = 68.966,\ p=0.0","F(7,35) = 1.014,\ p=0.409",PASS,1.0101139519625586,Perfectly normal
+18,COMB FB,Temporal Demand,SESSION ONLY,"F(7,35) = 5.753,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",HIGH,"F(7,35) = 5.753,\ p=0.007","F(1,5) = 24.851,\ p=0.004","F(7,35) = 1.478,\ p=0.261",PASS,1.0040476543987094,Highly normal
+19,COMB FB,Performance,SESSION ONLY,"F(7,35) = 7.93,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",HIGH,"F(7,35) = 7.93,\ p=0.004","F(1,5) = 32.9,\ p=0.002","F(7,35) = 1.345,\ p=0.303",PASS,1.0452437900997957,Perfectly normal
+20,COMB FB,Effort,SESSION ONLY,"F(7,35) = 14.426,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",HIGH,"F(7,35) = 14.426,\ p=0.0","F(1,5) = 52.863,\ p=0.001","F(7,35) = 1.233,\ p=0.333",PASS,1.0006566514240005,Perfectly normal
+21,COMB FB,Frustration Level,SESSION ONLY,"F(7,35) = 6.516,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",HIGH,"F(7,35) = 6.516,\ p=0.008","F(1,5) = 36.243,\ p=0.002","F(7,35) = 0.334,\ p=0.824",PASS,1.0006007903281517,Normal
+22,COMB FB,It is easy to understand.,NONE,"F(7,35) = 1.137,\ p=0.363","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",NONE,"F(7,35) = 1.137,\ p=0.364","F(1,5) = 3.071,\ p=0.14","F(7,35) = 0.646,\ p=0.588",PASS,1.0,False
+23,COMB FB,It is distracting.,SESSION ONLY,"F(7,35) = 3.026,\ p=0.014","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",HIGH,"F(7,35) = 3.026,\ p=0.08","F(1,5) = 9.0,\ p=0.03","F(7,35) = 0.455,\ p=0.673",PASS,1.002976554261613,False
+24,COMB FB,It is user-friendly.,SESSION ONLY,"F(7,35) = 3.608,\ p=0.005","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 3.608,\ p=0.046","F(1,5) = 2.249,\ p=0.194","F(7,35) = 1.177,\ p=0.351",PASS,1.0001715212992373,False
+25,COMB FB,Using it is effortless.,SESSION ONLY,"F(7,35) = 9.702,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 9.702,\ p=0.003","F(1,5) = 3.627,\ p=0.115","F(7,35) = 2.716,\ p=0.111",PASS,1.0000000011433423,Normal
+26,COMB FB,Both occasional and Regular users would like it.,SESSION ONLY,"F(7,35) = 9.861,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",LOW,"F(7,35) = 9.861,\ p=0.01","F(1,5) = 5.424,\ p=0.067","F(7,35) = 1.388,\ p=0.286",PASS,1.000000030003258,False
+27,COMB FB,It is difficult to learn how to use.,SESSION ONLY,"F(7,35) = 4.323,\ p=0.002","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",LOW,"F(7,35) = 4.323,\ p=0.026","F(1,5) = 5.611,\ p=0.064","F(7,35) = 0.558,\ p=0.593",PASS,1.022260735087351,Normal
+28,COMB FB,It works the way I want it to work.,SESSION ONLY,"F(7,35) = 3.645,\ p=0.005","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",HIGH,"F(7,35) = 3.645,\ p=0.068","F(1,5) = 13.0,\ p=0.015","F(7,35) = 0.563,\ p=0.656",PASS,1.000000004852786,False
+29,COMB FB,It is pleasant to use.,SESSION ONLY,"F(7,35) = 8.229,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",HIGH,"F(7,35) = 8.229,\ p=0.008","F(1,5) = 26.304,\ p=0.004","F(7,35) = 0.783,\ p=0.531",PASS,1.0,False
+30,COMB FB,TLX totals,SESSION ONLY,"F(7,35) = 13.782,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",HIGH,"F(7,35) = 13.782,\ p=0.0","F(1,5) = 89.952,\ p=0.0","F(7,35) = 1.679,\ p=0.222",PASS,1.132316682701751,Perfectly normal
+31,COMB FB,Q totals,SESSION ONLY,"F(7,35) = 13.183,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",HIGH,"F(7,35) = 13.183,\ p=0.003","F(1,5) = 13.928,\ p=0.014","F(7,35) = 1.091,\ p=0.373",PASS,1.1824327529377885,Perfectly normal
+32,CL FB,P,SESSION ONLY,"F(7,35) = 5.452,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 5.452,\ p=0.0",,,PASS,1.0,Perfectly normal
+33,CL FB,P_l,SESSION ONLY,"F(7,35) = 3.19,\ p=0.01","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 3.19,\ p=0.01",,,PASS,1.0,Perfectly normal
+34,CL FB,P_h,SESSION ONLY,"F(7,35) = 4.154,\ p=0.002","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",SESSION ONLY,"F(7,35) = 4.154,\ p=0.002",,,PASS,1.0,Perfectly normal
+35,CL FB,G,SESSION ONLY,"F(7,35) = 3.27,\ p=0.009","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 3.27,\ p=0.009",,,PASS,1.0,Normal
+36,CL FB,G_l,SESSION ONLY,"F(7,35) = 1.912,\ p=0.097","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 1.912,\ p=0.097",,,PASS,1.0,Perfectly normal
+37,CL FB,G_h,SESSION ONLY,"F(7,35) = 2.025,\ p=0.08","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 2.025,\ p=0.08",,,PASS,1.0,False
+38,CL FB,T,SESSION ONLY,"F(7,35) = 4.292,\ p=0.002","F(0,5) = inf,\ p=nan","F(0,35) = inf,\ p=nan",SESSION ONLY,"F(7,35) = 4.292,\ p=0.002",,,PASS,1.0,Normal
+39,CL FB,T_l,SESSION ONLY,"F(7,35) = 2.122,\ p=0.067","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 2.122,\ p=0.067",,,PASS,1.0,Highly normal
+40,CL FB,T_h,SESSION ONLY,"F(7,35) = 3.401,\ p=0.007","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 3.401,\ p=0.007",,,PASS,1.0,Highly normal
+41,CL FB,F,SESSION ONLY,"F(7,35) = 3.441,\ p=0.007","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 3.441,\ p=0.049",,,FAIL,0.0051725702085463465,Perfectly normal
+42,CL FB,F_l,NONE,"F(7,35) = 1.703,\ p=0.14","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",NONE,"F(7,35) = 1.703,\ p=0.223",,,FAIL,0.002049180112745505,Perfectly normal
+43,CL FB,F_h,SESSION ONLY,"F(7,35) = 4.376,\ p=0.001","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 4.376,\ p=0.019",,,FAIL,0.005776396492397551,Highly normal
+44,CL FB,grasps,SESSION ONLY,"F(7,35) = 2.611,\ p=0.028","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 2.611,\ p=0.028",,,PASS,1.2041769745640047,Perfectly normal
+45,CL FB,crushes,SESSION ONLY,"F(7,35) = 2.121,\ p=0.067","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 2.121,\ p=0.067",,,PASS,1.1999162472990985,Normal
+46,CL FB,drops,NONE,"F(7,35) = 1.013,\ p=0.439","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",NONE,"F(7,35) = 1.013,\ p=0.439",,,PASS,1.1009532490331422,False
+47,CL FB,Mental Demand,SESSION ONLY,"F(7,35) = 15.777,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 15.777,\ p=0.0",,,PASS,1.0210377746639663,Perfectly normal
+48,CL FB,Physical Demand,SESSION ONLY,"F(7,35) = 7.875,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 7.875,\ p=0.0",,,PASS,1.0047196640643654,Perfectly normal
+49,CL FB,Temporal Demand,SESSION ONLY,"F(7,35) = 5.26,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 5.26,\ p=0.0",,,PASS,1.092625670316498,Perfectly normal
+50,CL FB,Performance,SESSION ONLY,"F(7,35) = 10.472,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 10.472,\ p=0.0",,,PASS,1.0616926643442102,Perfectly normal
+51,CL FB,Effort,SESSION ONLY,"F(7,35) = 15.772,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 15.772,\ p=0.0",,,PASS,1.0046477690441056,Perfectly normal
+52,CL FB,Frustration Level,SESSION ONLY,"F(7,35) = 5.016,\ p=0.001","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 5.016,\ p=0.001",,,PASS,1.0584781830298644,Highly normal
+53,CL FB,It is easy to understand.,NONE,"F(7,35) = 0.676,\ p=0.691","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",NONE,"F(7,35) = 0.676,\ p=0.691",,,PASS,1.0,False
+54,CL FB,It is distracting.,SESSION ONLY,"F(7,35) = 2.387,\ p=0.042","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",SESSION ONLY,"F(7,35) = 2.387,\ p=0.042",,,PASS,1.0000000055721248,Highly normal
+55,CL FB,It is user-friendly.,SESSION ONLY,"F(7,35) = 3.223,\ p=0.01","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",SESSION ONLY,"F(7,35) = 3.223,\ p=0.01",,,PASS,1.0,False
+56,CL FB,Using it is effortless.,SESSION ONLY,"F(7,35) = 5.233,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 5.233,\ p=0.0",,,PASS,1.000237984288891,Normal
+57,CL FB,Both occasional and Regular users would like it.,SESSION ONLY,"F(7,35) = 6.897,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 6.897,\ p=0.0",,,PASS,1.000583804171739,False
+58,CL FB,It is difficult to learn how to use.,SESSION ONLY,"F(7,35) = 2.885,\ p=0.017","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 2.885,\ p=0.017",,,PASS,1.0000000028979248,Perfectly normal
+59,CL FB,It works the way I want it to work.,SESSION ONLY,"F(7,35) = 3.405,\ p=0.007","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 3.405,\ p=0.007",,,PASS,1.0035644409969762,Normal
+60,CL FB,It is pleasant to use.,SESSION ONLY,"F(7,35) = 3.249,\ p=0.009","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 3.249,\ p=0.009",,,PASS,1.000007192281631,False
+61,CL FB,TLX totals,SESSION ONLY,"F(7,35) = 14.713,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 14.713,\ p=0.0",,,PASS,1.1810607036922407,Perfectly normal
+62,CL FB,Q totals,SESSION ONLY,"F(7,35) = 7.972,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",SESSION ONLY,"F(7,35) = 7.972,\ p=0.0",,,PASS,1.2050026956377105,Perfectly normal
+63,NL FB,P,SESSION ONLY,"F(7,35) = 7.438,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 7.438,\ p=0.0",,,PASS,1.0,Perfectly normal
+64,NL FB,P_l,SESSION ONLY,"F(7,35) = 5.492,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 5.492,\ p=0.0",,,PASS,1.0,Perfectly normal
+65,NL FB,P_h,SESSION ONLY,"F(7,35) = 2.709,\ p=0.024","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 2.709,\ p=0.024",,,PASS,1.0,Highly normal
+66,NL FB,G,SESSION ONLY,"F(7,35) = 7.292,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 7.292,\ p=0.0",,,PASS,1.0,Perfectly normal
+67,NL FB,G_l,SESSION ONLY,"F(7,35) = 5.222,\ p=0.0","F(0,5) = inf,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 5.222,\ p=0.0",,,PASS,1.0,Normal
+68,NL FB,G_h,NONE,"F(7,35) = 1.558,\ p=0.181","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",NONE,"F(7,35) = 1.558,\ p=0.181",,,PASS,1.0,Normal
+69,NL FB,T,SESSION ONLY,"F(7,35) = 5.518,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",SESSION ONLY,"F(7,35) = 5.518,\ p=0.0",,,PASS,1.0,Highly normal
+70,NL FB,T_l,SESSION ONLY,"F(7,35) = 4.393,\ p=0.001","F(0,5) = inf,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 4.393,\ p=0.001",,,PASS,1.0,Normal
+71,NL FB,T_h,SESSION ONLY,"F(7,35) = 3.118,\ p=0.012","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 3.118,\ p=0.012",,,PASS,1.0,Perfectly normal
+72,NL FB,F,NONE,"F(7,35) = 2.002,\ p=0.083","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",NONE,"F(7,35) = 2.002,\ p=0.164",,,FAIL,0.004663104492763977,Perfectly normal
+73,NL FB,F_l,NONE,"F(7,35) = 2.459,\ p=0.037","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",NONE,"F(7,35) = 2.459,\ p=0.105",,,FAIL,0.0068429930066249275,Perfectly normal
+74,NL FB,F_h,NONE,"F(7,35) = 1.624,\ p=0.161","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",NONE,"F(7,35) = 1.624,\ p=0.238",,,FAIL,0.0007641316709934148,Perfectly normal
+75,NL FB,grasps,SESSION ONLY,"F(7,35) = 6.094,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 6.094,\ p=0.0",,,PASS,1.0873803334590013,Highly normal
+76,NL FB,crushes,SESSION ONLY,"F(7,35) = 2.963,\ p=0.015","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 2.963,\ p=0.015",,,PASS,1.1749892304303575,False
+77,NL FB,drops,SESSION ONLY,"F(7,35) = 2.096,\ p=0.07","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 2.096,\ p=0.07",,,PASS,1.0001288353027888,False
+78,NL FB,Mental Demand,SESSION ONLY,"F(7,35) = 5.824,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 5.824,\ p=0.0",,,PASS,1.0136368558625497,Highly normal
+79,NL FB,Physical Demand,SESSION ONLY,"F(7,35) = 8.238,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 8.238,\ p=0.0",,,PASS,1.1792671406549942,Perfectly normal
+80,NL FB,Temporal Demand,SESSION ONLY,"F(7,35) = 4.331,\ p=0.002","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 4.331,\ p=0.002",,,PASS,1.0010153380278883,Highly normal
+81,NL FB,Performance,SESSION ONLY,"F(7,35) = 2.618,\ p=0.028","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 2.618,\ p=0.028",,,PASS,1.0268159995191521,Perfectly normal
+82,NL FB,Effort,SESSION ONLY,"F(7,35) = 7.245,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 7.245,\ p=0.0",,,PASS,1.0105843543080497,Perfectly normal
+83,NL FB,Frustration Level,SESSION ONLY,"F(7,35) = 5.751,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 5.751,\ p=0.0",,,PASS,1.0429857470429447,Perfectly normal
+84,NL FB,It is easy to understand.,NONE,"F(7,35) = 1.321,\ p=0.27","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",NONE,"F(7,35) = 1.321,\ p=0.27",,,PASS,1.0,False
+85,NL FB,It is distracting.,NONE,"F(7,35) = 1.572,\ p=0.176","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",NONE,"F(7,35) = 1.572,\ p=0.176",,,PASS,1.0000251106074134,Highly normal
+86,NL FB,It is user-friendly.,NONE,"F(7,35) = 1.838,\ p=0.111","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",NONE,"F(7,35) = 1.838,\ p=0.111",,,PASS,1.0014162137681226,False
+87,NL FB,Using it is effortless.,SESSION ONLY,"F(7,35) = 12.609,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",SESSION ONLY,"F(7,35) = 12.609,\ p=0.0",,,PASS,1.0,Normal
+88,NL FB,Both occasional and Regular users would like it.,SESSION ONLY,"F(7,35) = 7.297,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",SESSION ONLY,"F(7,35) = 7.297,\ p=0.0",,,PASS,1.0000574213536013,False
+89,NL FB,It is difficult to learn how to use.,NONE,"F(7,35) = 1.292,\ p=0.283","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",NONE,"F(7,35) = 1.292,\ p=0.283",,,PASS,1.0000000015421497,Highly normal
+90,NL FB,It works the way I want it to work.,SESSION ONLY,"F(7,35) = 2.531,\ p=0.032","F(0,5) = nan,\ p=nan","F(0,35) = nan,\ p=nan",SESSION ONLY,"F(7,35) = 2.531,\ p=0.032",,,PASS,1.0139454738552272,Perfectly normal
+91,NL FB,It is pleasant to use.,SESSION ONLY,"F(7,35) = 11.936,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",SESSION ONLY,"F(7,35) = 11.936,\ p=0.0",,,PASS,1.0,Normal
+92,NL FB,TLX totals,SESSION ONLY,"F(7,35) = 8.122,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = inf,\ p=nan",SESSION ONLY,"F(7,35) = 8.122,\ p=0.0",,,PASS,0.9641754653885377,Perfectly normal
+93,NL FB,Q totals,SESSION ONLY,"F(7,35) = 13.225,\ p=0.0","F(0,5) = nan,\ p=nan","F(0,35) = -inf,\ p=nan",SESSION ONLY,"F(7,35) = 13.225,\ p=0.0",,,PASS,1.0612324839607208,Perfectly normal
+94,ADL FB,Cups,NONE,"F(2,8) = 0.931,\ p=0.433","F(0,4) = inf,\ p=nan","F(0,8) = inf,\ p=nan",NONE,,,,PASS,0.12019942803708686,Normal
+95,ADL FB,Pegs,SESSION ONLY,"F(2,8) = 5.674,\ p=0.029","F(0,4) = nan,\ p=nan","F(0,8) = -inf,\ p=nan",SESSION ONLY,,,,PASS,0.2654704153629396,Perfectly normal
+96,ADL FB,Pens,SESSION ONLY,"F(2,8) = 5.121,\ p=0.037","F(0,4) = nan,\ p=nan","F(0,8) = nan,\ p=nan",SESSION ONLY,,,,PASS,0.05769374454783948,Perfectly normal
